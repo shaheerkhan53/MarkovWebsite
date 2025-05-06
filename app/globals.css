@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Core brand colors */
+  --color-primary: 176 75% 51%;
+  --color-primary-hex: #2DD8D4;
+  --color-secondary: 41 100% 50%;
+  --color-secondary-hex: #FFB800;
+  --color-accent: 0 0% 10%;
+  --color-accent-hex: #1A1A1A;
+
+  /* Light mode */
+  --background: 0 0% 100%;
+  --foreground: 0 0% 10%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 10%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 10%;
+
+  --primary: var(--color-primary);
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: var(--color-secondary);
+  --secondary-foreground: 0 0% 10%;
+
+  --muted: 176 10% 95%;
+  --muted-foreground: 0 0% 45%;
+
+  --accent: var(--color-accent);
+  --accent-foreground: 0 0% 100%;
+
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 176 10% 90%;
+  --input: 176 10% 90%;
+  --ring: var(--color-primary);
+
+  --radius: 0.5rem;
+}
+
+.dark {
+  /* Dark mode */
+  --background: 0 0% 10%;
+  --foreground: 0 0% 98%;
+
+  --card: 0 0% 10%;
+  --card-foreground: 0 0% 98%;
+
+  --popover: 0 0% 10%;
+  --popover-foreground: 0 0% 98%;
+
+  --primary: var(--color-primary);
+  --primary-foreground: 0 0% 10%;
+
+  --secondary: var(--color-secondary);
+  --secondary-foreground: 0 0% 98%;
+
+  --muted: 0 0% 15%;
+  --muted-foreground: 0 0% 65%;
+
+  --accent: var(--color-primary);
+  --accent-foreground: 0 0% 98%;
+
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 0 0% 20%;
+  --input: 0 0% 20%;
+  --ring: var(--color-primary);
+}
+
+/* Custom gradient text utility */
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-[var(--color-primary-hex)] to-[var(--color-secondary-hex)];
+}
+
+/* Custom gradient background utility */
+.bg-gradient-brand {
+  @apply bg-gradient-to-r from-[var(--color-primary-hex)] to-[var(--color-secondary-hex)];
+}
+
+.bg-gradient-brand-dark {
+  @apply bg-gradient-to-r from-[var(--color-accent-hex)] to-[var(--color-primary-hex)];
+}
+
+/* Interactive element hover states */
+.hover-state-primary {
+  @apply transition-colors duration-300 hover:bg-primary/80;
+}
+
+.hover-state-secondary {
+  @apply transition-colors duration-300 hover:bg-secondary/80;
+}
+
+.hover-state-accent {
+  @apply transition-colors duration-300 hover:bg-accent/80;
+}
+
+/* Floating animation */
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.animate-float {
+  animation: float 10s infinite ease-in-out;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Glass morphism */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Focus states for accessibility */
+.focus-visible-state {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+}
+
