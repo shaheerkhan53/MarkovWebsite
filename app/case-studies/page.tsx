@@ -58,7 +58,7 @@ export default function CaseStudiesPage() {
       id: 1,
       title: 'BPO Solutions for Global Healthcare Provider',
       summary: 'We implemented a comprehensive BPO solution for a leading healthcare provider, resulting in 40% cost reduction and improved customer satisfaction.',
-      image: '/placeholder.svg?height=300&width=600&text=BPO+Healthcare',
+      image: '/BPO.jpg',
       category: 'BPO',
       industry: 'Healthcare',
       slug: 'bpo-healthcare-provider'
@@ -67,7 +67,7 @@ export default function CaseStudiesPage() {
       id: 2,
       title: 'E-Commerce Management for Retail Giant',
       summary: 'Our e-commerce management services helped a retail company increase online sales by 75% and streamline their order processing system.',
-      image: '/placeholder.svg?height=300&width=600&text=E-Commerce+Retail',
+      image: '/ecommercemanagement.jpg',
       category: 'E-commerce',
       industry: 'Retail',
       slug: 'ecommerce-retail-giant'
@@ -76,7 +76,7 @@ export default function CaseStudiesPage() {
       id: 3,
       title: 'Digital Marketing Campaign for Entertainment Brand',
       summary: 'We developed and executed a digital marketing strategy that increased brand engagement by 120% and drove a 45% increase in conversions.',
-      image: '/placeholder.svg?height=300&width=600&text=Digital+Marketing',
+      image: '/digitalmarketing.jpg',
       category: 'Digital Marketing',
       industry: 'Entertainment',
       slug: 'digital-marketing-entertainment'
@@ -85,7 +85,7 @@ export default function CaseStudiesPage() {
       id: 4,
       title: 'IT Infrastructure Upgrade for Finance Institution',
       summary: 'Our team implemented a secure and scalable IT infrastructure solution that improved system reliability and reduced downtime by 95%.',
-      image: '/placeholder.svg?height=300&width=600&text=IT+Solutions',
+      image: '/infrastructure.jpg',
       category: 'IT Solutions',
       industry: 'Finance',
       slug: 'it-solutions-finance'
@@ -94,7 +94,7 @@ export default function CaseStudiesPage() {
       id: 5,
       title: 'Call Center Implementation for Educational Institute',
       summary: 'We established a multi-channel call center solution that enhanced student support services and increased response rates by 60%.',
-      image: '/placeholder.svg?height=300&width=600&text=Call+Center',
+      image: '/callcenter.jpg',
       category: 'Call Center',
       industry: 'Education',
       slug: 'call-center-education'
@@ -103,7 +103,7 @@ export default function CaseStudiesPage() {
       id: 6,
       title: 'Telecommunication Network for Healthcare System',
       summary: 'Our team designed and deployed a reliable telecommunication network that connected multiple healthcare facilities and improved patient care coordination.',
-      image: '/placeholder.svg?height=300&width=600&text=Telecommunication',
+      image: '/telecommunication.jpg',
       category: 'Telecommunication',
       industry: 'Healthcare',
       slug: 'telecommunication-healthcare'
@@ -112,7 +112,7 @@ export default function CaseStudiesPage() {
       id: 7,
       title: 'E-Commerce Platform for Fashion Retailer',
       summary: 'We developed a customized e-commerce platform that increased mobile conversions by 85% and enhanced the overall shopping experience.',
-      image: '/placeholder.svg?height=300&width=600&text=E-Commerce+Fashion',
+      image: '/ecommerceplatform.jpg',
       category: 'E-commerce',
       industry: 'Retail',
       slug: 'ecommerce-fashion-retailer'
@@ -121,7 +121,7 @@ export default function CaseStudiesPage() {
       id: 8,
       title: 'BPO Services for Financial Institution',
       summary: 'Our BPO services streamlined back-office operations, resulting in 35% cost savings and improved processing times for a leading financial institution.',
-      image: '/placeholder.svg?height=300&width=600&text=BPO+Finance',
+      image: '/bposervice.jpg',
       category: 'BPO',
       industry: 'Finance',
       slug: 'bpo-financial-institution'
@@ -130,7 +130,7 @@ export default function CaseStudiesPage() {
       id: 9,
       title: 'Digital Marketing for E-learning Platform',
       summary: 'We implemented a comprehensive digital marketing strategy that increased student enrollments by 90% and enhanced brand visibility in the education sector.',
-      image: '/placeholder.svg?height=300&width=600&text=Digital+Marketing+Education',
+      image: '/digimar-elearningplat.jpg',
       category: 'Digital Marketing',
       industry: 'Education',
       slug: 'digital-marketing-elearning'
@@ -156,7 +156,7 @@ export default function CaseStudiesPage() {
   return (
     <div className="bg-white min-h-screen">
       {/* Hero/Intro Section */}
-      <section className="py-16 bg-gray-100">
+      <section className="py-16 bg-gray-200">
         <div className="container mx-auto px-4">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}

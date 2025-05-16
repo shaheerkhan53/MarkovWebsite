@@ -123,24 +123,6 @@ export default function DigitalPROutreachPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <svg width="96" height="96" viewBox="0 0 96 96" fill="none" className="mb-8 drop-shadow-[0_8px_32px_rgba(186,45,59,0.35)]">
-              <g filter="url(#glow)">
-                <rect x="16" y="36" width="48" height="24" rx="12" fill="#fff" />
-                <rect x="64" y="40" width="24" height="12" rx="6" fill={accentColor} />
-                <rect x="20" y="40" width="12" height="12" rx="6" fill={primaryColor} />
-                <rect x="80" y="44" width="8" height="8" rx="4" fill="#fff" />
-                <rect x="8" y="44" width="8" height="8" rx="4" fill={accentColor} />
-              </g>
-              <defs>
-                <filter id="glow" x="0" y="28" width="96" height="48" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-                  <feGaussianBlur stdDeviation="12" result="blur" />
-                  <feMerge>
-                    <feMergeNode in="blur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-              </defs>
-            </svg>
           </motion.div>
           
           <motion.h1 
@@ -206,11 +188,6 @@ export default function DigitalPROutreachPage() {
             </div>
           </motion.div>
         </div>
-        
-        {/* Enhanced decorative SVG Wave */}
-        <svg className="absolute bottom-0 left-0 w-full" height="80" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 0h1440v40c-120 20-360 40-720 40S120 60 0 40V0z" fill="#fff" fillOpacity="0.9"/>
-        </svg>
       </section>
 
       {/* Trust/Testimonials Section */}

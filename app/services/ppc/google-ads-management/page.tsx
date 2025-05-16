@@ -1,926 +1,724 @@
 "use client";
 
-import React from "react";
-import { PageHeaderLine } from "@/components/ui/page-header-line";
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { CheckCircle, BarChart, Target, Zap } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import {
+  BarChart, Target as TargetIcon, Zap, CheckCircle, Users, Brain, Laptop, LineChart,
+  Handshake, Heart, UsersRound, DollarSign, LayoutGrid, FileText, CalendarDays, Rocket, Sparkles, ShoppingCart, Layers, Tv,
+  ClipboardList, Telescope, ChevronRight, Star, ThumbsUp, Goal, AlertTriangle, BarChart3, Info, MessageSquare, Clock, Award, Briefcase,
+  Settings, Filter, PieChart, UserCheck, Eye, Maximize2, Minimize2, PlayCircle, TrendingUp, Search, Shield, Lightbulb
+} from "lucide-react";
+import { motion } from "framer-motion";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+
+// Color Palette & Backgrounds for Google Ads Management
+const primaryColor = "#328E6E"; // Main green
+const primaryHoverColor = "#256e56"; // Darker green for hover
+const lightBg = "bg-gradient-to-b from-[#e6f5f0] to-[#f5faf8]"; // Existing light green gradient
+
+// Reusable Section Components (Adapted for Google Ads Management)
+const SectionWrapper = ({ children, className = "", id = "" }: { children: React.ReactNode, className?: string, id?: string }) => (
+  <section id={id} className={`py-12 md:py-20 ${className}`}>
+    <div className="container mx-auto px-4 md:px-6 lg:px-8">
+      {children}
+    </div>
+  </section>
+);
+
+const SectionHeading = ({ title, subtitle, className = "" }: { title: string, subtitle?: string, className?: string }) => (
+  <div className={`text-center mb-10 md:mb-16 ${className}`}>
+    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-3 md:mb-4">{title}</h2>
+    {subtitle && <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">{subtitle}</p>}
+  </div>
+);
+
+const ModernCard = ({ icon, title, description, className = "", primaryColor: cardPrimaryColor = primaryColor, delay = 0 }: { icon: React.ReactNode, title: string, description: string, className?: string, primaryColor?: string, delay?: number }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay: delay * 0.1 }}
+    className={`bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 ${className}`}
+  >
+    <div className="flex items-center mb-4">
+      <div style={{ backgroundColor: cardPrimaryColor + '20', color: cardPrimaryColor }} className="p-3 rounded-full mr-4">
+        {icon}
+      </div>
+      <h3 className="text-xl font-semibold text-gray-800">{title}</h3>
+    </div>
+    <p className="text-gray-600 text-sm leading-relaxed">{description}</p>
+  </motion.div>
+);
+
+const FeatureListItem = ({ icon, text, primaryColor: itemPrimaryColor = primaryColor }: { icon: React.ReactNode, text: string, primaryColor?: string }) => (
+  <li className="flex items-start space-x-3">
+    <div className="flex-shrink-0 mt-0.5" style={{ color: itemPrimaryColor }}>
+      {icon}
+    </div>
+    <span className="text-gray-700" dangerouslySetInnerHTML={{ __html: text }} />
+  </li>
+);
 
 export default function GoogleAdsManagementPage() {
-    const router = useRouter();
-    return (
-        <div className="flex flex-col min-h-screen overflow-x-hidden">
-            <PageHeaderLine
-                title="Google Ads Management"
-                color="bg-[#328E6E]"
-                icon={
-                    <BarChart className="w-6 h-6 text-white" />
-                }
-                link={{
-                    text: "Learn about Google Ads",
-                    url: "https://ads.google.com/"
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const [websiteUrl, setWebsiteUrl] = useState("");
+
+  const handleAnalysisRequest = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!websiteUrl.trim()) {
+      toast.error("Please enter your website URL");
+      return;
+    }
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      toast.success("Your analysis request has been received! We'll be in touch.");
+      setWebsiteUrl("");
+    }, 1500);
+  };
+
+  const googleAdsStats = [
+    { icon: <TrendingUp size={32} />, value: "$8 Profit", label: "For every $1 spent on Google Ads is the estimated average return." },
+    { icon: <TargetIcon size={32} />, value: "4.2%", label: "Average conversion rate across all industries on Google Search Ads." },
+    { icon: <UsersRound size={32} />, value: "Top 3", label: "Ads on Google search get approx. 40-50% of the clicks." },
+    { icon: <CheckCircle size={32} />, value: "600M+", label: "Businesses globally use Google Ads to reach customers." }
+  ];
+
+  return (
+    <div className="flex flex-col min-h-screen bg-gray-50">
+      <main className="flex-grow">
+        {/* Section 1: Hero Section */}
+        <SectionWrapper className={lightBg} id="hero-google-ads">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="md:pr-8">
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }} 
+                animate={{ opacity: 1, y: 0 }} 
+                transition={{ duration: 0.6 }}
+                className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-800 mb-6 leading-tight"
+              >
+                Expert Google Ads Management for <span style={{color: primaryColor}}>Maximum ROI</span>
+              </motion.h1>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }} 
+                animate={{ opacity: 1, y: 0 }} 
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed"
+              >
+                Maximize your advertising returns and reach your ideal customers with our data-driven Google Ads strategies and expert campaign management.
+              </motion.p>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }} 
+                animate={{ opacity: 1, y: 0 }} 
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="flex flex-col sm:flex-row gap-4 mb-10"
+              >
+                <Button
+                  size="lg"
+                  style={{ backgroundColor: primaryColor, color: 'white' }}
+                  className="shadow-lg hover:opacity-90 transition-opacity px-8 py-3 text-lg"
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = primaryHoverColor}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = primaryColor}
+                  onClick={() => document.getElementById('google-ads-proposal-form')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  Get a Free Consultation
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  style={{ borderColor: primaryColor, color: primaryColor }}
+                  className="shadow-lg hover:bg-gray-100 transition-colors px-8 py-3 text-lg"
+                  onClick={() => router.push('/services/ppc')}
+                >
+                  Explore PPC Services
+                </Button>
+              </motion.div>
+            </div>
+            
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }} 
+              animate={{ opacity: 1, scale: 1 }} 
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="bg-white p-6 sm:p-8 rounded-xl shadow-xl border border-gray-200"
+            >
+              <h2 className="text-2xl font-semibold mb-6 text-center text-gray-700">
+                Get Your <span style={{color: primaryColor}}>Free</span> Google Ads Account Audit
+              </h2>
+              <form onSubmit={handleAnalysisRequest} className="space-y-5">
+                <div>
+                  <label htmlFor="websiteUrlHeroGoogleAds" className="block text-sm font-medium text-gray-700 mb-1">Your Website URL*</label>
+                  <Input 
+                    id="websiteUrlHeroGoogleAds"
+                    type="text" 
+                    placeholder="https://www.yourwebsite.com"
+                    className="w-full px-4 py-2.5 border-gray-300 rounded-md focus:ring-2 focus:border-transparent transition-shadow focus:shadow-md"
+                    style={{'--tw-ring-color': primaryColor} as React.CSSProperties}
+                    value={websiteUrl}
+                    onChange={(e) => setWebsiteUrl(e.target.value)}
+                    required
+                  />
+                </div>
+                <Button 
+                  type="submit"
+                  style={{ backgroundColor: primaryColor, color: 'white' }}
+                  className="w-full py-3 rounded-lg font-semibold shadow-md transition-all duration-300 hover:opacity-90 text-base"
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = primaryHoverColor}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = primaryColor}
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Analyzing..." : "Request Free Audit"}
+                </Button>
+                <p className="text-xs text-gray-500 text-center">
+                  Receive a complimentary audit of your Google Ads potential. No obligations.
+                </p>
+              </form>
+            </motion.div>
+          </div>
+           <motion.div 
+            className="mt-12 md:mt-16 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+          </motion.div>
+        </SectionWrapper>
+
+        {/* Section 2: Stats/Impact Section */}
+        <SectionWrapper className="bg-white" id="google-ads-impact">
+          <SectionHeading 
+            title="The Tangible Impact of Expert Google Ads Management"
+            subtitle="Unlock significant growth and reach your target audience effectively with data-driven Google Ads campaigns."
+          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            {googleAdsStats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-gray-50 p-6 rounded-xl shadow-lg text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-gray-200"
+              >
+                <div className="mb-4 inline-flex items-center justify-center p-3 rounded-full" style={{ backgroundColor: primaryColor + '15', color: primaryColor }}>
+                  {stat.icon}
+                </div>
+                <div className="text-4xl font-bold mb-2" style={{ color: primaryColor }}>{stat.value}</div>
+                <p className="text-gray-600 text-sm leading-relaxed">{stat.label}</p>
+              </motion.div>
+            ))}
+          </div>
+        </SectionWrapper>
+
+        {/* Section 3: Why Markov Digital for Your Google Ads Success? */}
+        <SectionWrapper className={lightBg} id="why-markov-google-ads">
+          <SectionHeading 
+            title="Why Markov Digital for Your Google Ads Success?"
+            subtitle="Your dedicated partner for high-performance Google Ads campaigns that deliver measurable results and significant ROI."
+          />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { icon: <UserCheck size={24}/>, title: "Certified Google Ads Experts", desc: "Our team comprises Google Ads certified professionals with a proven track record of managing successful campaigns across diverse industries and budgets." },
+              { icon: <TargetIcon size={24}/>, title: "Data-Driven Strategies", desc: "We leverage advanced analytics and data insights to craft targeted Google Ads strategies that maximize your ROI and achieve specific business goals." },
+              { icon: <ClipboardList size={24}/>, title: "Transparent Reporting", desc: "Receive clear, comprehensive reports detailing campaign performance, key metrics, and actionable insights for continuous improvement and strategy refinement." },
+              { icon: <Brain size={24}/>, title: "Holistic PPC Approach", desc: "We integrate Google Ads with your overall digital marketing strategy, ensuring a cohesive approach that amplifies your brand\'s online presence effectively." },
+              { icon: <TrendingUp size={24}/>, title: "Proactive Optimization", desc: "Continuous monitoring, A/B testing of ads and landing pages, and bid adjustments allow us to proactively optimize campaigns for peak performance." },
+              { icon: <DollarSign size={24}/>, title: "Focus on ROAS & Growth", desc: "Our primary objective is to deliver a strong Return on Ad Spend, focusing on lead quality, conversion rates, cost-efficiency, and scalable growth." }
+            ].map((item, i) => <ModernCard key={item.title} icon={item.icon} title={item.title} description={item.desc} delay={i} primaryColor={primaryColor}/>)}
+          </div>
+        </SectionWrapper>
+
+        {/* Section 4: Our Proven Google Ads Management Process */}
+        <SectionWrapper className="bg-white" id="google-ads-process">
+          <SectionHeading 
+            title="Our Proven Google Ads Management Process"
+            subtitle="A streamlined, transparent approach designed to get your campaigns delivering results, efficiently and effectively."
+          />
+          <div className="max-w-4xl mx-auto space-y-10">
+            {[
+              { 
+                icon: <Search size={32} />, 
+                title: "1. Account Audit & Discovery", 
+                desc: "We start with a comprehensive audit of your existing Google Ads account (if any) or a deep dive into your business, goals, target audience, and competitive landscape.",
+              },
+              { 
+                icon: <Settings size={32} />, 
+                title: "2. Strategy Development & Campaign Setup", 
+                desc: "Based on insights, we develop a bespoke Google Ads strategy, including keyword research, audience definition, ad group structuring, and meticulous campaign setup with conversion tracking.",
+              },
+              { 
+                icon: <PlayCircle size={32} />, 
+                title: "3. Ad Creation, Launch & Monitoring", 
+                desc: "Compelling ad copy and creatives are developed. Campaigns are launched, followed by intensive real-time monitoring to analyze initial data and performance trends.",
+              },
+              { 
+                icon: <PieChart size={32} />, 
+                title: "4. Continuous Optimization & Scaling", 
+                desc: "Through ongoing A/B testing, bid management, keyword refinement, and strategic adjustments, we continuously optimize for key metrics (CTR, CPA, ROAS) and scale successful elements.",
+              },
+              { 
+                icon: <FileText size={32} />, 
+                title: "5. Performance Reporting & Strategy Reviews", 
+                desc: "You receive regular, transparent reports detailing performance. We conduct strategy reviews to discuss results, insights, and collaboratively plan future steps for sustained growth.",
+              }
+            ].map((step, idx) => (
+              <motion.div 
+                key={step.title} 
+                className="flex flex-col md:flex-row items-start p-6 bg-gray-50 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-shadow"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: idx * 0.15 }}
+              >
+                <div className="mr-0 mb-4 md:mr-6 md:mb-0 shrink-0 text-white p-4 rounded-full flex items-center justify-center" style={{ backgroundColor: primaryColor }}>
+                  {step.icon}
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-800 mb-2">{step.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{step.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </SectionWrapper>
+
+        {/* Section 5: What We Manage in Your Google Ads Campaigns */}
+        <SectionWrapper className={lightBg} id="google-ads-management-scope">
+          <SectionHeading 
+            title="Comprehensive Management for Your Google Ads Success"
+            subtitle="We handle every facet of your Google Ads campaigns to ensure optimal performance, maximum reach, and continuous growth."
+          />
+          <div className="max-w-4xl mx-auto bg-white p-8 md:p-10 rounded-xl shadow-xl border border-gray-200">
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+              {[ 
+                { icon: <Search size={20}/>, text: "<strong>In-Depth Keyword Research & Strategy:</strong> Identifying high-intent keywords and negative keywords to capture relevant traffic." },
+                { icon: <Award size={20}/>, text: "<strong>Compelling Ad Copywriting & A/B Testing:</strong> Crafting engaging ad creatives that convert and continuously testing for higher performance." },
+                { icon: <TargetIcon size={20}/>, text: "<strong>Precise Audience Targeting & Segmentation:</strong> Reaching the right users with demographic, interest, in-market, and remarketing audiences." },
+                { icon: <DollarSign size={20}/>, text: "<strong>Strategic Bid Management & Budget Optimization:</strong> Maximizing your ad spend efficiency using manual and smart bidding strategies." },
+                { icon: <LayoutGrid size={20}/>, text: "<strong>Landing Page Analysis & Conversion Optimization:</strong> Providing recommendations to ensure your landing pages are primed for conversions from ad clicks." },
+                { icon: <BarChart3 size={20}/>, text: "<strong>Performance Tracking, Analytics & Reporting:</strong> Monitoring key metrics (KPIs) and delivering insightful, transparent performance reports." },
+                { icon: <Shield size={20}/>, text: "<strong>Competitor Analysis & Benchmarking:</strong> Understanding the competitive landscape to identify opportunities and maintain an edge." },
+                { icon: <TrendingUp size={20}/>, text: "<strong>Conversion Rate Optimization (CRO) for Ads:</strong> Systematically improving the path from impression to click to conversion." },
+                { icon: <Filter size={20}/>, text: "<strong>Campaign Structuring & Restructuring:</strong> Building and refining campaigns for optimal Quality Score, relevance, and manageability." },
+                { icon: <Settings size={20}/>, text: "<strong>Account Setup & Technical Configuration:</strong> Ensuring all tracking codes, linking (e.g., Analytics, Merchant Center), and settings are correctly implemented." }
+              ].map(item => <FeatureListItem key={item.text} icon={item.icon} text={item.text} primaryColor={primaryColor}/>)}
+            </ul>
+          </div>
+        </SectionWrapper>
+
+        {/* Section 6: Types of Google Ads Campaigns We Excel In */}
+        <SectionWrapper className="bg-white" id="google-ads-campaign-types">
+          <SectionHeading 
+            title="Types of Google Ads Campaigns We Master"
+            subtitle="Targeting your audience effectively across the entire Google ecosystem with tailored campaign types."
+          />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { icon: <Search size={24}/>, title: "Google Search Ads", desc: "Dominate Google SERPs with targeted text ads. We optimize for high Quality Scores, CTR, and conversions for your most important keywords." },
+              { icon: <Layers size={24}/>, title: "Google Display Network (GDN)", desc: "Build brand awareness and re-engage users across millions of websites, apps, and Google properties with visually compelling display ads." },
+              { icon: <ShoppingCart size={24}/>, title: "Google Shopping Campaigns (PLAs)", desc: "Showcase your products directly in search results with Product Listing Ads. Essential for e-commerce to drive sales and visibility." },
+              { icon: <PlayCircle size={24}/>, title: "YouTube Video Ads", desc: "Leverage the power of video on YouTube to engage users at different stages of the funnel with various ad formats (e.g., TrueView, Bumper)." },
+              { icon: <Tv size={24}/>, title: "Google Discovery Campaigns", desc: "Reach users across Google Discover, YouTube home feed, and Gmail Promotions tab with visually rich, native ad experiences." },
+              { icon: <Laptop size={24}/>, title: "Google App Campaigns (UAC)", desc: "Promote your mobile app across Google Search, Play, YouTube, Discover, and the Display Network to drive installs and in-app actions." }
+            ].map((item, i) => <ModernCard key={item.title} icon={item.icon} title={item.title} description={item.desc} delay={i} primaryColor={primaryColor}/>)}
+          </div>
+        </SectionWrapper>
+
+        {/* Section 7: Advanced Google Ads Strategies We Implement */}
+        <SectionWrapper className={lightBg} id="google-ads-advanced-strategies">
+          <SectionHeading 
+            title="Advanced Google Ads Strategies for Superior Results"
+            subtitle="Going beyond the basics to give you a competitive edge and maximize your Google Ads campaign performance."
+          />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { icon: <Brain size={24}/>, title: "AI-Powered Bidding & Automation", desc: "Leveraging Google\'s machine learning for smart bidding (tCPA, tROAS, Maximize Conversions) and campaign automation, while maintaining strategic human oversight." },
+              { icon: <UsersRound size={24}/>, title: "Advanced Audience Segmentation", desc: "Utilizing custom audiences, similar audiences, in-market segments, remarketing lists (RLSA), and demographic layering for hyper-targeted campaigns." },
+              { icon: <Shield size={24}/>, title: "Competitor Conquesting & Analysis", desc: "Strategic bidding on competitor keywords and in-depth analysis of their ad strategies to identify opportunities and defend market share." },
+              { icon: <TrendingUp size={24}/>, title: "Full-Funnel Google Ads Approach", desc: "Crafting campaigns that address every stage of the customer journey, from awareness and consideration to conversion and loyalty, using appropriate ad formats." },
+              { icon: <Filter size={24}/>, title: "Dynamic Search Ads (DSA) & Keyword Insertion", desc: "Capturing relevant long-tail searches with DSA and personalizing ads at scale with Dynamic Keyword Insertion (DKI)." },
+              { icon: <BarChart3 size={24}/>, title: "Data Feed Optimization (for Shopping & PMax)", desc: "Enhancing product data feeds for Shopping and Performance Max campaigns to improve ad relevance, visibility, and overall performance." }
+            ].map((item, i) => <ModernCard key={item.title} icon={item.icon} title={item.title} description={item.desc} delay={i} primaryColor={primaryColor}/>)}
+          </div>
+        </SectionWrapper>
+
+        {/* Section 8: The Markov Digital Advantage for Google Ads */}
+        <SectionWrapper className="bg-white" id="google-ads-markov-advantage">
+          <SectionHeading 
+            title="The Markov Digital Advantage in Google Ads"
+            subtitle="Experience the difference of a dedicated, expert team committed to your Google advertising success and growth."
+          />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { icon: <Award size={24}/>, title: "Customized Strategies, Not Templates", desc: "We don\'t believe in one-size-fits-all. Your Google Ads strategy is meticulously tailored to your unique business, industry, and objectives for optimal impact." },
+              { icon: <TrendingUp size={24}/>, title: "Relentless Performance Focus & ROI Driven", desc: "Our team is obsessed with data and driving measurable results. We continuously analyze, test, and optimize to exceed your goals and maximize your ROAS." },
+              { icon: <Handshake size={24}/>, title: "Transparent & Collaborative Partnership", desc: "You'll have a dedicated point of contact, regular, clear communication, and insightful reporting. We work as an extension of your team, fostering true partnership." },
+              { icon: <Lightbulb size={24}/>, title: "Innovation & Proactive Adaptation", desc: "The Google Ads landscape is ever-evolving. We stay ahead of platform updates and trends, proactively testing and implementing new features to keep your campaigns cutting-edge." },
+              { icon: <UserCheck size={24}/>, title: "Certified & Continuously Trained Professionals", desc: "Our Google Ads managers are Google certified and undergo continuous training to master the latest tools, features, and best practices for superior campaign management." },
+              { icon: <Heart size={24}/>, title: "Client Success is Our Core Mission", desc: "We are genuinely invested in your business growth. Your wins are our wins, and we go the extra mile to ensure your Google Ads investment yields significant and sustainable returns." }
+            ].map((item, i) => <ModernCard key={item.title} icon={item.icon} title={item.title} description={item.desc} delay={i} primaryColor={primaryColor}/>)}
+            </div>
+        </SectionWrapper>
+
+        {/* Section 9: Our Guiding Principles: The Markov Ethos for Google Ads */}
+        <SectionWrapper className={lightBg} id="google-ads-ethos">
+          <SectionHeading 
+            title="Our Guiding Principles: The Markov Ethos for Google Ads"
+            subtitle="The core values that drive our Google Ads management, our partnerships, and our commitment to your success."
+          />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
+            {[
+              { icon: <TargetIcon size={32}/>, title: "Client-Centricity First", desc: "Your goals are paramount. We immerse ourselves in your business to deliver Google Ads strategies that achieve your specific objectives and drive real impact." },
+              { icon: <Brain size={32}/>, title: "Data-Driven Decisions Always", desc: "Every recommendation, bid adjustment, and optimization is backed by thorough data analysis, ensuring a scientific and effective approach to managing your Google Ads." },
+              { icon: <TrendingUp size={32}/>, title: "Continuous Improvement & Adaptation", desc: "The Google Ads platform constantly evolves, and so do we. We are committed to perpetual learning, testing, and refining campaigns for sustained peak performance." },
+              { icon: <Handshake size={32}/>, title: "Transparent & Accountable Partnership", desc: "Open communication, clear reporting, and full accountability define our client relationships. We provide insights, not just data, fostering a truly collaborative partnership." }
+            ].map((value, i) => (
+              <motion.div 
+                key={value.title} 
+                className="bg-white p-6 rounded-xl shadow-lg text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-gray-200"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <div className="mb-4 inline-block p-3 rounded-full" style={{backgroundColor: primaryColor+'10', color: primaryColor}}>
+                  {value.icon}
+                </div>
+                <h3 className="text-xl font-semibold text-gray-800 mb-2">{value.title}</h3>
+                <p className="text-gray-600 text-sm">{value.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </SectionWrapper>
+
+        {/* Section 10: Google Ads Success Stories/Case Studies */}
+        <SectionWrapper className="bg-white" id="google-ads-case-studies">
+          <SectionHeading 
+            title="Google Ads Success Stories"
+            subtitle="See how we've helped businesses like yours achieve remarkable results with targeted and optimized Google Ads campaigns."
+          />
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto">
+            {[
+              { title: "E-commerce Sales Surge via Google Shopping", results: ["+280% Increase in ROAS", "70% Growth in Online Sales Revenue", "35% Reduction in Cost Per Acquisition (CPA)"], story: "Implemented a full-funnel Google Ads strategy, focusing on optimized Shopping campaigns, granular keyword targeting for Search, and strategic Display remarketing to significantly boost online sales and profitability for a competitive e-commerce client.", icon: <ShoppingCart size={24}/> },
+              { title: "B2B Lead Generation Triumph with Search Ads", results: ["+450% Increase in Qualified Leads", "60% Lower Cost Per Lead (CPL)", "Improved Lead-to-Customer Conversion Rate by 25%"], story: "Revamped Google Search Ad campaigns with a focus on high-intent B2B keywords, precise audience targeting (including custom intent and in-market segments), and conversion-optimized landing pages, leading to a substantial surge in high-quality leads.", icon: <UsersRound size={24}/> }
+            ].map((study, i) => (
+              <motion.div 
+                key={study.title} 
+                className="bg-gray-50 p-6 md:p-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border-l-4 hover:border-green-700"
+                style={{borderColor: primaryColor}}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: i * 0.15 }}
+              >
+                <div className="flex items-center mb-4">
+                    <div className="mr-3 p-2 rounded-full" style={{backgroundColor: primaryColor+'10', color:primaryColor}}>{study.icon}</div>
+                    <h3 className="text-2xl font-semibold mb-1" style={{color: primaryColor}}>{study.title}</h3>
+                </div>
+                <p className="text-gray-700 mb-5 italic text-sm">\"{study.story}\"</p>
+                <ul className="space-y-2.5 mb-6">
+                  {study.results.map(result => (
+                    <li key={result} className="flex items-center text-gray-700 text-sm">
+                      <CheckCircle size={18} className="text-green-500 mr-2.5 flex-shrink-0" /> {result}
+                    </li>
+                  ))}
+                </ul>
+                <Button 
+                  variant="outline" 
+                  style={{borderColor: primaryColor, color: primaryColor}}
+                  className="w-full sm:w-auto hover:bg-[${primaryColor}]/5"
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = primaryColor+'10'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+                  onClick={() => router.push('/contact?case_study=' + study.title.replace(/ /g, '-').toLowerCase() + '&service=google-ads')}
+                >
+                  Discuss a Similar Project
+                </Button>
+              </motion.div>
+            ))}
+          </div>
+        </SectionWrapper>
+
+        {/* Section 11: Testimonials for Google Ads Services */}
+        <SectionWrapper className={lightBg} id="google-ads-testimonials">
+          <SectionHeading 
+            title="Hear From Our Satisfied Google Ads Clients"
+            subtitle="Real feedback from businesses that have achieved significant growth and outstanding results with our expert Google Ads management."
+          />
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {[
+              { quote: "Markov Digital completely transformed our Google Ads performance. Our lead quality and volume have skyrocketed, and the ROAS is simply fantastic! Highly recommend their expertise.", author: "Fatima R., E-Commerce Director @ ScaleUp Ltd.", avatarText: "FR" },
+              { quote: "We were struggling to make Google Ads profitable. The Markov team brought strategic insights, meticulous optimization, and clear reporting that turned it all around. True professionals!", author: "Imran S., Services Pro Owner", avatarText: "IS" }
+            ].map((testimonial, i) => (
+              <motion.div 
+                key={testimonial.author} 
+                className="bg-white p-8 rounded-xl shadow-xl border border-gray-200 hover:shadow-2xl transition-shadow"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <div className="flex items-center mb-5">
+                    <div 
+                        className="w-12 h-12 rounded-full mr-4 flex items-center justify-center text-white font-semibold text-lg shadow-md"
+                        style={{backgroundColor: primaryColor}}
+                    >
+                        {testimonial.avatarText}
+                    </div>
+                    <div>
+                        <p className="font-semibold text-gray-800">{testimonial.author.split(', ')[0]}</p>
+                        <p className="text-xs text-gray-500">{testimonial.author.split(', ')[1]}</p>
+                    </div>
+                </div>
+                <Star size={20} className="mb-3" style={{color: '#FACC15' /* yellow-400 */}} fill="currentColor" />
+                <p className="text-gray-700 italic text-lg mb-1 leading-relaxed">\"{testimonial.quote}\"</p>
+              </motion.div>
+            ))}
+          </div>
+        </SectionWrapper>
+
+        {/* Section 12: Meet Your Dedicated Google Ads Team */}
+        <SectionWrapper className="bg-white" id="google-ads-team">
+          <SectionHeading 
+            title="Meet Your Dedicated Google Ads Experts"
+            subtitle="A passionate team of certified professionals committed to maximizing your Google Ads success and achieving your business objectives."
+          />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
+            {[
+              { name: "Liam Miller", role: "Senior Google Ads Strategist", expertise: "Google Search & Shopping Certified, 9+ Yrs Exp.", avatarInitial: "LM" },
+              { name: "Olivia Chen", role: "PPC Campaign Manager", expertise: "Display, Video & App Campaign Pro", avatarInitial: "OC" },
+              { name: "Noah Davis", role: "Conversion Rate Optimizer (CRO)", expertise: "Landing Page Expert, Google Analytics Whiz", avatarInitial: "ND" },
+              { name: "Sophia Wilson", role: "Client Success Manager (Google Ads)", expertise: "Dedicated Support, Reporting & Insights Lead", avatarInitial: "SW" }
+            ].map((member, i) => (
+              <motion.div 
+                key={member.name} 
+                className="bg-gray-50 p-6 rounded-xl shadow-lg text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-gray-200"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <div 
+                  className="w-24 h-24 rounded-full mx-auto mb-4 flex items-center justify-center text-3xl font-semibold text-white shadow-md"
+                  style={{backgroundColor: primaryColor}}
+                >
+                  {member.avatarInitial}
+                </div>
+                <h3 className="text-xl font-semibold text-gray-800 mb-1">{member.name}</h3>
+                <p style={{color: primaryColor}} className="font-medium text-sm mb-1">{member.role}</p>
+                <p className="text-gray-500 text-xs">{member.expertise}</p>
+              </motion.div>
+            ))}
+          </div>
+          <p className="text-center text-gray-600 mt-12 max-w-2xl mx-auto">
+            Our Google Ads specialists combine deep platform knowledge with analytical rigor and creative campaign strategies to ensure your advertising budget delivers exceptional results and sustainable growth.
+          </p>
+        </SectionWrapper>
+
+        {/* Section 13: Preparing Your Business for Google Ads Success */}
+        <SectionWrapper className={lightBg} id="preparing-for-google-ads">
+          <SectionHeading
+            title="Setting the Stage for Google Ads Success"
+            subtitle="A little preparation goes a long way. Here's what helps us hit the ground running with your Google Ads campaigns."
+          />
+          <div className="max-w-3xl mx-auto bg-white p-8 md:p-10 rounded-xl shadow-xl border border-gray-200">
+            <h3 className="text-2xl font-semibold mb-6 text-center" style={{color: primaryColor}}>Key Elements for a Strong Start:</h3>
+            <ul className="space-y-5">
+              {[ 
+                { icon: <Goal size={24}/>, text: "<strong>Clear Business Objectives:</strong> What do you aim to achieve (e.g., leads, sales, brand awareness, app installs)?" },
+                { icon: <UsersRound size={24}/>, text: "<strong>Defined Target Audience:</strong> Who are your ideal customers? Their demographics, interests, online behavior, and search intent?" },
+                { icon: <LayoutGrid size={24}/>, text: "<strong>Optimized Landing Pages/Website:</strong> Are your destination URLs relevant, user-friendly, fast-loading, and designed to convert ad clicks?" },
+                { icon: <DollarSign size={24}/>, text: "<strong>Realistic Advertising Budget:</strong> A budget that allows for effective testing, data collection, optimization, and scaling is crucial for success." },
+                { icon: <BarChart3 size={24}/>, text: "<strong>Access to Google Analytics & Ad Account:</strong> Existing Google Analytics and any current/past Google Ads account access helps us understand history and set up tracking." },
+                { icon: <CheckCircle size={24}/>, text: "<strong>Compelling Offers & USPs:</strong> What makes your product/service stand out? Clear unique selling propositions are vital for ad copy and conversions." }
+              ].map(item => <FeatureListItem key={item.text} icon={item.icon} text={item.text} primaryColor={primaryColor}/>)}
+            </ul>
+            <p className="text-center text-gray-600 mt-8 text-sm">
+              Don't worry if you don't have all these elements perfectly defined! Our onboarding process includes helping you refine these for optimal Google Ads performance.
+            </p>
+          </div>
+        </SectionWrapper>
+
+        {/* Section 14: Simplified Onboarding for Google Ads */}
+        <SectionWrapper className="bg-white" id="google-ads-onboarding">
+          <SectionHeading 
+            title="Your Journey to Google Ads Success: Simplified Onboarding"
+            subtitle="We make getting started with Google Ads easy, ensuring a smooth transition and rapid campaign deployment for your business."
+          />
+          <div className="max-w-3xl mx-auto">
+            <div className="space-y-8">
+              {[
+                { icon: <Handshake size={32}/>, title: "Initial Consultation & Goal Alignment (Free)", desc: "We begin with a no-obligation discussion to understand your business, advertising objectives, target audience, and how Google Ads can drive your specific growth goals." },
+                { icon: <FileText size={32}/>, title: "Custom Google Ads Strategy & Proposal", desc: "Based on our consultation and any account audit, we develop a tailored Google Ads strategy and a detailed proposal outlining our approach, deliverables, and transparent pricing." },
+                { icon: <CalendarDays size={32}/>, title: "Kick-Off Meeting & Asset Collection", desc: "Once you partner with us, we schedule a formal kick-off call, dive deeper into specifics, and gather necessary assets (e.g., account access, brand guidelines, product feeds if applicable)." },
+                { icon: <Rocket size={32}/>, title: "Campaign Build, Launch & Initial Optimization", desc: "Our expert team builds your Google Ads campaigns with best practices, implements robust tracking, and launches. We then closely monitor initial performance for immediate optimizations and insights." }
+              ].map((step, idx) => (
+                <motion.div 
+                  key={step.title} 
+                  className="flex flex-col sm:flex-row items-start p-6 bg-gray-50 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-shadow"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                >
+                  <div className="mr-0 mb-4 sm:mr-5 sm:mb-0 shrink-0 p-3 rounded-full" style={{backgroundColor: primaryColor+'10', color: primaryColor}}>
+                    {step.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-1">{idx + 1}. {step.title}</h3>
+                    <p className="text-gray-600 text-sm leading-relaxed">{step.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </SectionWrapper>
+
+        {/* Section 15: Google Ads Management Pricing */}
+        <SectionWrapper className={lightBg} id="google-ads-pricing">
+          <SectionHeading 
+            title="Transparent Google Ads Management Pricing"
+            subtitle="Choose a plan that aligns with your needs, or let us create a custom package for your unique Google Ads objectives."
+          />
+          <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-8 items-stretch">
+            {[
+              { name: "Ads Starter", price: "$499", features: ["Up to $2,500 Ad Spend Managed", "1-2 Core Campaigns (Search/Display)", "Keyword Research & Selection", "Monthly Performance Reports"], popular: false },
+              { name: "Ads Growth", price: "$999", features: ["Up to $10,000 Ad Spend Managed", "Multiple Campaign Types", "Advanced Audience & Keyword Targeting", "Bi-Weekly Strategy Calls", "Conversion Tracking Setup & Audit"], popular: true },
+              { name: "Ads Dominator", price: "Custom", features: ["Unlimited Ad Spend Potential", "Full Funnel Google Ads Strategy", "Dedicated Senior Strategist", "Custom Analytics Dashboards & Insights", "Ongoing CRO for Ads & Landing Pages"], popular: false }
+            ].map((plan, i) => (
+              <motion.div 
+                key={plan.name} 
+                className={`bg-white p-8 rounded-xl shadow-xl flex flex-col text-center transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl ${plan.popular ? `border-2 border-[${primaryColor}] relative` : 'border border-gray-200'}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                {plan.popular && <div className={`absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white px-4 py-1 text-xs font-semibold rounded-full shadow-md`} style={{backgroundColor: primaryColor}}>POPULAR CHOICE</div>}
+                <h3 className="text-2xl font-bold text-gray-800 mb-2">{plan.name}</h3>
+                <p className="text-4xl font-extrabold mb-1" style={{color: primaryColor}}>{plan.price}</p>
+                <p className="text-gray-500 mb-6 text-sm">{plan.price !== "Custom" ? "/month + Ad Spend" : "Tailored For Your Goals"}</p>
+                <ul className="text-gray-600 text-sm mb-8 space-y-3 text-left flex-grow">
+                  {plan.features.map(feature => (
+                    <li key={feature} className="flex items-start">
+                      <CheckCircle size={16} className="text-green-500 mr-2 mt-1 flex-shrink-0" /> {feature}
+                    </li>
+                  ))}
+                </ul>
+                <Button
+                  style={{ backgroundColor: plan.popular ? primaryColor : '#E5E7EB', color: plan.popular ? 'white' : '#374151' }}
+                  className="w-full py-3 rounded-lg font-semibold shadow-md transition-all duration-300 hover:opacity-90"
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = plan.popular ? primaryHoverColor : '#D1D5DB'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = plan.popular ? primaryColor : '#E5E7EB'}
+                  onClick={() => router.push(`/contact?service=google-ads&plan=${plan.name.toLowerCase().replace(/ /g, '-')}`)}
+                >
+                  {plan.price === "Custom" ? "Get a Custom Quote" : "Select Plan"}
+                </Button>
+              </motion.div>
+            ))}
+          </div>
+          <p className="text-center text-gray-600 mt-12 max-w-2xl mx-auto text-sm">
+            Ad spend is separate and paid directly to Google. Management fees cover our expertise, strategic planning, campaign execution, and ongoing optimization.
+            <br/>Need a bespoke solution for complex needs? <a href="/contact?service=google-ads&source=custom-pricing" style={{color: primaryColor}} className="font-semibold underline hover:opacity-80 transition-opacity">Contact us for a personalized strategy session.</a>
+          </p>
+        </SectionWrapper>
+
+        {/* Section 16: The Future of Google Ads & Search Advertising */}
+        <SectionWrapper className="bg-white" id="future-of-google-ads">
+          <SectionHeading
+            title="The Evolving Landscape of Google Ads & Search Advertising"
+            subtitle="We stay ahead of the curve, preparing your brand for the next wave of Google Ads innovation and search trends."
+          />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {[
+              { icon: <Sparkles size={24} />, title: "AI & Automation (Performance Max)", description: "Increasing reliance on AI for bidding, targeting, ad copy generation, and campaign optimization (e.g., Performance Max). We help you leverage AI strategically." },
+              { icon: <UsersRound size={24} />, title: "Privacy-First Advertising", description: "Navigating a cookieless future with enhanced conversions, server-side tagging, first-party data strategies, and privacy-enhancing tech in Google Ads." },
+              { icon: <MessageSquare size={24} />, title: "Broad Match & Smart Bidding Synergy", description: "Strategic use of Broad Match keywords combined with Smart Bidding to capture wider relevant audiences effectively and efficiently." },
+              { icon: <Layers size={24} />, title: "Visual Storytelling in Search (Images/Video)", description: "Growth in visual assets within Search ads (image extensions, video extensions) and the increasing importance of multimedia in ads." },
+              { icon: <Shield size={24} />, title: "Brand Building & Full-Funnel Strategies", description: "Beyond direct response, using Google Ads strategically for brand awareness, consideration, and building trust throughout the entire customer journey." },
+              { icon: <BarChart3 size={24} />, title: "Advanced Measurement & Attribution", description: "Deeper understanding of cross-channel impact and sophisticated attribution models (e.g., data-driven attribution) to measure the true value of Google Ads." }
+            ].map((item, i) => <ModernCard key={item.title} icon={item.icon} title={item.title} description={item.description} delay={i} primaryColor={primaryColor}/>)}
+          </div>
+          <p className="text-center text-gray-600 mt-12 max-w-2xl mx-auto">
+            Partnering with Markov Digital means your Google Ads strategy is not just current, but future-proofed for sustained success.
+          </p>
+        </SectionWrapper>
+
+        {/* Section 17: Google Ads FAQs */}
+        <SectionWrapper className={lightBg} id="google-ads-faq">
+          <SectionHeading 
+            title="Your Google Ads Questions, Answered"
+            subtitle="Clearing up common queries to help you make informed decisions about your Google Ads strategy and investment."
+          />
+          <div className="max-w-3xl mx-auto space-y-5">
+            {[
+              { q: "How much should I budget for Google Ads spend?", a: "Your ideal ad spend depends on your industry, goals, competition, and desired pace of growth. We typically recommend starting with a budget that allows for robust data collection and optimization, often $1,000-$5,000+/month for initial campaigns, scaling based on performance and ROAS." },
+              { q: "What kind of results can I expect from Google Ads?", a: "Results vary, but common outcomes include increased website traffic, higher lead generation, improved sales, better brand visibility on search, and a strong ROI. We set clear, measurable KPIs based on your specific objectives." },
+              { q: "How long does it take to see results from Google Ads?", a: "While initial traffic and impressions can be seen quickly (within days of launch), meaningful business results like consistent leads or sales typically take 1-3 months to optimize as we gather data, test, and refine campaigns. Google Ads is an ongoing optimization process." },
+              { q: "What makes a Google Ads campaign successful?", a: "Success hinges on relevant keywords, compelling ad copy, optimized landing pages, smart bidding, precise audience targeting, continuous monitoring, and strategic adjustments based on performance data." },
+              { q: "Do you require long-term contracts for Google Ads management?", a: "We offer flexible engagement models. While Google Ads benefits from ongoing management for best results, we can discuss options that suit your needs, typically starting with a 3-6 month initial commitment to allow for proper strategy execution and optimization." },
+              { q: "Can you manage Google Shopping and YouTube Ads as well?", a: "Yes! We manage the full suite of Google Ads campaign types, including Search, Display, Shopping (Product Listing Ads), Video (YouTube Ads), App Campaigns, and Discovery campaigns, tailoring the mix to your goals." }
+            ].map((item, index) => (
+              <details key={index} className="bg-white p-6 rounded-lg shadow-md group border border-gray-200 hover:shadow-lg transition-shadow">
+                <summary className="font-semibold text-lg text-gray-800 cursor-pointer flex justify-between items-center list-none group-open:text-[${primaryColor}]">
+                  {item.q}
+                  <ChevronRight size={20} className="transform transition-transform duration-200 group-open:rotate-90 shrink-0 ml-2" />
+                </summary>
+                <p className="text-gray-600 mt-4 pt-4 border-t border-gray-200 leading-relaxed text-sm">{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </SectionWrapper>
+
+        {/* Section 18: Get Your Free Google Ads Growth Proposal (Lead Form) */}
+        <SectionWrapper className={lightBg} id="google-ads-proposal-form"> {/* Ensures light background for the section */}
+          <div className="max-w-4xl mx-auto text-center py-8 md:py-12">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-800">
+              Ready to Dominate Google Search & Beyond?
+            </h2>
+            <p className="text-xl md:text-2xl mb-10 text-gray-700 opacity-90 leading-relaxed max-w-3xl mx-auto">
+              Let's craft a high-impact Google Ads strategy that drives targeted traffic, generates quality leads, and boosts your sales. Request your free, no-obligation proposal today.
+            </p>
+          </div>
+          {/* Form container with dark background, similar to SEM page but using Google Ads colors */}
+          <div className={`bg-gradient-to-br from-[${primaryColor}] via-[${primaryHoverColor}] to-[#1c5640] rounded-xl shadow-2xl p-6 sm:p-8 md:p-10 max-w-3xl mx-auto relative z-10`}>
+            <h3 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#328e6e]">
+              Get Your <span className="underline">FREE</span> Google Ads Growth Proposal
+            </h3>
+            <form className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5" onSubmit={(e) => {e.preventDefault(); toast.success("Proposal requested! We'll be in touch soon.");}}>
+              <Input type="text" placeholder="First Name*" className="col-span-1 md:col-span-1 bg-white border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-white text-gray-700 placeholder:text-gray-500 transition-shadow focus:shadow-md" required />
+              <Input type="text" placeholder="Last Name*" className="col-span-1 md:col-span-1 bg-white border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-white text-gray-700 placeholder:text-gray-500 transition-shadow focus:shadow-md" required />
+              <Input type="email" placeholder="Work Email Address*" className="md:col-span-2 bg-white border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-white text-gray-700 placeholder:text-gray-500 transition-shadow focus:shadow-md" required />
+              <Input type="text" placeholder="Company Name*" className="md:col-span-2 bg-white border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-white text-gray-700 placeholder:text-gray-500 transition-shadow focus:shadow-md" required />
+              <Input type="text" placeholder="Website URL (Optional)" className="md:col-span-2 bg-white border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-white text-gray-700 placeholder:text-gray-500 transition-shadow focus:shadow-md" />
+              <select defaultValue="" className="md:col-span-2 bg-white border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-white text-gray-700 placeholder:text-gray-500 appearance-none transition-shadow focus:shadow-md" style={{ backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`, backgroundPosition: `right 0.5rem center`, backgroundRepeat: `no-repeat`, backgroundSize: `1.5em 1.5em` }} required>
+                  <option value="" disabled className="text-gray-500">Primary Goal with Google Ads*</option>
+                  <option className="text-gray-700" value="Increase Brand Awareness">Increase Brand Awareness</option>
+                  <option className="text-gray-700" value="Generate Leads">Generate Leads</option>
+                  <option className="text-gray-700" value="Drive Website Traffic">Drive Website Traffic</option>
+                  <option className="text-gray-700" value="Boost Sales / Conversions">Boost Sales / Conversions</option>
+                  <option className="text-gray-700" value="Improve ROAS">Improve ROAS</option>
+                  <option className="text-gray-700" value="App Installs / Engagement">App Installs / Engagement</option>
+                  <option className="text-gray-700" value="Not Sure Yet / Need Audit">Not Sure Yet / Need Audit</option>
+              </select>
+              <textarea placeholder="Briefly describe your business and what you hope to achieve... (Optional)" className="md:col-span-2 bg-white border-gray-300 rounded-md px-4 py-3 focus:ring-2 focus:ring-white text-gray-700 placeholder:text-gray-500 min-h-[100px] transition-shadow focus:shadow-md" />
+              <Button
+                type="submit"
+                style={{ backgroundColor: 'white', color: primaryColor }} /* White button with primary green text */
+                className="md:col-span-2 py-3.5 rounded-lg text-lg font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 ring-offset-2 ring-white"
+                onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#f0f0f0'; // Lighter gray hover for white button
+                    e.currentTarget.style.color = primaryHoverColor;
                 }}
-            />
-            <main className="flex-grow">
-                {/* Hero Section */}
-                <section className="pt-20 pb-16 bg-gradient-to-b from-[#e6f5f0] to-[#f5faf8]">
-                    <div className="container mx-auto px-4">
-                        <div className="max-w-3xl mx-auto text-center">
-                            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-[#328E6E]">
-                                Expert Google Ads Management Services
-                            </h1>
-                            <p className="text-xl text-gray-700 mb-8">
-                                Maximize your ROI and reach your ideal customers with our data-driven Google Ads strategies.
-                            </p>
-                            <Button
-                                className="bg-[#328E6E] hover:bg-[#256e56] text-white px-8 py-4 rounded-lg font-semibold"
-                                onClick={() => router.push("/contact?service=google-ads")}
-                            >
-                                Get a Free Consultation
-                            </Button>
-                        </div>
-                    </div>
-                </section>
+                onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = 'white';
+                    e.currentTarget.style.color = primaryColor;
+                }}
+              >
+                Request My Free Proposal
+              </Button>
+              <div className="md:col-span-2 text-xs text-gray-300 mt-2 text-center">
+                We'll get back to you within 1 business day.
+                <br />Or call us now: <a href="tel:8669084748" className="font-semibold hover:underline text-gray-200 hover:text-white transition-opacity">866.908.4748</a>
+              </div>
+            </form>
+          </div>
+        </SectionWrapper>
 
-                {/* Value Proposition Section */}
-                <section className="py-16 bg-white">
-                    <div className="container mx-auto px-4">
-                        <div className="grid md:grid-cols-2 gap-12 items-center">
-                            {/* Left: Text Content */}
-                            <div>
-                                <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[#328E6E]">Get Maximum Returns<br />on Your Advertising Investment</h2>
-                                <p className="text-gray-700 mb-4">
-                                    Google Ads is a powerful marketing platform, but it can also be a money pit without the right strategy. It is one of the most effective lead generation tools, generating an estimated <span className="font-bold text-[#328E6E]">$8 return in profit for every $1 a business spends</span>.
-                                </p>
-                                <p className="text-gray-700 mb-4">
-                                    Across all industries, the average conversion rate for Google search ads is <span className="font-bold text-[#328E6E]">4.2%</span>, with savvy ads showing that this can climb up to 6% for some sectors.
-                                </p>
-                                <p className="text-gray-700 mb-4">
-                                    The Google Ads platform is user-friendly, and anyone can set up and run campaigns in minutes. However, better platform management leads to better returns on ad spend and a superior bottom line.
-                                </p>
-                                <p className="text-gray-700 mb-4 font-semibold">Need help setting up your Google Ads Manager?</p>
-                                <p className="text-gray-700 mb-4">
-                                    Our Google Ads experts set up, monitor, and optimize campaigns to send targeted leads to your website and other online properties. Drive advertising revenue while lowering acquisition costs with our Google Ads management services.
-                                </p>
-                                <ul className="list-disc pl-6 text-gray-700 mb-4">
-                                    <li>From campaign setup to managing creatives, our certified Google Ads specialists help you reach the right audience and drive qualified leads to your website.</li>
-                                    <li>Our Google Ads management agency gets real results while lowering your cost per lead and increasing ad conversions.</li>
-                                    <li>Maximize your advertising budget and leverage the platform to its full potential with our expert services.</li>
-                                </ul>
-                                <Button 
-                                    className="bg-[#328E6E] hover:bg-[#256e56] text-white px-8 py-3 rounded-lg font-semibold mt-4"
-                                    onClick={() => router.push("/contact?service=google-ads-boost")}
-                                >
-                                    BOOST MY AD REVENUE
-                                </Button>
-                            </div>
-                            {/* Right: Illustration */}
-                            <div className="flex justify-center">
-                                <img src="/Google-ads.png" alt="Google Ads Illustration" className="max-w-md w-full" />
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* What You Need To Know Section */}
-                <section className="py-16 bg-[#f5faf8]">
-                    <div className="container mx-auto px-4">
-                        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#328E6E]">What You Need To Know About Google Ads Manager</h2>
-                        <div className="max-w-3xl mx-auto">
-                            <h3 className="text-xl font-bold mb-2 text-[#328E6E]">What are Google Ads?</h3>
-                            <p className="text-gray-700 mb-3">
-                                Google Ads (formerly Google AdWords) is an advertising platform where businesses pay to display advertisements, product listings, and video content online.
-                            </p>
-                            <p className="text-gray-700 mb-3">
-                                These ads appear on various Google platforms, such as search results pages, YouTube videos, and partner websites, making it easier for prospects to find your business and your offerings.
-                            </p>
-                            <p className="text-gray-700 mb-3">Google Ads offers brands many ways to be seen:</p>
-                            <ul className="list-disc pl-6 text-gray-700 mb-4">
-                                <li><b>Search Network:</b> Ads appear on Google search results pages when users search for keywords related to your business.</li>
-                                <li><b>Display Network:</b> Ads are displayed on websites partnered with Google, giving you a wider reach.</li>
-                                <li><b>Video Ads:</b> Video ads appear on YouTube before or during a video.</li>
-                                <li><b>Shopping Ads:</b> These product listings appear in Google Shopping and search results for eCommerce businesses.</li>
-                            </ul>
-                            <h3 className="text-xl font-bold mb-2 text-[#328E6E]">How Does Google Ads Work?</h3>
-                            <p className="text-gray-700 mb-3">
-                                The Google Ads platform works through a pay-per-click (PPC) system where businesses pay each time someone clicks on their ad.
-                            </p>
-                            <p className="text-gray-700 mb-3">
-                                However, unlike traditional pay-per-click advertising, Google Ads also considers ad relevance and quality to determine which ads are displayed and in what order.
-                            </p>
-                            <p className="text-gray-700 mb-3">
-                                Ads targeting specific keywords will appear on the search results page when someone searches for that keyword. The more relevant your ad is to the user's search query, the higher it will rank on the page.
-                            </p>
-                            <p className="text-gray-700 mb-3">
-                                This means that businesses need to strategically choose their keywords and create high-quality ads to see success with Google Ads.
-                            </p>
-                            <p className="text-gray-700">
-                                A Google Ads management agency like ours helps optimize the complexities of the platform and ensure ad campaigns are set up for success.
-                            </p>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Features Section */}
-                <section className="py-16 bg-[#f5faf8]">
-                    <div className="container mx-auto px-4">
-                        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#328E6E]">Features</h2>
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {/* Feature 1 */}
-                            <div className="bg-[#e6f5f0] p-8 rounded-xl shadow flex flex-col items-center text-center">
-                                <Target className="w-10 h-10 text-[#328E6E] mb-4" />
-                                <h3 className="text-xl font-semibold mb-2">Precise Targeting</h3>
-                                <p className="text-gray-700 mb-2">Reach the right audience with advanced keyword, demographic, and location targeting.</p>
-                                <CheckCircle className="w-5 h-5 text-[#328E6E]" />
-                            </div>
-                            {/* Feature 2 */}
-                            <div className="bg-[#e6f5f0] p-8 rounded-xl shadow flex flex-col items-center text-center">
-                                <BarChart className="w-10 h-10 text-[#328E6E] mb-4" />
-                                <h3 className="text-xl font-semibold mb-2">Performance Tracking</h3>
-                                <p className="text-gray-700 mb-2">Monitor and optimize campaigns in real time for maximum ROI.</p>
-                                <CheckCircle className="w-5 h-5 text-[#328E6E]" />
-                            </div>
-                            {/* Feature 3 */}
-                            <div className="bg-[#e6f5f0] p-8 rounded-xl shadow flex flex-col items-center text-center">
-                                <Zap className="w-10 h-10 text-[#328E6E] mb-4" />
-                                <h3 className="text-xl font-semibold mb-2">Conversion Optimization</h3>
-                                <p className="text-gray-700 mb-2">Boost your conversion rates with expert ad copy, landing pages, and A/B testing.</p>
-                                <CheckCircle className="w-5 h-5 text-[#328E6E]" />
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Google Ads Management Process Section */}
-                <section className="py-16 bg-white">
-                    <div className="container mx-auto px-4">
-                        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#328E6E]">
-                            Our Google Ads Management Process
-                        </h2>
-                        <div className="grid md:grid-cols-4 gap-8 text-center">
-                            <div>
-                                <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-[#e6f5f0] flex items-center justify-center">
-                                    <span className="text-2xl font-bold text-[#328E6E]">1</span>
-                                </div>
-                                <h3 className="font-semibold mb-2">Account Audit</h3>
-                                <p className="text-gray-700 text-sm">We review your current Google Ads account structure, keywords, and performance to identify opportunities.</p>
-                            </div>
-                            <div>
-                                <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-[#e6f5f0] flex items-center justify-center">
-                                    <span className="text-2xl font-bold text-[#328E6E]">2</span>
-                                </div>
-                                <h3 className="font-semibold mb-2">Strategy & Setup</h3>
-                                <p className="text-gray-700 text-sm">We develop a custom strategy, build campaigns, and set up conversion tracking for measurable results.</p>
-                            </div>
-                            <div>
-                                <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-[#e6f5f0] flex items-center justify-center">
-                                    <span className="text-2xl font-bold text-[#328E6E]">3</span>
-                                </div>
-                                <h3 className="font-semibold mb-2">Optimization</h3>
-                                <p className="text-gray-700 text-sm">We monitor, test, and optimize your ads, keywords, and bids to maximize ROI and lower costs.</p>
-                            </div>
-                            <div>
-                                <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-[#e6f5f0] flex items-center justify-center">
-                                    <span className="text-2xl font-bold text-[#328E6E]">4</span>
-                                </div>
-                                <h3 className="font-semibold mb-2">Reporting</h3>
-                                <p className="text-gray-700 text-sm">You receive transparent, easy-to-understand reports and regular strategy calls with our experts.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Types of Google Ads Campaigns Section */}
-                <section className="py-16 bg-[#f5faf8]">
-                    <div className="container mx-auto px-4">
-                        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#328E6E]">
-                            Types of Google Ads Campaigns We Manage
-                        </h2>
-                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                            <div className="bg-white p-6 rounded-xl shadow text-center">
-                                <h3 className="font-semibold text-[#328E6E] mb-2">Search Ads</h3>
-                                <p className="text-gray-700 text-sm">Text ads that appear on Google search results when users look for your products or services.</p>
-                            </div>
-                            <div className="bg-white p-6 rounded-xl shadow text-center">
-                                <h3 className="font-semibold text-[#328E6E] mb-2">Display Ads</h3>
-                                <p className="text-gray-700 text-sm">Banner and image ads shown across millions of websites in the Google Display Network.</p>
-                            </div>
-                            <div className="bg-white p-6 rounded-xl shadow text-center">
-                                <h3 className="font-semibold text-[#328E6E] mb-2">Shopping Ads</h3>
-                                <p className="text-gray-700 text-sm">Product-based ads that appear in Google Shopping and search results for eCommerce businesses.</p>
-                            </div>
-                            <div className="bg-white p-6 rounded-xl shadow text-center">
-                                <h3 className="font-semibold text-[#328E6E] mb-2">Video Ads</h3>
-                                <p className="text-gray-700 text-sm">Engaging video ads that run on YouTube and across the Google Video Partner network.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Google Ads Management FAQs Section */}
-                <section className="py-16 bg-white">
-                    <div className="container mx-auto px-4">
-                        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#328E6E]">
-                            Google Ads Management FAQs
-                        </h2>
-                        <div className="max-w-2xl mx-auto space-y-6">
-                            <div>
-                                <h3 className="font-semibold text-[#328E6E] mb-2">How much should I spend on Google Ads?</h3>
-                                <p className="text-gray-700 text-sm">Your budget depends on your industry, goals, and competition. We help you set a budget that maximizes your ROI.</p>
-                            </div>
-                            <div>
-                                <h3 className="font-semibold text-[#328E6E] mb-2">How soon will I see results?</h3>
-                                <p className="text-gray-700 text-sm">Most clients see initial results within the first month, with ongoing optimization improving performance over time.</p>
-                            </div>
-                            <div>
-                                <h3 className="font-semibold text-[#328E6E] mb-2">Do you provide reports?</h3>
-                                <p className="text-gray-700 text-sm">Yes! You'll receive regular, easy-to-understand reports and have access to our team for strategy calls and support.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Google Ads Management Implementation Process Stepper Section */}
-                <section className="py-16 bg-white">
-                    <div className="container mx-auto px-4">
-                        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#328E6E]">
-                            Our Google Ads Management Implementation Process
-                        </h2>
-                        <div className="flex flex-col md:flex-row md:items-start md:gap-12 max-w-4xl mx-auto">
-                            {/* Stepper */}
-                            <div className="flex flex-col items-center md:items-start md:w-2/3">
-                                {[
-                                    {
-                                        title: "Paid Search Analysis",
-                                        desc: "Our Ads management services begin with a thorough analysis of your current or past AdWords campaigns to identify areas for improvement and ways to boost returns."
-                                    },
-                                    {
-                                        title: "Campaign Setup",
-                                        desc: "With a deep understanding of your business and target audience, we build your campaigns from the ground up or improve your existing ones for maximum performance."
-                                    },
-                                    {
-                                        title: "Ad Variation Testing",
-                                        desc: "Once the ad copy is finalized, our Google Ads agency specialists perform A/B testing to determine the best-performing ads."
-                                    },
-                                    {
-                                        title: "Conversion Tracking",
-                                        desc: "The ads will be monitored to identify which groups generate the highest number of leads and sales over a time period. Then, we will make adjustments to both the ad copy and landing pages to concentrate on the keywords with the best outcomes."
-                                    },
-                                    {
-                                        title: "ROI Analysis",
-                                        desc: "There are two phases to this process: removing non-performing keywords and finding new ones to experiment with. This phase includes testing different landing pages, optimizing ad placements and tweaking budgets to achieve maximum ROI."
-                                    },
-                                    {
-                                        title: "Maintenance and Reporting",
-                                        desc: "Google Ads is constantly evolving, and our Google Ads company stays on top of any changes that may affect your campaigns. We also provide regular reports so you can stay informed about the progress of your campaigns."
-                                    }
-                                ].map((step, idx) => (
-                                    <div key={step.title} className="flex items-start mb-8 w-full">
-                                        <div className="flex flex-col items-center mr-6">
-                                            <div className="w-12 h-12 rounded-full bg-[#328E6E] text-white flex items-center justify-center font-bold text-lg mb-2">
-                                                <span>STEP<br />{idx + 1}</span>
-                                            </div>
-                                            {idx < 5 && <div className="w-1 h-16 bg-[#328E6E]" />}
-                                        </div>
-                                        <div>
-                                            <div className="bg-[#e6f5f0] px-4 py-2 rounded font-semibold text-[#328E6E] mb-2 inline-block">{step.title}</div>
-                                            <p className="text-gray-700 text-sm max-w-xl">{step.desc}</p>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                            {/* CTA for Stepper */}
-                            <div className="md:w-1/3 flex flex-col items-center justify-center mt-8 md:mt-0">
-                                <Button
-                                    className="bg-[#328E6E] hover:bg-[#256e56] text-white px-8 py-4 rounded-lg font-semibold mt-8"
-                                    onClick={() => router.push('/contact?service=google-ads')}
-                                >
-                                    SET UP MY GOOGLE ADS MANAGER
-                                </Button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Why Choose Us Grid Section */}
-                <section className="py-16 bg-[#f5faf8]">
-                    <div className="container mx-auto px-4">
-                        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#328E6E]">
-                            Why Choose Us for Google Ads Management?
-                        </h2>
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                            <div className="bg-white p-6 rounded-xl shadow text-center">
-                                <h3 className="font-semibold text-[#328E6E] mb-2">Campaign Tracking and Reporting</h3>
-                                <p className="text-gray-700 text-sm">We provide you with regular, performance-driven reports and insights to ensure your campaigns are always optimized for growth.</p>
-                            </div>
-                            <div className="bg-white p-6 rounded-xl shadow text-center">
-                                <h3 className="font-semibold text-[#328E6E] mb-2">Transparent Data Analysis</h3>
-                                <p className="text-gray-700 text-sm">Get full access to all your Google Ads data and analytics, so you always know what's working and what's not.</p>
-                            </div>
-                            <div className="bg-white p-6 rounded-xl shadow text-center">
-                                <h3 className="font-semibold text-[#328E6E] mb-2">Expert Consultation</h3>
-                                <p className="text-gray-700 text-sm">Work directly with certified Google Ads experts for ongoing strategy, support, and campaign improvements.</p>
-                            </div>
-                            <div className="bg-white p-6 rounded-xl shadow text-center">
-                                <h3 className="font-semibold text-[#328E6E] mb-2">Certified Google Analytics Partner</h3>
-                                <p className="text-gray-700 text-sm">We're certified in Google Analytics and integrate data insights into every campaign for better results.</p>
-                            </div>
-                            <div className="bg-white p-6 rounded-xl shadow text-center">
-                                <h3 className="font-semibold text-[#328E6E] mb-2">Diverse Domain Expertise</h3>
-                                <p className="text-gray-700 text-sm">Our Google Ads specialists have experience across eCommerce, B2B, local, and service businesses.</p>
-                            </div>
-                            <div className="bg-white p-6 rounded-xl shadow text-center">
-                                <h3 className="font-semibold text-[#328E6E] mb-2">Make Sound Business Decisions</h3>
-                                <p className="text-gray-700 text-sm">We help you interpret analytics and make data-driven decisions for your business growth.</p>
-                            </div>
-                        </div>
-                        <div className="text-center mt-8">
-                            <Button
-                                className="bg-[#328E6E] hover:bg-[#256e56] text-white px-8 py-3 rounded-lg font-semibold"
-                                onClick={() => router.push('/contact?service=google-ads')}
-                            >
-                                SMASH YOUR ADVERTISING GOALS
-                            </Button>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Google Ads Success Stories Section */}
-                <section className="py-16 bg-[#f5faf8]">
-                    <div className="container mx-auto px-4">
-                        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#328E6E]">
-                            Google Ads Success Stories
-                        </h2>
-                        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                            <div className="bg-white p-8 rounded-xl shadow">
-                                <h3 className="font-semibold text-[#328E6E] mb-2">E-Commerce Brand</h3>
-                                <p className="text-gray-700 text-sm mb-2">Increased online sales by <span className="font-bold text-[#328E6E]">120%</span> and reduced cost per acquisition by <span className="font-bold text-[#328E6E]">35%</span> in 6 months.</p>
-                                <ul className="list-disc pl-6 text-gray-700 text-sm">
-                                    <li>Implemented Shopping and Remarketing campaigns</li>
-                                    <li>Optimized product feed and ad copy</li>
-                                </ul>
-                            </div>
-                            <div className="bg-white p-8 rounded-xl shadow">
-                                <h3 className="font-semibold text-[#328E6E] mb-2">Local Service Business</h3>
-                                <p className="text-gray-700 text-sm mb-2">Doubled qualified leads and achieved a <span className="font-bold text-[#328E6E]">4.8x</span> return on ad spend.</p>
-                                <ul className="list-disc pl-6 text-gray-700 text-sm">
-                                    <li>Geo-targeted search campaigns</li>
-                                    <li>Landing page A/B testing</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Google Ads Best Practices Section */}
-                <section className="py-16 bg-white">
-                    <div className="container mx-auto px-4">
-                        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#328E6E]">
-                            Google Ads Best Practices
-                        </h2>
-                        <div className="max-w-3xl mx-auto space-y-4">
-                            <div className="flex items-start gap-3">
-                                <CheckCircle className="w-6 h-6 text-[#328E6E] mt-1" />
-                                <span className="text-gray-700">Use tightly themed ad groups for higher Quality Scores.</span>
-                            </div>
-                            <div className="flex items-start gap-3">
-                                <CheckCircle className="w-6 h-6 text-[#328E6E] mt-1" />
-                                <span className="text-gray-700">Write compelling ad copy with clear calls to action.</span>
-                            </div>
-                            <div className="flex items-start gap-3">
-                                <CheckCircle className="w-6 h-6 text-[#328E6E] mt-1" />
-                                <span className="text-gray-700">Regularly test and optimize landing pages for conversions.</span>
-                            </div>
-                            <div className="flex items-start gap-3">
-                                <CheckCircle className="w-6 h-6 text-[#328E6E] mt-1" />
-                                <span className="text-gray-700">Leverage negative keywords to filter out irrelevant traffic.</span>
-                            </div>
-                            <div className="flex items-start gap-3">
-                                <CheckCircle className="w-6 h-6 text-[#328E6E] mt-1" />
-                                <span className="text-gray-700">Monitor and adjust bids based on device, location, and time of day.</span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* CTA Section */}
-                <section className="py-16 bg-[#328E6E]">
-                    <div className="container mx-auto px-4">
-                        <div className="max-w-2xl mx-auto text-center">
-                            <h2 className="text-3xl font-bold text-white mb-6">
-                                Ready to Grow with Google Ads?
-                            </h2>
-                            <p className="text-xl text-white/90 mb-8">
-                                Let our certified experts manage your campaigns for better results and less stress.
-                            </p>
-                            <Button
-                                className="bg-white text-[#328E6E] hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold"
-                                onClick={() => router.push("/contact?service=google-ads")}
-                            >
-                                Start Now
-                            </Button>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Google Ads Certifications & Partnerships Section */}
-                <section className="py-16 bg-[#f5faf8]">
-                    <div className="container mx-auto px-4">
-                        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#328E6E]">
-                            Certified & Trusted by Industry Leaders
-                        </h2>
-                        <div className="flex flex-wrap justify-center items-center gap-8">
-                            {/* Certified Google Partner SVG */}
-                            <div className="h-16 flex items-center">
-                                <svg width="80" height="64" viewBox="0 0 80 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="4" y="8" width="72" height="48" rx="8" fill="#e6f5f0" stroke="#328E6E" strokeWidth="2"/>
-                                    <circle cx="24" cy="32" r="10" fill="#328E6E" />
-                                    <rect x="40" y="24" width="28" height="16" rx="4" fill="#328E6E" />
-                                    <text x="24" y="36" textAnchor="middle" fill="#fff" fontSize="10" fontWeight="bold">G</text>
-                                    <text x="54" y="36" textAnchor="middle" fill="#fff" fontSize="10" fontWeight="bold">Partner</text>
-                                </svg>
-                            </div>
-                            {/* Google Ads Certification SVG */}
-                            <div className="h-16 flex items-center">
-                                <svg width="80" height="64" viewBox="0 0 80 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="4" y="8" width="72" height="48" rx="8" fill="#e6f5f0" stroke="#328E6E" strokeWidth="2"/>
-                                    <polygon points="40,16 60,48 20,48" fill="#328E6E" />
-                                    <circle cx="40" cy="32" r="6" fill="#fff" />
-                                    <text x="40" y="36" textAnchor="middle" fill="#328E6E" fontSize="10" fontWeight="bold">Ads</text>
-                                </svg>
-                            </div>
-                            {/* Google Analytics Certified SVG */}
-                            <div className="h-16 flex items-center">
-                                <svg width="80" height="64" viewBox="0 0 80 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="4" y="8" width="72" height="48" rx="8" fill="#e6f5f0" stroke="#328E6E" strokeWidth="2"/>
-                                    <rect x="20" y="36" width="8" height="12" rx="2" fill="#328E6E" />
-                                    <rect x="34" y="28" width="8" height="20" rx="2" fill="#328E6E" />
-                                    <rect x="48" y="20" width="8" height="28" rx="2" fill="#328E6E" />
-                                    <circle cx="60" cy="16" r="4" fill="#328E6E" />
-                                    <text x="40" y="60" textAnchor="middle" fill="#328E6E" fontSize="10" fontWeight="bold">Analytics</text>
-                                </svg>
-                            </div>
-                            {/* Clutch Top Agency SVG */}
-                            <div className="h-16 flex items-center">
-                                <svg width="80" height="64" viewBox="0 0 80 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="4" y="8" width="72" height="48" rx="8" fill="#e6f5f0" stroke="#328E6E" strokeWidth="2"/>
-                                    <polygon points="40,16 56,48 24,48" fill="#328E6E" />
-                                    <polygon points="40,26 42.35,32.19 49,32.91 43.8,37.09 45.18,43.64 40,40.2 34.82,43.64 36.2,37.09 31,32.91 37.65,32.19" fill="#fff" />
-                                    <text x="40" y="36" textAnchor="middle" fill="#fff" fontSize="10" fontWeight="bold">Top</text>
-                                    <text x="40" y="50" textAnchor="middle" fill="#328E6E" fontSize="10" fontWeight="bold">Agency</text>
-                                </svg>
-                            </div>
-                        </div>
-                        <p className="text-center text-gray-700 mt-8 max-w-2xl mx-auto">
-                            Our team is Google Ads and Analytics certified, and we're proud to be recognized as a top agency by industry authorities. You can trust us to manage your campaigns with the highest level of expertise and integrity.
-                        </p>
-                    </div>
-                </section>
-
-                {/* Google Ads Management Pricing Overview Section */}
-                <section className="py-16 bg-white">
-                    <div className="container mx-auto px-4">
-                        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#328E6E]">
-                            Google Ads Management Pricing
-                        </h2>
-                        <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-8">
-                            <div className="bg-[#e6f5f0] p-8 rounded-xl shadow text-center">
-                                <h3 className="font-bold text-[#328E6E] mb-2">Starter</h3>
-                                <p className="text-3xl font-bold text-[#328E6E] mb-2">$499</p>
-                                <p className="text-gray-700 mb-4">/month</p>
-                                <ul className="text-gray-700 text-sm mb-4 space-y-2">
-                                    <li>Up to $2,000 ad spend</li>
-                                    <li>1 Campaign</li>
-                                    <li>Monthly Reporting</li>
-                                </ul>
-                                <Button
-                                    className="bg-[#328E6E] text-white w-full"
-                                    onClick={() => router.push('/contact?service=google-ads-starter')}
-                                >
-                                    Get Started
-                                </Button>
-                            </div>
-                            <div className="bg-[#e6f5f0] p-8 rounded-xl shadow text-center border-2 border-[#328E6E]">
-                                <h3 className="font-bold text-[#328E6E] mb-2">Growth</h3>
-                                <p className="text-3xl font-bold text-[#328E6E] mb-2">$999</p>
-                                <p className="text-gray-700 mb-4">/month</p>
-                                <ul className="text-gray-700 text-sm mb-4 space-y-2">
-                                    <li>Up to $10,000 ad spend</li>
-                                    <li>Up to 5 Campaigns</li>
-                                    <li>Bi-Weekly Reporting</li>
-                                    <li>Landing Page Optimization</li>
-                                </ul>
-                                <Button
-                                    className="bg-[#328E6E] text-white w-full"
-                                    onClick={() => router.push('/contact?service=google-ads-growth')}
-                                >
-                                    Get Started
-                                </Button>
-                            </div>
-                            <div className="bg-[#e6f5f0] p-8 rounded-xl shadow text-center">
-                                <h3 className="font-bold text-[#328E6E] mb-2">Enterprise</h3>
-                                <p className="text-3xl font-bold text-[#328E6E] mb-2">Custom</p>
-                                <p className="text-gray-700 mb-4">Contact Us</p>
-                                <ul className="text-gray-700 text-sm mb-4 space-y-2">
-                                    <li>Unlimited ad spend</li>
-                                    <li>Unlimited Campaigns</li>
-                                    <li>Dedicated Account Manager</li>
-                                    <li>Custom Reporting & Strategy</li>
-                                </ul>
-                                <Button
-                                    className="bg-[#328E6E] text-white w-full"
-                                    onClick={() => router.push('/contact?service=google-ads-enterprise')}
-                                >
-                                    Contact Sales
-                                </Button>
-                            </div>
-                        </div>
-                        <p className="text-center text-gray-700 mt-8 max-w-2xl mx-auto">
-                            All plans include campaign setup, ongoing optimization, and transparent reporting. Need a custom solution? <span className="text-[#328E6E] underline cursor-pointer" onClick={() => router.push('/contact?service=google-ads-custom')}>Contact us</span> for a personalized quote.
-                        </p>
-                    </div>
-                </section>
-
-                {/* Meet Your Google Ads Team Section */}
-                <section className="py-16 bg-[#f5faf8]">
-                    <div className="container mx-auto px-4">
-                        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#328E6E]">
-                            Meet Your Google Ads Team
-                        </h2>
-                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
-                            <div className="bg-white p-6 rounded-xl shadow text-center">
-                                <div className="w-20 h-20 rounded-full mx-auto mb-4 bg-[#e6f5f0] flex items-center justify-center">
-                                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="30" cy="30" r="30" fill="#328E6E" />
-                                        <ellipse cx="30" cy="25" rx="10" ry="12" fill="#fff" />
-                                        <ellipse cx="30" cy="45" rx="16" ry="8" fill="#e6f5f0" />
-                                        <ellipse cx="30" cy="25" rx="8" ry="10" fill="#e6f5f0" />
-                                        <circle cx="26" cy="24" r="2" fill="#328E6E" />
-                                        <circle cx="34" cy="24" r="2" fill="#328E6E" />
-                                        <ellipse cx="30" cy="30" rx="4" ry="2" fill="#328E6E" />
-                                    </svg>
-                                </div>
-                                <h3 className="font-semibold text-[#328E6E] mb-1">Ayesha Khan</h3>
-                                <p className="text-gray-700 text-sm mb-1">Senior Google Ads Strategist</p>
-                                <p className="text-gray-500 text-xs">10+ years experience, eCommerce & SaaS</p>
-                            </div>
-                            <div className="bg-white p-6 rounded-xl shadow text-center">
-                                <div className="w-20 h-20 rounded-full mx-auto mb-4 bg-[#e6f5f0] flex items-center justify-center">
-                                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="30" cy="30" r="30" fill="#328E6E" />
-                                        <ellipse cx="30" cy="26" rx="10" ry="12" fill="#fff" />
-                                        <ellipse cx="30" cy="46" rx="16" ry="8" fill="#e6f5f0" />
-                                        <ellipse cx="30" cy="26" rx="8" ry="10" fill="#e6f5f0" />
-                                        <circle cx="25" cy="25" r="2" fill="#328E6E" />
-                                        <circle cx="35" cy="25" r="2" fill="#328E6E" />
-                                        <ellipse cx="30" cy="32" rx="4" ry="2" fill="#328E6E" />
-                                        <rect x="22" y="38" width="16" height="3" rx="1.5" fill="#328E6E" />
-                                    </svg>
-                                </div>
-                                <h3 className="font-semibold text-[#328E6E] mb-1">Bilal Ahmed</h3>
-                                <p className="text-gray-700 text-sm mb-1">PPC Account Manager</p>
-                                <p className="text-gray-500 text-xs">B2B, Lead Gen, Local Services</p>
-                            </div>
-                            <div className="bg-white p-6 rounded-xl shadow text-center">
-                                <div className="w-20 h-20 rounded-full mx-auto mb-4 bg-[#e6f5f0] flex items-center justify-center">
-                                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="30" cy="30" r="30" fill="#328E6E" />
-                                        <ellipse cx="30" cy="25" rx="10" ry="12" fill="#fff" />
-                                        <ellipse cx="30" cy="45" rx="16" ry="8" fill="#e6f5f0" />
-                                        <ellipse cx="30" cy="25" rx="8" ry="10" fill="#e6f5f0" />
-                                        <circle cx="27" cy="24" r="2" fill="#328E6E" />
-                                        <circle cx="33" cy="24" r="2" fill="#328E6E" />
-                                        <ellipse cx="30" cy="30" rx="4" ry="2" fill="#328E6E" />
-                                        <rect x="25" y="36" width="10" height="3" rx="1.5" fill="#328E6E" />
-                                    </svg>
-                                </div>
-                                <h3 className="font-semibold text-[#328E6E] mb-1">Sara Malik</h3>
-                                <p className="text-gray-700 text-sm mb-1">Conversion Copywriter</p>
-                                <p className="text-gray-500 text-xs">Ad Copy, Landing Pages, CRO</p>
-                            </div>
-                            <div className="bg-white p-6 rounded-xl shadow text-center">
-                                <div className="w-20 h-20 rounded-full mx-auto mb-4 bg-[#e6f5f0] flex items-center justify-center">
-                                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="30" cy="30" r="30" fill="#328E6E" />
-                                        <ellipse cx="30" cy="25" rx="10" ry="12" fill="#fff" />
-                                        <ellipse cx="30" cy="45" rx="16" ry="8" fill="#e6f5f0" />
-                                        <ellipse cx="30" cy="25" rx="8" ry="10" fill="#e6f5f0" />
-                                        <circle cx="28" cy="24" r="2" fill="#328E6E" />
-                                        <circle cx="32" cy="24" r="2" fill="#328E6E" />
-                                        <ellipse cx="30" cy="30" rx="4" ry="2" fill="#328E6E" />
-                                        <rect x="27" y="38" width="6" height="3" rx="1.5" fill="#328E6E" />
-                                    </svg>
-                                </div>
-                                <h3 className="font-semibold text-[#328E6E] mb-1">Omar Siddiqui</h3>
-                                <p className="text-gray-700 text-sm mb-1">Analytics & Reporting Lead</p>
-                                <p className="text-gray-500 text-xs">Data Analysis, Tag Manager, Reporting</p>
-                            </div>
-                        </div>
-                        <p className="text-center text-gray-700 mt-8 max-w-2xl mx-auto">
-                            Our team brings together years of experience, creativity, and a passion for results. We're here to help you succeed with Google Ads!
-                        </p>
-                    </div>
-                </section>
-
-                {/* Industries We Serve Section */}
-                <section className="py-16 bg-white">
-                    <div className="container mx-auto px-4">
-                        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#328E6E]">
-                            Industries We Serve
-                        </h2>
-                        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                            <div className="bg-[#e6f5f0] p-6 rounded-xl shadow text-center">
-                                <h3 className="font-semibold text-[#328E6E] mb-2">E-Commerce</h3>
-                                <p className="text-gray-700 text-sm">Drive more sales and maximize ROAS with Shopping, Search, and Display campaigns.</p>
-                            </div>
-                            <div className="bg-[#e6f5f0] p-6 rounded-xl shadow text-center">
-                                <h3 className="font-semibold text-[#328E6E] mb-2">Local Services</h3>
-                                <p className="text-gray-700 text-sm">Get more calls and bookings from your service area with geo-targeted ads.</p>
-                            </div>
-                            <div className="bg-[#e6f5f0] p-6 rounded-xl shadow text-center">
-                                <h3 className="font-semibold text-[#328E6E] mb-2">B2B & SaaS</h3>
-                                <p className="text-gray-700 text-sm">Generate high-quality leads and nurture prospects with targeted campaigns.</p>
-                            </div>
-                            <div className="bg-[#e6f5f0] p-6 rounded-xl shadow text-center">
-                                <h3 className="font-semibold text-[#328E6E] mb-2">Healthcare</h3>
-                                <p className="text-gray-700 text-sm">Attract new patients and grow your practice with HIPAA-compliant ad strategies.</p>
-                            </div>
-                            <div className="bg-[#e6f5f0] p-6 rounded-xl shadow text-center">
-                                <h3 className="font-semibold text-[#328E6E] mb-2">Education</h3>
-                                <p className="text-gray-700 text-sm">Increase enrollments and program awareness with smart Google Ads campaigns.</p>
-                            </div>
-                            <div className="bg-[#e6f5f0] p-6 rounded-xl shadow text-center">
-                                <h3 className="font-semibold text-[#328E6E] mb-2">Real Estate</h3>
-                                <p className="text-gray-700 text-sm">Connect with buyers and sellers in your market with local and display ads.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Google Ads Management Testimonials Section */}
-                <section className="py-16 bg-[#f5faf8]">
-                    <div className="container mx-auto px-4">
-                        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#328E6E]">
-                            What Our Clients Say
-                        </h2>
-                        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                            <div className="bg-white p-8 rounded-xl shadow">
-                                <p className="text-gray-700 italic mb-4">
-                                    "We saw a 3x increase in leads and a 40% drop in cost per conversion within the first 90 days. The team is proactive, transparent, and truly cares about our results."
-                                </p>
-                                <p className="font-semibold text-[#328E6E]">— Fatima R., E-Commerce Director</p>
-                            </div>
-                            <div className="bg-white p-8 rounded-xl shadow">
-                                <p className="text-gray-700 italic mb-4">
-                                    "Their Google Ads expertise helped us dominate our local market. We get more calls and bookings than ever before!"
-                                </p>
-                                <p className="font-semibold text-[#328E6E]">— Imran S., Home Services Owner</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Free Google Ads Audit CTA Section */}
-                <section className="py-16 bg-[#328E6E]">
-                    <div className="container mx-auto px-4">
-                        <div className="max-w-2xl mx-auto text-center">
-                            <h2 className="text-3xl font-bold text-white mb-6">
-                                Get a Free Google Ads Audit
-                            </h2>
-                            <p className="text-xl text-white/90 mb-8">
-                                Want to know how your campaigns can perform better? Request a free, no-obligation audit from our certified experts.
-                            </p>
-                            <Button
-                                className="bg-white text-[#328E6E] hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold"
-                                onClick={() => router.push('/contact?service=google-ads-audit')}
-                            >
-                                Request My Audit
-                            </Button>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Google Ads vs. Competitors Section */}
-                <section className="py-16 bg-white">
-                    <div className="container mx-auto px-4">
-                        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#328E6E]">
-                            Google Ads vs. Other Platforms
-                        </h2>
-                        <div className="overflow-x-auto w-full">
-                            <table className="min-w-[700px] w-full text-sm text-left border rounded-xl overflow-hidden">
-                                <thead className="bg-[#e6f5f0] text-[#328E6E]">
-                                    <tr>
-                                        <th className="py-3 px-4 font-bold">Feature</th>
-                                        <th className="py-3 px-4 font-bold">Google Ads</th>
-                                        <th className="py-3 px-4 font-bold">Facebook Ads</th>
-                                        <th className="py-3 px-4 font-bold">Bing Ads</th>
-                                    </tr>
-                                </thead>
-                                <tbody className="bg-white">
-                                    <tr className="border-b">
-                                        <td className="py-3 px-4">Audience Reach</td>
-                                        <td className="py-3 px-4">Largest (Search, Display, YouTube)</td>
-                                        <td className="py-3 px-4">Social (Facebook, Instagram)</td>
-                                        <td className="py-3 px-4">Smaller, but high intent</td>
-                                    </tr>
-                                    <tr className="border-b">
-                                        <td className="py-3 px-4">Ad Formats</td>
-                                        <td className="py-3 px-4">Search, Display, Video, Shopping</td>
-                                        <td className="py-3 px-4">Image, Video, Carousel</td>
-                                        <td className="py-3 px-4">Search, Shopping</td>
-                                    </tr>
-                                    <tr className="border-b">
-                                        <td className="py-3 px-4">Targeting Options</td>
-                                        <td className="py-3 px-4">Keywords, Demographics, Interests, Location</td>
-                                        <td className="py-3 px-4">Demographics, Interests, Behaviors</td>
-                                        <td className="py-3 px-4">Keywords, Demographics</td>
-                                    </tr>
-                                    <tr className="border-b">
-                                        <td className="py-3 px-4">Cost per Click</td>
-                                        <td className="py-3 px-4">$1–$2 avg</td>
-                                        <td className="py-3 px-4">$0.50–$1 avg</td>
-                                        <td className="py-3 px-4">$1.50 avg</td>
-                                    </tr>
-                                    <tr>
-                                        <td className="py-3 px-4">Best For</td>
-                                        <td className="py-3 px-4">Intent-driven leads, eCommerce, B2B</td>
-                                        <td className="py-3 px-4">Brand awareness, retargeting</td>
-                                        <td className="py-3 px-4">Supplemental search traffic</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </section>
-
-                {/* How We Work Timeline Section */}
-                <section className="py-16 bg-[#f5faf8]">
-                    <div className="container mx-auto px-4">
-                        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#328E6E]">
-                            How We Work: Our Proven Process
-                        </h2>
-                        <div className="flex flex-col md:flex-row md:justify-center gap-8">
-                            {["Discovery & Goals", "Strategy & Planning", "Campaign Launch", "Ongoing Optimization", "Transparent Reporting"].map((step, idx) => (
-                                <div key={step} className="flex flex-col items-center">
-                                    <div className="w-12 h-12 rounded-full bg-[#328E6E] text-white flex items-center justify-center font-bold mb-2 text-xl">{idx + 1}</div>
-                                    <span className="text-[#328E6E] font-semibold mb-2 text-center">{step}</span>
-                                    {idx < 4 && <div className="h-8 w-1 bg-[#328E6E] md:h-1 md:w-8 md:my-0 my-2" />}
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                {/* Client Results Carousel Section */}
-                <section className="py-16 bg-white">
-                    <div className="container mx-auto px-4">
-                        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#328E6E]">
-                            Client Results & Case Studies
-                        </h2>
-                        <div className="flex overflow-x-auto gap-8 pb-4">
-                            {[{
-                                title: "E-Commerce Brand",
-                                result: "+150% ROAS",
-                                desc: "Scaled revenue with Shopping & Search campaigns.",
-                                color: "bg-[#e6f5f0]"
-                            }, {
-                                title: "B2B SaaS",
-                                result: "-40% Cost/Lead",
-                                desc: "Improved lead quality and reduced acquisition cost.",
-                                color: "bg-[#f5faf8]"
-                            }, {
-                                title: "Local Services",
-                                result: "+3x Calls",
-                                desc: "Geo-targeted ads tripled inbound calls.",
-                                color: "bg-[#e6f5f0]"
-                            }].map((item, idx) => (
-                                <div key={idx} className={`min-w-[280px] max-w-xs p-6 rounded-xl shadow ${item.color}`}>
-                                    <h3 className="font-bold text-[#328E6E] mb-2">{item.title}</h3>
-                                    <div className="text-2xl font-bold mb-2">{item.result}</div>
-                                    <p className="text-gray-700 text-sm">{item.desc}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                {/* Free Resources Section */}
-                <section className="py-16 bg-[#f5faf8]">
-                    <div className="container mx-auto px-4">
-                        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#328E6E]">
-                            Free Google Ads Resources
-                        </h2>
-                        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                            <div className="bg-white p-6 rounded-xl shadow text-center">
-                                <h3 className="font-semibold text-[#328E6E] mb-2">Google Ads Checklist</h3>
-                                <p className="text-gray-700 text-sm mb-4">Download our step-by-step checklist to launch and optimize your first campaign.</p>
-                                <span className="text-[#328E6E] underline font-semibold cursor-pointer" onClick={() => router.push('/contact?service=google-ads-checklist')}>Download PDF</span>
-                            </div>
-                            <div className="bg-white p-6 rounded-xl shadow text-center">
-                                <h3 className="font-semibold text-[#328E6E] mb-2">Keyword Research Guide</h3>
-                                <p className="text-gray-700 text-sm mb-4">Learn how to find high-converting keywords for your business.</p>
-                                <span className="text-[#328E6E] underline font-semibold cursor-pointer" onClick={() => router.push('/contact?service=keyword-research-guide')}>Download Guide</span>
-                            </div>
-                            <div className="bg-white p-6 rounded-xl shadow text-center">
-                                <h3 className="font-semibold text-[#328E6E] mb-2">Google Ads Audit Template</h3>
-                                <p className="text-gray-700 text-sm mb-4">Use our template to audit your existing campaigns and find quick wins.</p>
-                                <span className="text-[#328E6E] underline font-semibold cursor-pointer" onClick={() => router.push('/contact?service=audit-template')}>Download Template</span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Get a Custom Proposal CTA Section */}
-                <section className="py-16 bg-[#328E6E]">
-                    <div className="container mx-auto px-4">
-                        <div className="max-w-2xl mx-auto text-center">
-                            <h2 className="text-3xl font-bold text-white mb-6">
-                                Get a Custom Google Ads Proposal
-                            </h2>
-                            <p className="text-xl text-white/90 mb-8">
-                                Tell us about your business and goals. Our experts will send you a personalized strategy—no obligation!
-                            </p>
-                            <Button
-                                className="bg-white text-[#328E6E] hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold"
-                                onClick={() => router.push('/contact?service=google-ads-proposal')}
-                            >
-                                Request My Proposal
-                            </Button>
-                        </div>
-                    </div>
-                </section>
-
-                {/* More Testimonials & Trust Badges Section */}
-                <section className="py-16 bg-white">
-                    <div className="container mx-auto px-4">
-                        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#328E6E]">
-                            More Client Success Stories
-                        </h2>
-                        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                            <div className="bg-[#e6f5f0] p-6 rounded-xl shadow text-center">
-                                <p className="text-gray-700 italic mb-4">
-                                    "Our Google Ads ROI doubled in just 2 months. The team is responsive and truly understands our business."
-                                </p>
-                                <p className="font-semibold text-[#328E6E]">— Zainab M., Retail Owner</p>
-                            </div>
-                            <div className="bg-[#e6f5f0] p-6 rounded-xl shadow text-center">
-                                <p className="text-gray-700 italic mb-4">
-                                    "We finally have full transparency and control over our ad spend. Highly recommended!"
-                                </p>
-                                <p className="font-semibold text-[#328E6E]">— Ali R., SaaS Founder</p>
-                            </div>
-                            <div className="bg-[#e6f5f0] p-6 rounded-xl shadow text-center">
-                                <p className="text-gray-700 italic mb-4">
-                                    "Their expertise in Google Ads and Analytics is unmatched. We saw instant improvements."
-                                </p>
-                                <p className="font-semibold text-[#328E6E]">— Maria S., Healthcare Manager</p>
-                            </div>
-                        </div>
-                        <div className="flex justify-center gap-8 mt-8 flex-wrap">
-                            {/* Trust Badges SVGs */}
-                            <svg width="80" height="40" viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="2" y="2" width="76" height="36" rx="8" fill="#e6f5f0" stroke="#328E6E" strokeWidth="2"/>
-                                <text x="40" y="25" textAnchor="middle" fill="#328E6E" fontSize="16" fontWeight="bold">Top Rated</text>
-                            </svg>
-                            <svg width="80" height="40" viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="2" y="2" width="76" height="36" rx="8" fill="#e6f5f0" stroke="#328E6E" strokeWidth="2"/>
-                                <text x="40" y="25" textAnchor="middle" fill="#328E6E" fontSize="16" fontWeight="bold">Certified</text>
-                            </svg>
-                            <svg width="80" height="40" viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="2" y="2" width="76" height="36" rx="8" fill="#e6f5f0" stroke="#328E6E" strokeWidth="2"/>
-                                <text x="40" y="25" textAnchor="middle" fill="#328E6E" fontSize="16" fontWeight="bold">5-Star</text>
-                            </svg>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Common Mistakes in Google Ads Section */}
-                <section className="py-16 bg-[#f5faf8]">
-                    <div className="container mx-auto px-4">
-                        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#328E6E]">
-                            Common Mistakes in Google Ads (and How to Avoid Them)
-                        </h2>
-                        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                            <div className="bg-white p-6 rounded-xl shadow">
-                                <h3 className="font-semibold text-[#328E6E] mb-2">Not Using Negative Keywords</h3>
-                                <p className="text-gray-700 text-sm">Wasting budget on irrelevant clicks. Always add negative keywords to filter out unwanted traffic.</p>
-                            </div>
-                            <div className="bg-white p-6 rounded-xl shadow">
-                                <h3 className="font-semibold text-[#328E6E] mb-2">Ignoring Mobile Optimization</h3>
-                                <p className="text-gray-700 text-sm">Most searches are on mobile. Make sure your ads and landing pages are mobile-friendly.</p>
-                            </div>
-                            <div className="bg-white p-6 rounded-xl shadow">
-                                <h3 className="font-semibold text-[#328E6E] mb-2">Not Tracking Conversions</h3>
-                                <p className="text-gray-700 text-sm">Without conversion tracking, you can't measure ROI or optimize effectively.</p>
-                            </div>
-                            <div className="bg-white p-6 rounded-xl shadow">
-                                <h3 className="font-semibold text-[#328E6E] mb-2">Setting & Forgetting Campaigns</h3>
-                                <p className="text-gray-700 text-sm">Google Ads needs ongoing optimization. Regularly review and adjust your campaigns.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </main>
-        </div>
-    );
+      </main>
+    </div>
+  );
 }

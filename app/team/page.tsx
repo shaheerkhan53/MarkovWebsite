@@ -69,44 +69,8 @@ export default function TeamPage() {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-              {[
-                {
-                  name: "Sarah Johnson",
-                  title: "Chief Executive Officer",
-                  image: "/placeholder.svg?height=400&width=400&text=CEO",
-                  bio: "With over 20 years of experience in technology and business transformation, Sarah leads our global strategy and operations. Her vision has been instrumental in Markov's growth and innovation.",
-                  linkedin: "#",
-                  twitter: "#",
-                  email: "sarah@markovintl.com"
-                },
-                {
-                  name: "Michael Zhang",
-                  title: "Chief Technology Officer",
-                  image: "/placeholder.svg?height=400&width=400&text=CTO",
-                  bio: "Michael oversees all technical aspects of the company, from product development to infrastructure. His background in AI and cloud computing drives our technological innovation.",
-                  linkedin: "#",
-                  twitter: "#",
-                  email: "michael@markovintl.com"
-                },
-                {
-                  name: "Elena Rodriguez",
-                  title: "Chief Operations Officer",
-                  image: "/placeholder.svg?height=400&width=400&text=COO",
-                  bio: "Elena brings extensive experience in global operations and process optimization. She ensures operational excellence across all our service lines and regional offices.",
-                  linkedin: "#",
-                  twitter: "#",
-                  email: "elena@markovintl.com"
-                },
-                {
-                  name: "David Patel",
-                  title: "Chief Marketing Officer",
-                  image: "/placeholder.svg?height=400&width=400&text=CMO",
-                  bio: "David leads our global marketing strategy, brand development, and customer engagement initiatives. His innovative approach has strengthened our market position and brand recognition.",
-                  linkedin: "#",
-                  twitter: "#",
-                  email: "david@markovintl.com"
-                },
+            <div className="grid grid-cols-1 md:grid-cols-2 justify-center max-w-4xl mx-auto gap-8 mb-16">
+              {[                
                 {
                   name: "Olivia Chen",
                   title: "Chief Financial Officer",
@@ -175,33 +139,8 @@ export default function TeamPage() {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center max-w-4xl mx-auto gap-6">
               {[
-                {
-                  name: "Thomas Lee",
-                  title: "Head of BPO Services",
-                  image: "/placeholder.svg?height=300&width=300&text=BPO+Director"
-                },
-                {
-                  name: "Sophia Martinez",
-                  title: "Head of IT Solutions",
-                  image: "/placeholder.svg?height=300&width=300&text=IT+Director"
-                },
-                {
-                  name: "James Wilson",
-                  title: "Head of Telecommunication",
-                  image: "/placeholder.svg?height=300&width=300&text=Telecom+Director"
-                },
-                {
-                  name: "Aisha Khan",
-                  title: "Head of Digital Marketing",
-                  image: "/placeholder.svg?height=300&width=300&text=Marketing+Director"
-                },
-                {
-                  name: "Daniel Brown",
-                  title: "Head of E-Commerce",
-                  image: "/placeholder.svg?height=300&width=300&text=E-Commerce+Director"
-                },
                 {
                   name: "Grace Liu",
                   title: "Head of Call Center",

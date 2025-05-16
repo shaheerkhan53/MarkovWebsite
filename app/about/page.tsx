@@ -134,7 +134,7 @@ export default function AboutPage() {
                 </div>
                 <div className="absolute -bottom-20 -left-20 w-64 h-64 rounded-xl overflow-hidden shadow-2xl">
                   <Image
-                    src="/markov.png"
+                    src="/Markov.png"
                     alt="Team Working Together"
                     fill
                     style={{ objectFit: "cover" }}
@@ -235,25 +235,19 @@ export default function AboutPage() {
                 Meet our experienced leadership team driving innovation and excellence at Markov International.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 ml-80">
+            <div className="flex flex-wrap justify-center gap-12">
   {[
     {
       name: "Imran Ali Chaudary ",
       position: "CEO",
       image: "/client1.webp",
-      bio: "With over 20 years of industry experience, Alex leads our company vision and global strategy.",
+      bio: "Imran leads the company's vision and strategy, with 20+ years of proven leadership experience.",
     },
     {
       name: "Arshad Ali ",
       position: "Director Operation",
       image: "/client3.webp",
-      bio: "Sarah drives technological innovation and oversees all technical aspects of our operations.",
-    },
-    {
-      name: "Danish Awan",
-      position: "Director Business Development",
-      image: "/client2.webp",
-      bio: "Michael ensures operational excellence and continuous improvement across all service lines.",
+      bio: "Arshad leads day-to-day operations with a focus on efficiency, quality, and service delivery.",
     },
   ].map((member, index) => (
     <motion.div

@@ -44,14 +44,14 @@ export default function WalmartMarketplacePage() {
               </Button>
             </div>
             <div className="flex justify-center">
-              <Image 
-                src="/placeholder.jpg" 
+        <Image 
+          src="/placeholder.jpg" 
                 alt="Walmart Marketplace" 
                 width={400} 
                 height={300}
                 className="rounded-lg shadow-md"
-              />
-            </div>
+        />
+      </div>
           </div>
         </div>
       </section>
@@ -113,8 +113,8 @@ export default function WalmartMarketplacePage() {
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4 text-center">
           <Link href="/" className="text-blue-600 hover:underline font-medium">
-            Return to Home
-          </Link>
+        Return to Home
+      </Link>
         </div>
       </section>
     </div>

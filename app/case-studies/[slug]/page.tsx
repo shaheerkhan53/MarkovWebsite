@@ -7,7 +7,7 @@ import { motion } from 'framer-motion'
 import { ArrowLeft, Calendar, Building, Tag, User, Clock, ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
-export default function CaseStudyPage({ params }: { params: { slug: string } }) {
+export default function CaseStudyPage({ params }: { params: any }) {
   // This would normally be fetched from an API or database
   // For now, we're using a simple object to simulate fetched data
   const caseStudy = getCaseStudyBySlug(params.slug)

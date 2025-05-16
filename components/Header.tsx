@@ -29,7 +29,7 @@ export default function Header() {
     }
     
     return () => {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = 'auto'
       document.documentElement.style.overflowX = 'hidden'
     }
   }, [isDropdownOpen])
@@ -103,7 +103,11 @@ export default function Header() {
     {
       title: "CRO Services",
       icon: <span className="text-green-600 text-xl">📊</span>,
-      items: ["CRO Audits", "User Experience Testing", "User Behavior Analytics"]
+      items: [
+        { label: "CRO Audits", href: "/services/cro-services/cro-audits" },
+        { label: "User Experience Testing", href: "/services/cro-services/user-experience-testing" },
+        { label: "User Behavior Analytics", href: "/services/cro-services/user-behavior-analytics" }
+      ]
     },
     {
       title: "Ecommerce SEO",
@@ -139,8 +143,95 @@ export default function Header() {
     }
   ]
 
+  const serviceLinks: Record<string, string> = {
+    "Digital Marketing Strategy Development": "/services/digital-marketing/Digital-Marketing-Strategy-Development",
+    "Franchise Digital Marketing": "/services/digital-marketing/Franchise-Digital-Marketing",
+    "Enterprise Digital Marketing": "/services/digital-marketing/Enterprise-Digital-Marketing",
+    "Search Engine Marketing (SEM)": "/services/ppc/search-engine-marketing",
+    "Google Ads Management": "/services/ppc/google-ads-management",
+    "YouTube Ads Management": "/services/ppc/youtube-ads-management",
+    "Programmatic Advertising": "/services/ppc/programmatic-advertising",
+    "Lead Generation Services": "/services/ppc/lead-generation",
+    "Franchise PPC": "/services/ppc/franchise-ppc",
+    "Enterprise PPC": "/services/ppc/enterprise-ppc",
+    "Digital PR Outreach": "/services/link-building/Digital-PR-Outreach",
+    "HARO Link Building": "/services/link-building/HARO-link-building",
+    "Local SEO": "/services/search-engine-optimization(seo)/local-seo",
+    "Technical SEO": "/services/search-engine-optimization(seo)/technical-seo",
+    "Franchise SEO": "/services/search-engine-optimization(seo)/franchise-seo",
+    "Enterprise SEO": "/services/search-engine-optimization(seo)/enterprise-seo",
+    "Generative Engine Optimization": "#",
+    "SEO Audits": "#",
+    "Franchise SEO Audit": "#",
+    "Enterprise SEO Audit": "#",
+    "Branding Services": "/services/web-design-development/branding-services",
+    "Custom Website Design": "/services/Website-design/custom-website-design",
+    "WordPress Website Design": "/services/web-design-development/wordpress-website-design",
+    "Website Hosting": "#",
+    "ADA Compliance Services": "/services/Website-design/ADA-Compliance-services",
+    "Ecommerce SEO": "/services/ppc/ecommerce-seo",
+    "eCommerce PPC": "/services/ecommerce-marketing/ecommerce-ppc",
+    "Ecommerce Optimization": "/services/ecommerce-marketing/ecommerce-optimization",
+    "Shopify SEO": "/services/ppc/shopify-seo",
+    "Shopify Web Design": "#",
+    "eCommerce Web Design": "#",
+    "Social Media Management": "/services/social-media-marketing/social-media-management",
+    "Social Media Brand Management": "/services/social-media-marketing/social-media-brand-management",
+    "Franchise Social Media": "/services/social-media-marketing/franchise-social-media",
+    "Enterprise Social Media": "#",
+    "Video Production": "/services/media-production/video-production",
+    "Video Testimonial Services": "/services/media-production/video-testimonial-services",
+    "Product Photography Services": "/services/media-production/product-photography-services",
+    "Drone Video and Photography Services": "#",
+    "Amazon SEO": "/services/online-marketplace-marketing/amazon-seo",
+    "Amazon Advertising PPC": "/services/online-marketplace-marketing/Amazon-Advertising-PPC",
+    "Amazon Storefront & Branding": "/services/online-marketplace-marketing/amazon-storefront-branding",
+    "Amazon Seller Consulting": "#",
+    "Amazon Posts Management": "#",
+    "Amazon DSP Advertising Management": "#",
+    "Walmart Marketplace": "/services/online-marketplace-marketing/Walmart-marketplace",
+    "Target Plus Marketplace": "#",
+    "eBay Marketplace": "#",
+    "Facebook": "/services/social-media-advertising/facebook",
+    "LinkedIn": "/services/social-media-advertising/linkedin",
+    "Twitter": "/services/social-media-advertising/twitter",
+    "Instagram": "/services/social-media-advertising/instagram",
+    "SEO Content Writing": "/services/content-writing/seo-content-writing",
+    "Copywriting Services": "/services/content-writing/copywriting-services",
+    "Translation Services": "#",
+    "Email Marketing Services": "/services/content-writing/email-marketing-services",
+    "Outbound Marketing": "#"
+  };
+
+  const companyMenu = [
+    {
+      name: "About Us",
+      path: "/about",
+      icon: "🏢",
+      description: "Learn about our company, mission, and values"
+    },
+    {
+      name: "Team",
+      path: "/team",
+      icon: "👥",
+      description: "Meet our experienced and dedicated team members"
+    },
+    {
+      name: "Blog",
+      path: "/blog",
+      icon: "📝",
+      description: "Latest insights, tips, and industry updates"
+    },
+    {
+      name: "Contact",
+      path: "/contact",
+      icon: "📧",
+      description: "Get in touch with us for your business needs"
+    }
+  ]
+
   return (
-    <header className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "py-2 bg-background/95 backdrop-blur-md shadow-md" : "py-4 bg-background"}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "py-1 bg-white/95 backdrop-blur-md shadow-md" : "py-3 bg-white"}`}>
       <div className="container mx-auto flex items-center justify-between px-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
@@ -162,11 +253,11 @@ export default function Header() {
                 Services <ChevronDown className="w-5 h-5 ml-1 transition-transform group-hover:rotate-180" />
               </button>
               
-              {/* Mega menu panel - with fixed closing tags */}
-              <div className="absolute left-0 top-full mt-3 w-screen max-w-7xl bg-gradient-to-b from-gray-50 to-white p-10 shadow-2xl rounded-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top-left scale-95 group-hover:scale-100">
+              {/* Mega menu panel - with fixed height and scrolling */}
+              <div className="fixed left-1/2 transform -translate-x-1/2 top-[4.5rem] mt-3 w-screen max-w-7xl bg-gradient-to-b from-gray-50 to-white p-6 shadow-2xl rounded-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100] origin-top scale-95 group-hover:scale-100 max-h-[80vh] overflow-y-auto">
                 <div className="container mx-auto max-w-[95%]">
                   <div className="flex flex-col space-y-6">
-                    <div className="text-center mb-2">
+                    <div className="text-center mb-2 sticky top-0 pt-2 pb-4 bg-gradient-to-b from-gray-50 to-white z-10">
                       <h2 className="text-xl font-bold bg-gradient-to-r from-[#205A59] to-[#8BA640] bg-clip-text text-transparent">Our Services</h2>
                       <div className="w-24 h-1 bg-gradient-to-r from-[#205A59] to-[#8BA640] mx-auto mt-2 rounded-full"></div>
                     </div>
@@ -429,12 +520,6 @@ export default function Header() {
                               Product Photography Services
                             </Link>
                           </li>
-                          <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/Media-Production/video-production-page" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
-                              <span className="w-1.5 h-1.5 bg-amber-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-amber-500"></span>
-                              Video Production Page
-                            </Link>
-                          </li>
                         </ul>
                       </div>
 
@@ -542,19 +627,19 @@ export default function Header() {
                         </div>
                         <ul className="space-y-3 text-base pl-14">
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/cro-services/CRO-Audits" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/cro-services/cro-audits" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-green-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-green-500"></span>
                               CRO Audits
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/cro-services/User-Experience-Testing" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/cro-services/user-experience-testing" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-green-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-green-500"></span>
                               User Experience Testing
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/cro-services/User-Behavior-Analytics" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/cro-services/user-behavior-analytics" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-green-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-green-500"></span>
                               User Behavior Analytics
                             </Link>
@@ -563,7 +648,7 @@ export default function Header() {
                       </div>
                     </div>
                     
-                    <div className="flex items-center justify-center pt-6 border-t border-gray-100">
+                    <div className="flex items-center justify-center pt-6 border-t border-gray-100 sticky bottom-0 bg-white pb-2">
                       <Link href="/services" className="px-6 py-3 bg-gradient-to-r from-[#205A59] to-[#8BA640] text-white text-base font-medium rounded-full hover:shadow-lg transition-shadow duration-300 flex items-center gap-2">
                         View All Services
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -581,7 +666,7 @@ export default function Header() {
               <button className="flex items-center font-medium text-gray-800 hover:text-[#205A59] transition-colors py-3 px-4 rounded-md hover:bg-[#f0f9f9] text-lg">
                 Industries <ChevronDown className="w-5 h-5 ml-1 transition-transform group-hover:rotate-180" />
               </button>
-              <div className="absolute left-0 top-full mt-2 w-96 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <div className="fixed left-1/2 transform -translate-x-1/2 top-[4.5rem] mt-2 w-96 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100]">
                 <div className="py-2">
                   <h3 className="px-4 py-2 text-sm font-semibold text-[#205A59] bg-gray-50 uppercase tracking-wider">
                     Specialized Industry Solutions
@@ -620,11 +705,35 @@ export default function Header() {
               <button className="flex items-center font-medium text-gray-800 hover:text-[#205A59] transition-colors py-3 px-4 rounded-md hover:bg-[#f0f9f9] text-lg">
                 Company <ChevronDown className="w-5 h-5 ml-1 transition-transform group-hover:rotate-180" />
               </button>
-              <div className="absolute left-0 top-full mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                <Link href="/about" className="block px-5 py-3 hover:bg-gray-100 text-base">About Us</Link>
-                <Link href="/team" className="block px-5 py-3 hover:bg-gray-100 text-base">Team</Link>
-                <Link href="/blog" className="block px-5 py-3 hover:bg-gray-100 text-base">Blog</Link>
-                <Link href="/contact" className="block px-5 py-3 hover:bg-gray-100 text-base">Contact</Link>
+              <div className="absolute left-0 top-full mt-2 w-96 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100]">
+                <div className="py-2">
+                  <h3 className="px-4 py-2 text-sm font-semibold text-[#205A59] bg-gray-50 uppercase tracking-wider">
+                    Company Information
+                  </h3>
+                  {companyMenu.map((item, index) => (
+                    <Link 
+                      key={index} 
+                      href={item.path} 
+                      className="block transition-all hover:bg-gray-50"
+                    >
+                      <div className="flex items-start gap-3 p-4 group/item">
+                        <div className="w-10 h-10 bg-[#EAF6F6] rounded-full flex items-center justify-center flex-shrink-0 group-hover/item:bg-[#D1EBEB] transition-colors">
+                          <span className="text-xl">{item.icon}</span>
+                        </div>
+                        <div>
+                          <span className="font-medium text-gray-800 group-hover/item:text-[#205A59] transition-colors block">
+                            {item.name}
+                            <span className="inline-block ml-2 opacity-0 transform translate-x-0 group-hover/item:opacity-100 group-hover/item:translate-x-1 transition-all text-[#205A59]">→</span>
+                          </span>
+                          <span className="text-sm text-gray-500">{item.description}</span>
+                        </div>
+                      </div>
+                      {index < companyMenu.length - 1 && (
+                        <div className="mx-4 border-t border-gray-100"></div>
+                      )}
+                    </Link>
+                  ))}
+                </div>
               </div>
             </li>
           </ul>
@@ -668,7 +777,11 @@ export default function Header() {
                         {Array.isArray(col.items) && col.items.map((item, j) => (
                           <li key={j} className="relative">
                             <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-[#EAF6F6]"></div>
-                            <Link href="#" className="text-sm py-1 block pl-4">{item}</Link>
+                            {typeof item === 'object' && item.label && item.href ? (
+                              <Link href={item.href} className="text-sm py-1 block pl-4">{item.label}</Link>
+                            ) : (
+                              <Link href={serviceLinks[item as string] || '#'} className="text-sm py-1 block pl-4">{item as string}</Link>
+                            )}
                           </li>
                         ))}
                       </ul>

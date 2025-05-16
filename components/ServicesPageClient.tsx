@@ -560,19 +560,19 @@ export default function ServicesPageClient() {
                 <ul className="space-y-3">
                   <li className="flex items-start group/item">
                     <span className="text-green-600 mr-2 mt-1 transition-all duration-300 group-hover/item:translate-x-1 transform">•</span>
-                    <Link href="/services/cro-services/CRO-Audits" className="text-gray-700 hover:text-green-600 transition-colors duration-300">
+                    <Link href="/services/cro-services/cro-audits" className="text-gray-700 hover:text-green-600 transition-colors duration-300">
                       CRO Audits
                     </Link>
                   </li>
                   <li className="flex items-start group/item">
                     <span className="text-green-600 mr-2 mt-1 transition-all duration-300 group-hover/item:translate-x-1 transform">•</span>
-                    <Link href="/services/cro-services/User-Experience-Testing" className="text-gray-700 hover:text-green-600 transition-colors duration-300">
+                    <Link href="/services/cro-services/user-experience-testing" className="text-gray-700 hover:text-green-600 transition-colors duration-300">
                       User Experience Testing
                     </Link>
                   </li>
                   <li className="flex items-start group/item">
                     <span className="text-green-600 mr-2 mt-1 transition-all duration-300 group-hover/item:translate-x-1 transform">•</span>
-                    <Link href="/services/cro-services/User-Behavior-Analytics" className="text-gray-700 hover:text-green-600 transition-colors duration-300">
+                    <Link href="/services/cro-services/user-behavior-analytics" className="text-gray-700 hover:text-green-600 transition-colors duration-300">
                       User Behavior Analytics
                     </Link>
                   </li>

@@ -845,7 +845,7 @@ export default function ADAComplianceServicesPage() {
               <div className="flex items-center">
                 <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-200 mr-4">
                   <Image
-                    src="/placeholder-user.jpg"
+                    src="/3.jpg"
                     alt="Sarah Johnson"
                     width={48}
                     height={48}
@@ -884,7 +884,7 @@ export default function ADAComplianceServicesPage() {
               <div className="flex items-center">
                 <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-200 mr-4">
                   <Image
-                    src="/placeholder-user.jpg"
+                    src="/1.webp"
                     alt="David Chen"
                     width={48}
                     height={48}
@@ -923,7 +923,7 @@ export default function ADAComplianceServicesPage() {
               <div className="flex items-center">
                 <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-200 mr-4">
                   <Image
-                    src="/placeholder-user.jpg"
+                    src="/1.webp"
                     alt="Michelle Rodriguez"
                     width={48}
                     height={48}

@@ -1,5 +1,6 @@
 "use client"
 
+import React from 'react';
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
@@ -150,7 +151,8 @@ function getRelatedPosts(currentPost: any) {
   ).slice(0, 2); // Limit to 2 related posts
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
+// Using 'any' for params as a diagnostic step
+export default function BlogPostPage({ params }: { params: any }) {
   const [scrolled, setScrolled] = useState(false)
   
   useEffect(() => {

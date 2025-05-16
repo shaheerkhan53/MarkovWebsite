@@ -4,6 +4,7 @@ import { ThemeProvider } from '@/components/theme-provider'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { Toaster } from '@/components/ui/toaster'
+import { ScrollToTop } from '@/components/ScrollToTop'
 
 export const metadata: Metadata = {
   title: 'Markov International - Business Solutions',
@@ -69,10 +70,11 @@ export default function RootLayout({
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <Header />
-          <main>
+          <main className="pt-28">
             {children}
           </main>
           <Footer />
+          <ScrollToTop />
           <Toaster />
         </ThemeProvider>
       </body>
