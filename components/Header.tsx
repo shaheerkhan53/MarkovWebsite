@@ -10,7 +10,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [activeDesktopMenu, setActiveDesktopMenu] = useState<string | null>(null)
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -20,7 +20,7 @@ export default function Header() {
 
   // Control body scroll when dropdown is open
   useEffect(() => {
-    if (isDropdownOpen) {
+    if (activeDesktopMenu === 'services') {
       document.body.style.overflow = 'hidden'
       document.documentElement.style.overflowX = 'hidden'
     } else {
@@ -32,7 +32,13 @@ export default function Header() {
       document.body.style.overflow = 'auto'
       document.documentElement.style.overflowX = 'hidden'
     }
-  }, [isDropdownOpen])
+  }, [activeDesktopMenu])
+
+  const handleLinkClick = () => {
+    setIsMenuOpen(false);
+    setActiveDesktopMenu(null);
+    setActiveDropdown(null);
+  };
 
   const servicesMegaMenu = [
     {
@@ -247,14 +253,14 @@ export default function Header() {
           <ul className="flex items-center space-x-8">
             {/* Services Mega Menu */}
             <li className="group relative" 
-                onMouseEnter={() => setIsDropdownOpen(true)}
-                onMouseLeave={() => setIsDropdownOpen(false)}>
+                onMouseEnter={() => setActiveDesktopMenu('services')}
+                onMouseLeave={() => setActiveDesktopMenu(null)}>
               <button className="flex items-center font-medium text-gray-800 hover:text-[#205A59] transition-colors py-3 px-4 rounded-md hover:bg-[#f0f9f9] text-lg">
-                Services <ChevronDown className="w-5 h-5 ml-1 transition-transform group-hover:rotate-180" />
+                Services <ChevronDown className={`w-5 h-5 ml-1 transition-transform ${activeDesktopMenu === 'services' ? 'rotate-180' : ''}`} />
               </button>
               
               {/* Mega menu panel - with fixed height and scrolling */}
-              <div className="fixed left-1/2 transform -translate-x-1/2 top-[4.5rem] mt-3 w-screen max-w-7xl bg-gradient-to-b from-gray-50 to-white p-6 shadow-2xl rounded-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100] origin-top scale-95 group-hover:scale-100 max-h-[80vh] overflow-y-auto">
+              <div className={`fixed left-1/2 transform -translate-x-1/2 top-[4.5rem] mt-3 w-screen max-w-7xl bg-gradient-to-b from-gray-50 to-white p-6 shadow-2xl rounded-lg border border-gray-100 transition-all duration-300 z-[100] origin-top scale-95 max-h-[80vh] overflow-y-auto ${activeDesktopMenu === 'services' ? 'opacity-100 visible scale-100' : 'opacity-0 invisible scale-95'}`}>
                 <div className="container mx-auto max-w-[95%]">
                   <div className="flex flex-col space-y-6">
                     <div className="text-center mb-2 sticky top-0 pt-2 pb-4 bg-gradient-to-b from-gray-50 to-white z-10">
@@ -274,19 +280,19 @@ export default function Header() {
                         </div>
                         <ul className="space-y-3 text-base pl-14">
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/digital-marketing/Digital-Marketing-Strategy-Development" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/digital-marketing/Digital-Marketing-Strategy-Development" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-blue-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-blue-500"></span>
                               Digital Marketing Strategy
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/digital-marketing/Franchise-Digital-Marketing" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/digital-marketing/Franchise-Digital-Marketing" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-blue-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-blue-500"></span>
                               Franchise Digital Marketing
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/digital-marketing/Enterprise-Digital-Marketing" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/digital-marketing/Enterprise-Digital-Marketing" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-blue-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-blue-500"></span>
                               Enterprise Digital Marketing
                             </Link>
@@ -305,31 +311,31 @@ export default function Header() {
                         </div>
                         <ul className="space-y-3 text-base pl-14">
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/ppc/search-engine-marketing" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/ppc/search-engine-marketing" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-amber-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-amber-500"></span>
                               Search Engine Marketing (SEM)
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/ppc/google-ads-management" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/ppc/google-ads-management" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-amber-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-amber-500"></span>
                               Google Ads Management
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/ppc/youtube-ads-management" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/ppc/youtube-ads-management" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-amber-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-amber-500"></span>
                               YouTube Ads Management
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/ppc/programmatic-advertising" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/ppc/programmatic-advertising" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-amber-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-amber-500"></span>
                               Programmatic Advertising
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/ppc/lead-generation" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/ppc/lead-generation" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-amber-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-amber-500"></span>
                               Lead Generation Services
                             </Link>
@@ -348,13 +354,13 @@ export default function Header() {
                         </div>
                         <ul className="space-y-3 text-base pl-14">
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/link-building/Digital-PR-Outreach" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/link-building/Digital-PR-Outreach" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-blue-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-blue-500"></span>
                               Digital PR Outreach
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/link-building/HARO-link-building" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/link-building/HARO-link-building" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-blue-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-blue-500"></span>
                               HARO Link Building
                             </Link>
@@ -373,19 +379,19 @@ export default function Header() {
                         </div>
                         <ul className="space-y-3 text-base pl-14">
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/SEO/local-seo" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/SEO/local-seo" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-green-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-green-500"></span>
                               Local SEO
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/SEO/technical-seo" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/SEO/technical-seo" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-green-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-green-500"></span>
                               Technical SEO
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/SEO/enterprise-seo" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/SEO/enterprise-seo" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-green-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-green-500"></span>
                               Enterprise SEO
                             </Link>
@@ -404,19 +410,19 @@ export default function Header() {
                         </div>
                         <ul className="space-y-3 text-base pl-14">
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/Website-design/custom-website-design" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/Website-design/custom-website-design" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-blue-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-blue-500"></span>
                               Custom Website Design
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/Website-design/wordpress-website-design" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/Website-design/wordpress-website-design" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-blue-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-blue-500"></span>
                               WordPress Website Design
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/Website-design/ADA-Compliance-services" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/Website-design/ADA-Compliance-services" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-blue-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-blue-500"></span>
                               ADA Compliance Services
                             </Link>
@@ -435,19 +441,19 @@ export default function Header() {
                         </div>
                         <ul className="space-y-3 text-base pl-14">
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/ppc/ecommerce-seo" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/ppc/ecommerce-seo" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-blue-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-blue-500"></span>
                               eCommerce SEO
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/ppc/ecommerce-ppc" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/ppc/ecommerce-ppc" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-blue-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-blue-500"></span>
                               eCommerce PPC
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/ppc/shopify-seo" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/ppc/shopify-seo" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-blue-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-blue-500"></span>
                               Shopify SEO
                             </Link>
@@ -466,25 +472,25 @@ export default function Header() {
                         </div>
                         <ul className="space-y-3 text-base pl-14">
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/social-media-marketing/social-media-management" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/social-media-marketing/social-media-management" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-green-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-green-500"></span>
                               Social Media Management
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/social-media-marketing/social-media-brand-management" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/social-media-marketing/social-media-brand-management" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-green-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-green-500"></span>
                               Social Media Brand Management
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/social-media-marketing/franchise-social-media" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/social-media-marketing/franchise-social-media" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-green-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-green-500"></span>
                               Franchise Social Media
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/Website-design/ADA-Compliance-services" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/Website-design/ADA-Compliance-services" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-green-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-green-500"></span>
                               ADA Compliance Services
                             </Link>
@@ -503,19 +509,19 @@ export default function Header() {
                         </div>
                         <ul className="space-y-3 text-base pl-14">
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/Media-Production/Video-Production" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/Media-Production/Video-Production" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-amber-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-amber-500"></span>
                               Video Production
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/Media-Production/Video-Testimonial-Services" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/Media-Production/Video-Testimonial-Services" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-amber-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-amber-500"></span>
                               Video Testimonial Services
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/Media-Production/Product-Photography-Services" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/Media-Production/Product-Photography-Services" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-amber-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-amber-500"></span>
                               Product Photography Services
                             </Link>
@@ -534,19 +540,19 @@ export default function Header() {
                         </div>
                         <ul className="space-y-3 text-base pl-14">
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/online-marketplace-marketing/amazon-seo" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/online-marketplace-marketing/amazon-seo" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-blue-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-blue-500"></span>
                               Amazon SEO
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/online-marketplace-marketing/Amazon-Advertising-PPC" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/online-marketplace-marketing/Amazon-Advertising-PPC" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-blue-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-blue-500"></span>
                               Amazon Advertising PPC
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/online-marketplace-marketing/Walmart-marketplace" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/online-marketplace-marketing/Walmart-marketplace" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-blue-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-blue-500"></span>
                               Walmart Marketplace
                             </Link>
@@ -565,19 +571,19 @@ export default function Header() {
                         </div>
                         <ul className="space-y-3 text-base pl-14">
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/social-media-advertising/facebook" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/social-media-advertising/facebook" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-amber-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-amber-500"></span>
                               Facebook
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/social-media-advertising/linkedin" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/social-media-advertising/linkedin" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-amber-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-amber-500"></span>
                               LinkedIn
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/social-media-advertising/instagram" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/social-media-advertising/instagram" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-amber-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-amber-500"></span>
                               Instagram
                             </Link>
@@ -596,19 +602,19 @@ export default function Header() {
                         </div>
                         <ul className="space-y-3 text-base pl-14">
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/content-writing/seo-content-writing" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/content-writing/seo-content-writing" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-amber-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-amber-500"></span>
                               SEO Content Writing
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/content-writing/copywriting-services" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/content-writing/copywriting-services" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-amber-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-amber-500"></span>
                               Copywriting Services
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/content-writing/email-marketing-services" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/content-writing/email-marketing-services" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-amber-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-amber-500"></span>
                               Email Marketing Services
                             </Link>
@@ -627,19 +633,19 @@ export default function Header() {
                         </div>
                         <ul className="space-y-3 text-base pl-14">
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/cro-services/cro-audits" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/cro-services/cro-audits" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-green-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-green-500"></span>
                               CRO Audits
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/cro-services/user-experience-testing" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/cro-services/user-experience-testing" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-green-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-green-500"></span>
                               User Experience Testing
                             </Link>
                           </li>
                           <li className="transition-all duration-200 hover:translate-x-1">
-                            <Link href="/services/cro-services/user-behavior-analytics" className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
+                            <Link href="/services/cro-services/user-behavior-analytics" onClick={handleLinkClick} className="text-gray-700 hover:text-[#205A59] hover:font-medium flex items-center">
                               <span className="w-1.5 h-1.5 bg-green-300 rounded-full mr-2 transition-all duration-300 group-hover/category:bg-green-500"></span>
                               User Behavior Analytics
                             </Link>
@@ -649,7 +655,7 @@ export default function Header() {
                     </div>
                     
                     <div className="flex items-center justify-center pt-6 border-t border-gray-100 sticky bottom-0 bg-white pb-2">
-                      <Link href="/services" className="px-6 py-3 bg-gradient-to-r from-[#205A59] to-[#8BA640] text-white text-base font-medium rounded-full hover:shadow-lg transition-shadow duration-300 flex items-center gap-2">
+                      <Link href="/services" onClick={handleLinkClick} className="px-6 py-3 bg-gradient-to-r from-[#205A59] to-[#8BA640] text-white text-base font-medium rounded-full hover:shadow-lg transition-shadow duration-300 flex items-center gap-2">
                         View All Services
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -662,11 +668,13 @@ export default function Header() {
             </li>
 
             {/* Industries Dropdown */}
-            <li className="group relative">
+            <li className="group relative"
+                onMouseEnter={() => setActiveDesktopMenu('industries')}
+                onMouseLeave={() => setActiveDesktopMenu(null)}>
               <button className="flex items-center font-medium text-gray-800 hover:text-[#205A59] transition-colors py-3 px-4 rounded-md hover:bg-[#f0f9f9] text-lg">
-                Industries <ChevronDown className="w-5 h-5 ml-1 transition-transform group-hover:rotate-180" />
+                Industries <ChevronDown className={`w-5 h-5 ml-1 transition-transform ${activeDesktopMenu === 'industries' ? 'rotate-180' : ''}`} />
               </button>
-              <div className="fixed left-1/2 transform -translate-x-1/2 top-[4.5rem] mt-2 w-96 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100]">
+              <div className={`fixed left-1/2 transform -translate-x-1/2 top-[4.5rem] mt-2 w-96 bg-white rounded-md shadow-xl transition-all duration-200 z-[100] ${activeDesktopMenu === 'industries' ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
                 <div className="py-2">
                   <h3 className="px-4 py-2 text-sm font-semibold text-[#205A59] bg-gray-50 uppercase tracking-wider">
                     Specialized Industry Solutions
@@ -675,6 +683,7 @@ export default function Header() {
                     <Link 
                       key={index} 
                       href={industry.path} 
+                      onClick={handleLinkClick}
                       className="block transition-all hover:bg-gray-50"
                     >
                       <div className="flex items-start gap-3 p-4 group/item">
@@ -699,13 +708,15 @@ export default function Header() {
             </li>
 
             {/* Other Nav Links */}
-            <li><Link href="/case-studies" className="font-medium text-gray-800 hover:text-[#205A59] transition-colors py-3 px-4 rounded-md hover:bg-[#f0f9f9] text-lg">Case Studies</Link></li>
-            <li><Link href="/careers" className="font-medium text-gray-800 hover:text-[#205A59] transition-colors py-3 px-4 rounded-md hover:bg-[#f0f9f9] text-lg">Careers</Link></li>
-            <li className="group relative">
+            <li><Link href="/case-studies" onClick={handleLinkClick} className="font-medium text-gray-800">Case Studies</Link></li>
+            <li><Link href="/careers" onClick={handleLinkClick} className="font-medium text-gray-800">Careers</Link></li>
+            <li className="group relative"
+                onMouseEnter={() => setActiveDesktopMenu('company')}
+                onMouseLeave={() => setActiveDesktopMenu(null)}>
               <button className="flex items-center font-medium text-gray-800 hover:text-[#205A59] transition-colors py-3 px-4 rounded-md hover:bg-[#f0f9f9] text-lg">
-                Company <ChevronDown className="w-5 h-5 ml-1 transition-transform group-hover:rotate-180" />
+                Company <ChevronDown className={`w-5 h-5 ml-1 transition-transform ${activeDesktopMenu === 'company' ? 'rotate-180' : ''}`} />
               </button>
-              <div className="absolute left-0 top-full mt-2 w-96 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100]">
+              <div className={`absolute left-0 top-full mt-2 w-96 bg-white rounded-md shadow-xl transition-all duration-200 z-[100] ${activeDesktopMenu === 'company' ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
                 <div className="py-2">
                   <h3 className="px-4 py-2 text-sm font-semibold text-[#205A59] bg-gray-50 uppercase tracking-wider">
                     Company Information
@@ -714,6 +725,7 @@ export default function Header() {
                     <Link 
                       key={index} 
                       href={item.path} 
+                      onClick={handleLinkClick}
                       className="block transition-all hover:bg-gray-50"
                     >
                       <div className="flex items-start gap-3 p-4 group/item">
@@ -778,9 +790,9 @@ export default function Header() {
                           <li key={j} className="relative">
                             <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-[#EAF6F6]"></div>
                             {typeof item === 'object' && item.label && item.href ? (
-                              <Link href={item.href} className="text-sm py-1 block pl-4">{item.label}</Link>
+                              <Link href={item.href} onClick={handleLinkClick} className="text-sm py-1 block pl-4">{item.label}</Link>
                             ) : (
-                              <Link href={serviceLinks[item as string] || '#'} className="text-sm py-1 block pl-4">{item as string}</Link>
+                              <Link href={serviceLinks[item as string] || '#'} onClick={handleLinkClick} className="text-sm py-1 block pl-4">{item as string}</Link>
                             )}
                           </li>
                         ))}
@@ -808,6 +820,7 @@ export default function Header() {
                     <div key={index} className="py-2">
                       <Link 
                         href={industry.path}
+                        onClick={handleLinkClick}
                         className="flex items-start gap-3 text-gray-700"
                       >
                         <div className="w-8 h-8 bg-[#EAF6F6] rounded-full flex items-center justify-center flex-shrink-0">
@@ -828,10 +841,10 @@ export default function Header() {
             </div>
             
             {/* Other mobile links */}
-            <Link href="/case-studies" className="block font-medium text-gray-800">Case Studies</Link>
-            <Link href="/careers" className="block font-medium text-gray-800">Careers</Link>
-            <Link href="/about" className="block font-medium text-gray-800">About Us</Link>
-            <Link href="/contact" className="block font-medium text-gray-800">Contact</Link>
+            <Link href="/case-studies" onClick={handleLinkClick} className="block font-medium text-gray-800">Case Studies</Link>
+            <Link href="/careers" onClick={handleLinkClick} className="block font-medium text-gray-800">Careers</Link>
+            <Link href="/about" onClick={handleLinkClick} className="block font-medium text-gray-800">About Us</Link>
+            <Link href="/contact" onClick={handleLinkClick} className="block font-medium text-gray-800">Contact</Link>
 
             <div className="mt-6">
               <ContactButton />
