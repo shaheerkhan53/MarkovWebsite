@@ -729,7 +729,7 @@ export default function AmazonAdvertisingPPCPage() {
           </div>
         </section>
 
-        {/* CTA Section */}
+        {/* CTA Section (Green) */}
         <section className="py-20 bg-[#4B5320]">
           <div className="max-w-5xl mx-auto px-4 text-center">
             <motion.div
@@ -753,148 +753,129 @@ export default function AmazonAdvertisingPPCPage() {
                 </Button>
                 <Button 
                   variant="outline" 
-                  className="border-white text-white bg-transparent hover:bg-[#FFD700]/10 px-8 py-6 text-lg font-semibold"
+                  className="mb-8 border-white text-white bg-transparent hover:bg-[#FFD700]/10 px-8 py-6 text-lg font-semibold"
                   onClick={() => navigateToContact('free-ppc-audit')}
                 >
                   Request a Free PPC Audit
                 </Button>
               </div>
-              <p className="text-white/70 mt-6">
-                No contracts or commitments required. Let's talk about your goals.
-              </p>
             </motion.div>
           </div>
+        </section>
 
-          <section className="bg-white py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-800 mb-2">Ready to Grow Your Amazon Business?</h2>
-            <p className="text-lg text-gray-600">Work with the Amazon Marketing Agency with Proven Results</p>
-            
-            <div className="mt-6">
-              <Button 
-                className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-6 py-3 rounded"
-                onClick={() => navigateToContact('proposal')}
-              >
-                GET MY FREE PROPOSAL
-              </Button>
-            </div>
-          </div>
-          
-          <div className="max-w-5xl mx-auto mt-12">
-            <h3 className="text-2xl font-bold text-center mb-8">Get My <span className="text-[#738e36]">FREE</span> Digital Marketing Proposal</h3>
-            
-            <div className="bg-white rounded-lg shadow-lg p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="bg-[#738e36] text-white p-6 rounded-l-lg lg:col-span-1">
-                <div className="mb-8">
-                  <h4 className="text-xl font-bold mb-2">Experience Real Results</h4>
-                  <p className="text-sm">Partner with Thrive Internet Marketing Agency and scale your business.</p>
-                </div>
-                
-                <div className="flex justify-center items-center h-64 relative">
-                  <div className="absolute bottom-0 left-0 w-full">
-                    <div className="flex items-end">
-                      <img src="/amazon-results.png" alt="Marketing results chart" className="w-full" />
-                    </div>
-                    <div className="bg-white/10 rounded px-2 py-1 text-sm inline-block mt-2">
-                      <span className="font-bold">+257%</span>
-                      <span className="text-xs block">Focused Page Views</span>
+        {/* Proposal Form Section (White) */}
+        <section className="bg-white py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-5xl mx-auto mt-12">
+              <h3 className="text-2xl text-[#738e36] font-bold text-center mb-8">Get My FREE Digital Marketing Proposal</h3>
+              <div className="bg-white rounded-lg shadow-lg p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="bg-[#738e36] text-white p-6 rounded-l-lg lg:col-span-1">
+                  <div className="mb-8">
+                    <h4 className="text-xl font-bold mb-2">Experience Real Results</h4>
+                    <p className="text-sm">Partner with Thrive Internet Marketing Agency and scale your business.</p>
+                  </div>
+                  <div className="flex justify-center items-center h-64 relative">
+                    <div className="absolute bottom-0 left-0 w-full">
+                      <div className="flex items-end">
+                        <img src="/marketingchart.jpg" alt="Marketing results chart" className="w-full" />
+                      </div>
+                      <div className="bg-white/10 rounded px-2 py-1 text-sm inline-block mt-2">
+                        <span className="font-bold">+257%</span>
+                        <span className="text-xs block">Focused Page Views</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              
-              <div className="lg:col-span-2 p-4">
-                <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <Input 
-                      type="text" 
-                      placeholder="First Name*"
-                      className="w-full p-2 border border-gray-300 rounded"
-                    />
-                  </div>
-                  <div>
-                    <Input 
-                      type="text" 
-                      placeholder="Last Name*"
-                      className="w-full p-2 border border-gray-300 rounded"
-                    />
-                  </div>
-                  <div>
-                    <Input 
-                      type="text" 
-                      placeholder="Company/Organization*"
-                      className="w-full p-2 border border-gray-300 rounded"
-                    />
-                  </div>
-                  <div>
-                    <Input 
-                      type="text" 
-                      placeholder="Website"
-                      className="w-full p-2 border border-gray-300 rounded"
-                    />
-                  </div>
-                  <div>
-                    <Input 
-                      type="email" 
-                      placeholder="Email Address*"
-                      className="w-full p-2 border border-gray-300 rounded"
-                    />
-                  </div>
-                  <div className="flex items-center">
-                    <div className="bg-gray-100 px-2 py-2 rounded-l border border-gray-300">
-                      <select className="bg-transparent text-sm">
-                        <option>+1</option>
+                <div className="lg:col-span-2 p-4">
+                  <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Input 
+                        type="text" 
+                        placeholder="First Name*"
+                        className="w-full p-2 border border-gray-300 rounded"
+                      />
+                    </div>
+                    <div>
+                      <Input 
+                        type="text" 
+                        placeholder="Last Name*"
+                        className="w-full p-2 border border-gray-300 rounded"
+                      />
+                    </div>
+                    <div>
+                      <Input 
+                        type="text" 
+                        placeholder="Company/Organization*"
+                        className="w-full p-2 border border-gray-300 rounded"
+                      />
+                    </div>
+                    <div>
+                      <Input 
+                        type="text" 
+                        placeholder="Website"
+                        className="w-full p-2 border border-gray-300 rounded"
+                      />
+                    </div>
+                    <div>
+                      <Input 
+                        type="email" 
+                        placeholder="Email Address*"
+                        className="w-full p-2 border border-gray-300 rounded"
+                      />
+                    </div>
+                    <div className="flex items-center">
+                      <div className="bg-gray-100 px-2 py-2 rounded-l border border-gray-300">
+                        <select className="bg-transparent text-sm">
+                          <option>+1</option>
+                        </select>
+                      </div>
+                      <Input 
+                        type="tel" 
+                        placeholder="Phone"
+                        className="w-full p-2 border border-gray-300 rounded-r"
+                      />
+                    </div>
+                    <div>
+                      <select className="w-full p-2 border border-gray-300 rounded text-gray-500">
+                        <option>Services*</option>
                       </select>
                     </div>
-                    <Input 
-                      type="tel" 
-                      placeholder="Phone"
-                      className="w-full p-2 border border-gray-300 rounded-r"
-                    />
-                  </div>
-                  <div>
-                    <select className="w-full p-2 border border-gray-300 rounded text-gray-500">
-                      <option>Services*</option>
-                    </select>
-                  </div>
-                  <div>
-                    <select className="w-full p-2 border border-gray-300 rounded text-gray-500">
-                      <option>Company Size*</option>
-                    </select>
-                  </div>
-                  <div className="md:col-span-2">
-                    <Input 
-                      type="text" 
-                      placeholder="How Did You Hear About Thrive?"
-                      className="w-full p-2 border border-gray-300 rounded"
-                    />
-                  </div>
-                  <div className="md:col-span-2">
-                    <textarea 
-                      placeholder="Tell us about your business"
-                      className="w-full p-2 border border-gray-300 rounded resize-none h-24"
-                    ></textarea>
-                  </div>
-                  <div className="md:col-span-2">
-                    <Button 
-                      className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded"
-                      onClick={() => navigateToContact('proposal-form')}
-                    >
-                      SEND MY FREE PROPOSAL
-                    </Button>
-                    <p className="text-center text-sm mt-4 text-gray-600">
-                      In a hurry? Give us a call now at <a href="tel:866-434-4748" className="text-blue-500">866-434-4748</a>
-                      <br />
-                      <span className="text-xs">By submitting your phone number, you agree to receiving texts from Thrive team.</span>
-                    </p>
-                  </div>
-                </form>
+                    <div>
+                      <select className="w-full p-2 border border-gray-300 rounded text-gray-500">
+                        <option>Company Size*</option>
+                      </select>
+                    </div>
+                    <div className="md:col-span-2">
+                      <Input 
+                        type="text" 
+                        placeholder="How Did You Hear About Thrive?"
+                        className="w-full p-2 border border-gray-300 rounded"
+                      />
+                    </div>
+                    <div className="md:col-span-2">
+                      <textarea 
+                        placeholder="Tell us about your business"
+                        className="w-full p-2 border border-gray-300 rounded resize-none h-24"
+                      ></textarea>
+                    </div>
+                    <div className="md:col-span-2">
+                      <Button 
+                        className="w-full bg-[#4B5320] hover:bg-[#394016] text-white font-bold py-3 rounded"
+                        onClick={() => navigateToContact('proposal-form')}
+                      >
+                        SEND MY FREE PROPOSAL
+                      </Button>
+                      <p className="text-center text-sm mt-4 text-gray-600">
+                        In a hurry? Give us a call now at <a href="tel:866-434-4748" className="text-blue-500">866-434-4748</a>
+                        <br />
+                        <span className="text-xs">By submitting your phone number, you agree to receiving texts from Thrive team.</span>
+                      </p>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
         </section>
       </main>
 

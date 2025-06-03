@@ -213,7 +213,7 @@ export default function CROAuditsPage() {
                         variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
                         className={`text-3xl md:text-4xl font-bold text-center ${colors.textPrimary} mb-16 md:mb-20`}
                     >
-                        Our <span className={`${colors.textAccent} underline decoration-wavy decoration-emerald-500/70`}>CRO Audit Process</span>
+                        Our <span className={`${colors.textAccent} decoration-emerald-500/70`}>CRO Audit Process</span>
                     </motion.h2>
                     <motion.div 
                         initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={staggerContainer(0.2)}

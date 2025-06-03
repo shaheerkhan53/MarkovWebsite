@@ -1,430 +1,587 @@
-"use client"
+"use client";
 
-import React from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
 import {
-  AlertTriangle,
-  TrendingUp,
-  ShieldCheck,
-  Users,
-  BarChartHorizontal,
-  MessageCircle,
-  Globe2,
-  ThumbsUp,
-  CalendarCheck,
-  Lock,
-  Star,
-  CheckCircle,
-} from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+  TrendingUp, ShieldCheck, Users, BarChartHorizontal, MessageCircle, Globe2, ThumbsUp, CalendarCheck, Lock, Star, CheckCircle,
+  Share2, Target, Brain, Palette, Zap, Users2, Mic, Edit3, PieChart, Gift, Settings, Package, Tag, MessageSquareHeart, Lightbulb, Heart, Facebook, Instagram, Linkedin, Twitter, Youtube, ArrowRight, Clock, Award // Removed Tiktok, Pinterest
+} from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // Assuming Card components are available
+import { useRouter } from 'next/navigation'; // For navigation
 
-export default function SocialMediaManagementPage() {
-  // Primary color for consistent branding
-  const primaryColor = "#205A59";
-  const secondaryColor = "#8BA640";
+// Animation variants (reusable)
+const fadeIn = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
 
-  const staggerContainer = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.1,
-      },
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
     },
-  }
+  },
+};
 
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  }
+const iconVariants = {
+  hover: { scale: 1.1, rotate: 5 },
+  tap: { scale: 0.95 }
+};
+
+const platformIcons = {
+  Facebook: <Facebook className="w-8 h-8" />,
+  Instagram: <Instagram className="w-8 h-8" />,
+  LinkedIn: <Linkedin className="w-8 h-8" />,
+  Twitter: <Twitter className="w-8 h-8" />,
+  TikTok: <img src="/tiktok.svg" alt="TikTok" className="w-8 h-8" />,
+  Pinterest: <img src="/pinterest.svg" alt="Pinterest" className="w-8 h-8" />,
+  YouTube: <Youtube className="w-8 h-8" />,
+};
+
+export default function SocialMediaManagementPageModern() {
+  const router = useRouter();
+  const primaryColor = "#205A59"; // Dark Teal
+  const secondaryColor = "#8BA640"; // Olive Green
+  const accentColor = "#F2C94C"; // A complementary warm yellow/gold for highlights
+
+  const navigateToContact = (service?: string) => {
+    let path = '/contact';
+    if (service) {
+        path += `?service=${encodeURIComponent(service)}&utm_source=smm_page`;
+    } else {
+        path += `?service=social-media-management&utm_source=smm_page`;
+    }
+    router.push(path);
+  };
 
   return (
-    <div className="bg-white">
-      {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-r from-[#205A59] to-[#8BA640] text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <main className="flex flex-col min-h-screen overflow-x-hidden bg-slate-50 text-gray-800">
+
+      {/* 1. Dynamic Hero Section */}
+      <section 
+        className="relative py-24 md:py-32 text-white overflow-hidden"
+        style={{ background: `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)` }}
+      >
+        <div className="absolute inset-0 opacity-5">
+          {/* Subtle pattern of social icons */}
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" strokeWidth="0.5" />
+              <pattern id="socialPattern" patternUnits="userSpaceOnUse" width="100" height="100">
+                {/* Simplified social media-like icons */}
+                <circle cx="20" cy="20" r="3" fill="currentColor" opacity="0.5"/>
+                <rect x="50" y="15" width="10" height="10" fill="currentColor" opacity="0.5"/>
+                <path d="M70 70 L80 75 L70 80 Z" fill="currentColor" opacity="0.5"/>
+                <circle cx="20" cy="70" r="4" stroke="currentColor" strokeWidth="0.5" fill="none" opacity="0.5"/>
+                <rect x="60" y="50" width="15" height="3" fill="currentColor" opacity="0.5"/>
               </pattern>
             </defs>
-            <rect width="100" height="100" fill="url(#grid)" />
+            <rect width="100%" height="100%" fill="url(#socialPattern)" />
           </svg>
         </div>
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+        <motion.div 
+          className="container mx-auto px-6 relative z-10 text-center"
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+        >
+          <motion.div variants={fadeIn} className="mb-6 inline-block p-4 bg-white/20 rounded-full backdrop-blur-sm">
+            <Share2 className="w-12 h-12 md:w-16 md:h-16 text-white" />
+          </motion.div>
+          <motion.h1 
+            variants={fadeIn}
+            className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight"
           >
-            <motion.div variants={fadeInUp}>
-              <span className="inline-block px-3 py-1 mb-6 text-xs font-semibold rounded-full bg-white text-[#205A59]">
-                Social Media Management
-              </span>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Drive Lasting Results on the Right Channels
-              </h1>
-              <p className="text-lg text-white opacity-90 mb-8 max-w-xl">
-                Custom strategies that promote sales, content engagement, and measurable growth—powered by Markov's expert team.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="bg-white text-[#205A59] hover:bg-gray-100 font-bold">Get My Free Proposal</Button>
-              </div>
+            Ignite Your Social Presence. Drive Real Growth.
+          </motion.h1>
+          <motion.p 
+            variants={fadeIn}
+            className="text-lg md:text-xl text-white/90 mb-10 max-w-3xl mx-auto"
+          >
+            Markov International crafts data-driven social media strategies that build communities, boost engagement, and deliver measurable results.
+          </motion.p>
+          <motion.div variants={fadeIn}>
+            <Button 
+              onClick={() => navigateToContact("Social Media Strategy Consultation")}
+              size="lg"
+              className="font-bold text-base px-10 py-3 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105"
+              style={{ backgroundColor: accentColor, color: primaryColor }}
+            >
+              Get Your Free Social Proposal
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* 2. The Social Media Maze (Problem Framing) */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <motion.div 
+            className="text-center mb-12 md:mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeIn}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Navigating the Ever-Changing Social Landscape?</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Algorithms shift, trends evolve, and your audience's attention is finite. Standing out requires more than just posting – it demands strategy.
+            </p>
+          </motion.div>
+          <motion.div 
+            className="grid md:grid-cols-2 gap-8 items-center"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={staggerContainer}
+          >
+            <motion.div variants={fadeIn}>
+              <Image src="/social-media.jpg" alt="Social media challenges" width={600} height={450} className="rounded-xl shadow-xl w-full h-auto object-cover"/>
             </motion.div>
-            <motion.div variants={fadeInUp} className="hidden lg:block">
-              <div className="relative">
-                <div className="absolute inset-0 bg-[#8BA640]/20 rounded-xl transform rotate-3"></div>
-                <Image
-                  src="/social_media_management.png"
-                  alt="Social Media Management"
-                  width={600}
-                  height={400}
-                  className="relative z-10 rounded-xl shadow-xl object-cover"
-                />
-              </div>
+            <motion.div variants={fadeIn} className="space-y-6">
+              {[
+                { icon: <TrendingUp className="w-6 h-6 text-red-500 transform scale-y-[-1]" />, text: "Struggling to see tangible ROI from social efforts?" },
+                { icon: <Users2 className="w-6 h-6 text-red-500" />, text: "Low engagement despite consistent posting?" },
+                { icon: <Clock className="w-6 h-6 text-red-500" />, text: "Overwhelmed by content creation and platform management?" },
+                { icon: <Target className="w-6 h-6 text-red-500" />, text: "Unsure which platforms to focus on for your audience?" },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start p-4 bg-slate-50 rounded-lg">
+                  <div className="flex-shrink-0 mr-4">{item.icon}</div>
+                  <p className="text-gray-700">{item.text}</p>
+                </div>
+              ))}
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Trust Badges */}
-      <section className="py-6 bg-[#8BA640]">
-        <div className="container mx-auto flex flex-wrap justify-center gap-8 items-center">
-          <div className="flex flex-col items-center">
-            <Star className="text-yellow-400 w-8 h-8 mb-1" />
-            <span className="font-bold text-lg text-white">Google</span>
-            <span className="text-xs text-white">5.0 Rating</span>
-          </div>
-          <div className="flex flex-col items-center">
-            <Star className="text-yellow-400 w-8 h-8 mb-1" />
-            <span className="font-bold text-lg text-white">Clutch</span>
-            <span className="text-xs text-white">Top Agency</span>
-          </div>
-          <div className="flex flex-col items-center">
-            <Star className="text-yellow-400 w-8 h-8 mb-1" />
-            <span className="font-bold text-lg text-white">UpCity</span>
-            <span className="text-xs text-white">Excellence</span>
-          </div>
+      {/* 3. Our Solution: The Markov Social Success System */}
+      <section className="py-16 md:py-24" style={{ backgroundColor: '#F0F5F4' /* Light primary color tint */ }}>
+        <div className="container mx-auto px-6 max-w-6xl">
+          <motion.div 
+            className="text-center mb-12 md:mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeIn}
+          >
+            <span className="inline-block px-4 py-1.5 rounded-full text-sm font-semibold mb-3" style={{ backgroundColor: `${secondaryColor}33`, color: primaryColor }}>Our Approach</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: primaryColor }}>Strategic Social. Powerful Results.</h2>
+            <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+              We combine deep audience insights, creative content, and performance analytics to build a thriving social media presence for your brand.
+            </p>
+          </motion.div>
+          <motion.div 
+            className="grid md:grid-cols-3 gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={staggerContainer}
+          >
+            {[
+              { icon: <Brain className="w-10 h-10" style={{ color: primaryColor }} />, title: "Audience-First Strategy", description: "Understanding your ideal customer deeply to craft messages that resonate and engage." },
+              { icon: <Palette className="w-10 h-10" style={{ color: primaryColor }} />, title: "Compelling Content Creation", description: "Developing thumb-stopping visuals and copy tailored for each platform's unique strengths." },
+              { icon: <BarChartHorizontal className="w-10 h-10" style={{ color: primaryColor }} />, title: "Data-Driven Optimization", description: "Continuously monitoring, analyzing, and refining campaigns for maximum impact and ROI." }
+            ].map((item, i) => (
+              <motion.div 
+                key={i} 
+                variants={fadeIn}
+                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow border border-gray-200 flex flex-col items-center text-center"
+              >
+                <motion.div 
+                  className="mb-6 p-4 rounded-full"
+                  style={{ backgroundColor: `${primaryColor}20` }}
+                  variants={iconVariants}
+                  whileHover="hover"
+                  whileTap="tap"
+                >
+                  {item.icon}
+                </motion.div>
+                <h3 className="text-xl font-bold mb-3" style={{ color: primaryColor }}>{item.title}</h3>
+                <p className="text-gray-700 text-sm">{item.description}</p>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
-      {/* What is Social Media Management */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-3xl font-bold text-[#205A59] mb-4">What is Social Media Management?</h2>
-            <p className="text-gray-700 mb-4">Custom strategies that promote sales, content engagement, and measurable growth. Markov's social media management is more than just posting—it's about building a community, driving engagement, and delivering real business results.</p>
-            <ul className="space-y-2 text-[#205A59] font-medium">
-              <li className="flex items-center gap-2"><CheckCircle className="w-5 h-5" /> Content planning & creation</li>
-              <li className="flex items-center gap-2"><CheckCircle className="w-5 h-5" /> Community management</li>
-              <li className="flex items-center gap-2"><CheckCircle className="w-5 h-5" /> Analytics & reporting</li>
-            </ul>
-          </div>
-          <div className="flex justify-center">
-            <Image src="/smm-illustration.png" alt="Social Media Management Illustration" width={320} height={320} className="rounded-xl shadow-lg" />
-          </div>
-        </div>
-      </section>
-
-      {/* Integrated Processes */}
-      <section className="py-16 bg-gradient-to-r from-[#EAF6F6] to-[#F0F9F9]">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold text-center text-[#205A59] mb-10">Integrated Processes for Maximum Impact</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="bg-white shadow border-0">
-              <CardHeader className="flex flex-row items-center gap-3">
-                <ThumbsUp className="w-8 h-8 text-[#205A59]" />
-                <CardTitle>Strategy Creation</CardTitle>
-              </CardHeader>
-              <CardContent className="text-gray-600">We research your audience, competitors, and industry to build a custom plan for your brand.</CardContent>
-            </Card>
-            <Card className="bg-white shadow border-0">
-              <CardHeader className="flex flex-row items-center gap-3">
-                <MessageCircle className="w-8 h-8 text-[#205A59]" />
-                <CardTitle>Content Calendar</CardTitle>
-              </CardHeader>
-              <CardContent className="text-gray-600">We create, schedule, and publish engaging content that aligns with your goals and brand voice.</CardContent>
-            </Card>
-            <Card className="bg-white shadow border-0">
-              <CardHeader className="flex flex-row items-center gap-3">
-                <Users className="w-8 h-8 text-[#205A59]" />
-                <CardTitle>Community Engagement</CardTitle>
-              </CardHeader>
-              <CardContent className="text-gray-600">We monitor, respond, and build relationships with your audience to foster loyalty and growth.</CardContent>
-            </Card>
-            <Card className="bg-white shadow border-0">
-              <CardHeader className="flex flex-row items-center gap-3">
-                <BarChartHorizontal className="w-8 h-8 text-[#205A59]" />
-                <CardTitle>Analytics & Reporting</CardTitle>
-              </CardHeader>
-              <CardContent className="text-gray-600">We track performance, optimize campaigns, and provide transparent reports on your ROI.</CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Businesses Need SMM */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-2xl font-bold text-[#205A59] mb-4">Why Businesses Need Social Media Management</h2>
-            <p className="text-gray-700 mb-4">Online solutions that make your brand stand out. Markov's SMM helps you reach new audiences, build trust, and drive measurable results—without the burden of managing it all yourself.</p>
-            <ul className="space-y-2 text-[#205A59] font-medium">
-              <li className="flex items-center gap-2"><CheckCircle className="w-5 h-5" /> Save time and resources</li>
-              <li className="flex items-center gap-2"><CheckCircle className="w-5 h-5" /> Access expert strategy and execution</li>
-              <li className="flex items-center gap-2"><CheckCircle className="w-5 h-5" /> Enjoy measurable, scalable growth</li>
-            </ul>
-          </div>
-          <div className="flex justify-center">
-            <Image src="/smm-benefits.png" alt="SMM Benefits" width={320} height={320} className="rounded-xl shadow-lg" />
-          </div>
-        </div>
-      </section>
-
-      {/* Case Studies/Success Stories */}
-      <section className="py-16 bg-gradient-to-r from-[#EAF6F6] to-[#F0F9F9]">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold text-center text-[#205A59] mb-10">5-Star Social Media Management Strategies You Can Rely On</h2>
-          <p className="text-center text-gray-700 mb-8 max-w-3xl mx-auto">
-            Get exceptional returns from custom-built social strategies and content.
-          </p>
-          <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Financial Company */}
-            <div className="bg-white p-6 rounded-xl shadow-md">
-              <div className="flex justify-between items-center mb-4">
-                <div className="bg-[#205A59] text-white px-3 py-1 rounded-full text-sm font-bold">
-                  Twitter Impressions: 724,000 monthly average
+      {/* 4. Core Benefits Reimagined: "Your Social ROI Engine" */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <motion.div 
+            className="text-center mb-12 md:mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeIn}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Transform Your Social Media into a Growth Engine</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Our SMM services go beyond likes and shares to deliver real, measurable business outcomes.
+            </p>
+          </motion.div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { icon: <TrendingUp className="w-8 h-8" />, title: "Boost Brand Awareness", description: "Expand your reach and get your brand in front of your target audience.", color: primaryColor, bgColor: `${primaryColor}1A`},
+              { icon: <Users className="w-8 h-8" />, title: "Grow Engaged Communities", description: "Foster loyalty and turn followers into passionate brand advocates.", color: secondaryColor, bgColor: `${secondaryColor}1A` },
+              { icon: <Target className="w-8 h-8" />, title: "Drive Qualified Leads", description: "Generate high-quality leads and sales through strategic social funnels.", color: accentColor, bgColor: `${accentColor}1A` },
+              { icon: <ShieldCheck className="w-8 h-8" />, title: "Enhance Brand Reputation", description: "Build trust and manage your online perception effectively.", color: primaryColor, bgColor: `${primaryColor}1A`}
+            ].map((benefit, index) => (
+              <motion.div 
+                key={index} 
+                className={`p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-200`}
+                style={{ backgroundColor: benefit.bgColor }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0, transition: { delay: index * 0.1, duration: 0.5 } }}
+                viewport={{ once: true }}
+              >
+                <div className={`mb-4 inline-block p-3 rounded-full`} style={{ color: benefit.color, backgroundColor: benefit.bgColor.replace('1A', '33') }}>
+                  {benefit.icon}
                 </div>
-              </div>
-              <p className="text-gray-700 mb-4">
-                For more than 5 years, clients from various industries have proven the validity of Markov's proven marketing strategies. Our results remain unchanged from sector to the realm of venture funding, social media engagement, and corporate.
-              </p>
-              <p className="text-gray-700 mb-4">
-                Our professional non-social businesses social media management strategies are passionately executed by our account managers, strategists, and copywriters. These digital strategists have been better than expected.
-              </p>
-              <div className="border-t border-gray-200 pt-4 mt-4">
-                <h3 className="font-bold text-[#205A59]">Financial Company</h3>
-              </div>
-            </div>
+                <h3 className={`text-xl font-semibold mb-2`} style={{ color: benefit.color === accentColor ? '#c89d28' : benefit.color /* Darker yellow for text */ }}>{benefit.title}</h3>
+                <p className="text-gray-700 text-sm">{benefit.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            {/* Instagram Engagement */}
-            <div className="bg-white p-6 rounded-xl shadow-md">
-              <div className="flex justify-between items-center mb-4">
-                <div className="bg-[#205A59] text-white px-3 py-1 rounded-full text-sm font-bold">
-                  Instagram Engagement: +180%
+      {/* 5. Our Comprehensive Social Media Services */}
+      <section className="py-16 md:py-24" style={{ backgroundColor: '#F0F5F4' /* Light primary color tint */ }}>
+        <div className="container mx-auto px-6 max-w-6xl">
+          <motion.div 
+            className="text-center mb-12 md:mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeIn}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: primaryColor }}>Full-Suite Social Media Management</h2>
+            <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+              From strategy development to daily execution, we offer a complete range of services to elevate your social game.
+            </p>
+          </motion.div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { title: "Social Media Strategy", description: "Custom-tailored plans identifying target audiences, key platforms, content pillars, and KPIs.", icon: <Brain /> },
+              { title: "Content Creation & Curation", description: "Engaging posts, stunning visuals, captivating videos, and user-generated content campaigns.", icon: <Palette /> },
+              { title: "Community Management", description: "Proactive engagement, timely responses, fostering discussions, and building brand loyalty.", icon: <MessageCircle /> },
+              { title: "Paid Social Advertising", description: "Targeted ad campaigns on platforms like Facebook, Instagram, LinkedIn to drive specific outcomes.", icon: <Zap /> },
+              { title: "Influencer Marketing", description: "Identifying and collaborating with relevant influencers to amplify your brand message.", icon: <Users2 /> },
+              { title: "Analytics & Performance Reporting", description: "Transparent tracking of key metrics, providing actionable insights for continuous improvement.", icon: <PieChart /> }
+            ].map((service, index) => (
+              <motion.div 
+                key={index} 
+                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-200 group"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1, transition: { delay: index * 0.1, duration: 0.4 } }}
+                viewport={{ once: true }}
+              >
+                <div className="flex items-center mb-4">
+                  <div className="p-3 rounded-full mr-4 group-hover:text-white transition-colors" style={{ backgroundColor: `${primaryColor}20`, color: primaryColor }}>
+                    {React.cloneElement(service.icon, { className: "w-6 h-6" })}
+                  </div>
+                  <h3 className="text-lg font-semibold" style={{ color: primaryColor }}>{service.title}</h3>
                 </div>
-              </div>
-              <p className="text-gray-700 mb-4">
-                A manufacturing company needed a boost to its online presence. Through our strategic management approach, we increased their social media engagement by an impressive 180%.
-              </p>
-              <ul className="list-disc list-inside text-gray-700 mb-4 space-y-1">
-                <li>Facebook Impressions: <span className="font-semibold">+83%</span> social media engagement year-over-year</li>
-                <li>April 2023: Largest day in ad sales results in all-time record in company history</li>
-                <li>May 9, 2023: Second day of ad sales in company history</li>
-              </ul>
-              <div className="border-t border-gray-200 pt-4 mt-4">
-                <h3 className="font-bold text-[#205A59]">Manufacturing Company</h3>
-              </div>
-            </div>
+                <p className="text-gray-700 text-sm">{service.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            {/* Impressions */}
-            <div className="bg-white p-6 rounded-xl shadow-md">
-              <div className="flex justify-between items-center mb-4">
-                <div className="bg-[#205A59] text-white px-3 py-1 rounded-full text-sm font-bold">
-                  Impressions: +185,556 month-over-month (Paid)
+      {/* 6. Our Social Success Process (Visualized) */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <motion.div 
+            className="text-center mb-12 md:mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeIn}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Blueprint for Social Domination</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              A proven, agile methodology to ensure your social media efforts are strategic, effective, and constantly evolving.
+            </p>
+          </motion.div>
+          <div className="relative">
+            <div className="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gray-300 -translate-y-1/2 -z-10"></div>
+            <motion.div 
+              className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+              variants={staggerContainer}
+            >
+            {[
+              { number: "01", title: "Deep Dive & Strategy", description: "Understanding your brand, audience, competitors, and goals to craft a bespoke strategy." },
+              { number: "02", title: "Content & Campaign Plan", description: "Developing content calendars, ad strategies, and engagement initiatives." },
+              { number: "03", title: "Execution & Engagement", description: "Publishing content, running ads, and actively managing your communities." },
+              { number: "04", title: "Analyze, Iterate, Scale", description: "Tracking performance, refining tactics, and scaling successful approaches for growth." }
+            ].map((step, index) => (
+              <motion.div 
+                key={index} 
+                variants={fadeIn}
+                className="bg-slate-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-200 text-center z-0"
+              >
+                <div className="mb-4 flex items-center justify-center w-14 h-14 rounded-full text-white font-bold text-2xl mx-auto" style={{backgroundColor: primaryColor}}>
+                  {step.number}
                 </div>
-              </div>
-              <p className="text-gray-700 mb-4">
-                A recreation company saw incredible results after implementing our social media management approach, effectively increasing their brand visibility online.
-              </p>
-              <ul className="list-disc list-inside text-gray-700 mb-4 space-y-1">
-                <li>Total clicks: <span className="font-semibold">9,570</span></li>
-                <li>Conversions: <span className="font-semibold">49.4%</span> CTR</li>
-                <li>Click-through Rate: <span className="font-semibold">35.8%</span> CTR</li>
-              </ul>
-              <div className="border-t border-gray-200 pt-4 mt-4">
-                <h3 className="font-bold text-[#205A59]">Recreation Company</h3>
-              </div>
+                <h3 className="text-xl font-semibold mb-2" style={{ color: primaryColor }}>{step.title}</h3>
+                <p className="text-gray-700 text-sm">{step.description}</p>
+              </motion.div>
+            ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+      
+      {/* 8. Success Stories: Social Proof */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <motion.div 
+            className="text-center mb-12 md:mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeIn}
+          >
+            <span className="inline-block px-4 py-1.5 rounded-full text-sm font-semibold mb-3" style={{ backgroundColor: `${secondaryColor}33`, color: primaryColor }}>Client Triumphs</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">How We've Transformed Brands on Social</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Real-world examples of our social media management making a difference.
+            </p>
+          </motion.div>
+          {/* Re-using the structure from your original code, but with motion */}
+          <motion.div 
+            className="grid md:grid-cols-1 lg:grid-cols-3 gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={staggerContainer}
+          >
+            {[
+              { title: "Twitter Impressions: 724,000 mon-avg", company: "Financial Company", details: "For over 5 years, Markov's strategies have delivered consistent high engagement for this finance leader, proving validity across sectors.", color: primaryColor },
+              { title: "Instagram Engagement: +180%", company: "Manufacturing Co.", details: "Boosted online presence significantly. Achieved +83% Facebook impressions YOY and record ad sales days.", color: secondaryColor },
+              { title: "Paid Impressions: +185K MoM", company: "Recreation Company", details: "Saw 9,570 total clicks and a 49.4% conversion rate, dramatically increasing brand visibility.", color: accentColor }
+            ].map((story, index) => (
+              <motion.div 
+                key={index} 
+                variants={fadeIn}
+                className="bg-slate-50 p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow border border-gray-200"
+              >
+                <div className="mb-4">
+                    <div className="px-3 py-1 rounded-full text-sm font-bold text-white inline-block" style={{backgroundColor: story.color}}>
+                        {story.title}
+                    </div>
+                </div>
+                <p className="text-gray-700 mb-4 text-sm">{story.details}</p>
+                <div className="border-t border-gray-300 pt-4 mt-4">
+                  <h3 className="font-bold" style={{color: primaryColor}}>{story.company}</h3>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 9. Why Markov International for SMM? */}
+      <section className="py-16 md:py-24" style={{ backgroundColor: '#F0F5F4' /* Light primary color tint */ }}>
+        <div className="container mx-auto px-6 max-w-6xl">
+          <motion.div 
+            className="text-center mb-12 md:mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeIn}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: primaryColor }}>Your Strategic Social Media Partner</h2>
+            <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+              We're not just a service provider; we're an extension of your team, dedicated to your social success.
+            </p>
+          </motion.div>
+          <motion.div 
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={staggerContainer}
+          >
+            {[
+              { icon: <Brain className="w-8 h-8" style={{color: primaryColor}} />, title: "Customized Strategies", description: "No cookie-cutter approaches. We tailor every plan to your unique brand and goals." },
+              { icon: <Heart className="w-8 h-8" style={{color: primaryColor}} />, title: "Passionate Experts", description: "Our team lives and breathes social media, staying ahead of trends and platform updates." },
+              { icon: <BarChartHorizontal className="w-8 h-8" style={{color: primaryColor}} />, title: "Transparent Reporting", description: "Clear, concise reports on what matters, demonstrating real ROI." }
+            ].map((item, index) => (
+              <motion.div 
+                key={index} 
+                variants={fadeIn}
+                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow border border-gray-200 text-center"
+              >
+                <div className="mb-4 inline-block p-3 rounded-full" style={{backgroundColor: `${primaryColor}20`}}>
+                  {item.icon}
+                </div>
+                <h3 className="text-xl font-semibold mb-2" style={{ color: primaryColor }}>{item.title}</h3>
+                <p className="text-gray-700 text-sm">{item.description}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+            
+      {/* 10. Social Media Management Packages/Tiers (Optional but good for clarity) */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <motion.div 
+            className="text-center mb-12 md:mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeIn}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Flexible Plans for Every Business</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Choose the social media management package that best fits your needs and budget.
+            </p>
+          </motion.div>
+          <motion.div 
+            className="grid md:grid-cols-3 gap-8 items-stretch" // items-stretch to make cards same height
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={staggerContainer}
+          >
+            {/* Example Package Cards - Customize these heavily */}
+            {[
+              { name: "Starter Spark", price: "$XXX/mo", features: ["2 Platforms", "Content Calendar", "Basic Engagement", "Monthly Reporting"], popular: false, color: primaryColor },
+              { name: "Growth Igniter", price: "$XXXX/mo", features: ["4 Platforms", "Advanced Strategy", "Full Community Mgmt", "Paid Ad Management (small budget)", "Bi-Weekly Reporting"], popular: true, color: secondaryColor },
+              { name: "Pro Accelerator", price: "$XXXXX/mo", features: ["All Platforms", "Dedicated Strategist", "Influencer Outreach", "Advanced Ad Campaigns", "Weekly Reporting & Insights"], popular: false, color: accentColor }
+            ].map((pkg, index) => (
+              <motion.div 
+                key={index} 
+                variants={fadeIn}
+                className={`bg-slate-50 rounded-xl shadow-xl border-2 flex flex-col ${pkg.popular ? 'border-yellow-400' : 'border-gray-200'}`}
+              >
+                {pkg.popular && <div className="text-center py-1 text-sm font-semibold text-white rounded-t-lg" style={{backgroundColor: pkg.color}}>Most Popular</div>}
+                <div className="p-8 flex-grow">
+                  <h3 className="text-2xl font-bold mb-2 text-center" style={{color: pkg.color}}>{pkg.name}</h3>
+                  <p className="text-3xl font-extrabold text-center mb-6 text-gray-800">{pkg.price}</p>
+                  <ul className="space-y-3 mb-8">
+                    {pkg.features.map(feature => (
+                      <li key={feature} className="flex items-center text-gray-700">
+                        <CheckCircle className="w-5 h-5 mr-2 flex-shrink-0" style={{color: pkg.color}} />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="p-8 pt-0">
+                   <Button 
+                    onClick={() => navigateToContact(`SMM Package - ${pkg.name}`)}
+                    className="w-full font-bold" 
+                    style={{backgroundColor: pkg.color, color: pkg.color === accentColor ? primaryColor : 'white'}}>
+                      Choose Plan
+                  </Button>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+          <motion.p 
+            className="text-center mt-10 text-gray-600"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeIn}
+          >
+            Need a custom solution? <Link href="/contact?service=custom-smm" className="font-semibold hover:underline" style={{color: primaryColor}}>Let's talk!</Link>
+          </motion.p>
+        </div>
+      </section>
+
+      {/* 11. Trust & Credibility (Reusing your badges but enhancing section) */}
+      <section className="py-16 md:py-24" style={{ backgroundColor: '#F0F5F4' }}>
+        <div className="container mx-auto px-6 max-w-4xl">
+          <motion.div 
+            className="text-center mb-12"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeIn}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: primaryColor }}>Award-Winning Social Media Expertise</h2>
+            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+              Recognized by industry leaders for delivering exceptional social media management and results.
+            </p>
+          </motion.div>
+          <motion.div 
+            className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={staggerContainer}
+          >
+            {[
+              { name: "Google", rating: "5.0 Rating", icon: <Star className="w-10 h-10 mb-1" style={{color: accentColor}} /> },
+              { name: "Clutch", rating: "Top Agency", icon: <Award className="w-10 h-10 mb-1" style={{color: accentColor}} /> },
+              { name: "UpCity", rating: "National Excellence", icon: <ThumbsUp className="w-10 h-10 mb-1" style={{color: accentColor}} /> }
+            ].map((badge, index) => (
+              <motion.div 
+                key={index} 
+                variants={fadeIn}
+                className="flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-md"
+              >
+                {badge.icon}
+                <span className="font-bold text-xl" style={{color: primaryColor}}>{badge.name}</span>
+                <span className="text-sm text-gray-600">{badge.rating}</span>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+            
+      {/* 12. Final Call to Action: "Let's Get Social" */}
+      <section 
+        className="py-24 md:py-32 text-white"
+        style={{ background: `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)` }}
+      >
+        <div className="container mx-auto px-6 max-w-4xl text-center">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeIn}
+          >
+            <Share2 className="w-16 h-16 mx-auto mb-6 opacity-80" />
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to Elevate Your Social Game?</h2>
+            <p className="text-white/90 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
+              Let Markov International's social media experts craft a strategy that drives engagement, builds your brand, and achieves your business objectives.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                onClick={() => navigateToContact("Free Social Media Audit")}
+                size="lg"
+                className="font-bold text-base px-10 py-3.5 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105"
+                style={{ backgroundColor: accentColor, color: primaryColor }}
+              >
+                Request Your Free Social Audit
+              </Button>
+              <Button 
+                onClick={() => router.push('/case-studies/social-media')}
+                size="lg"
+                variant="outline"
+                className="border-white text-[#648A49] hover:bg-white/10 transition-all font-bold text-base px-10 py-3.5 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105"
+              >
+                See Our Social Successes
+              </Button>
             </div>
-          </div>
-          <div className="flex justify-center mt-8">
-            <Button className="bg-[#205A59] text-white font-bold px-8 py-3 rounded-full hover:bg-[#205A59]/90">Build Your Own Social Success Story</Button>
-          </div>
+          </motion.div>
         </div>
       </section>
-
-      {/* Organic vs Paid Social */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-2xl font-bold text-[#205A59] mb-4">Organic vs Paid Social: What's the Difference?</h2>
-            <p className="text-gray-700 mb-4">Choose the right channels and tactics that work for your business. Markov helps you balance organic growth with paid campaigns for maximum impact.</p>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-[#EAF6F6] p-4 rounded-xl">
-                <h3 className="font-semibold text-[#205A59] mb-2">Organic Social</h3>
-                <ul className="text-gray-600 text-sm list-disc pl-4">
-                  <li>Building community and trust</li>
-                  <li>Content planning and engagement</li>
-                  <li>Long-term brand growth</li>
-                </ul>
-              </div>
-              <div className="bg-[#8BA640] p-4 rounded-xl">
-                <h3 className="font-semibold text-white mb-2">Paid Social</h3>
-                <ul className="text-white text-sm list-disc pl-4">
-                  <li>Targeted ad campaigns</li>
-                  <li>Rapid audience growth</li>
-                  <li>Measurable, scalable results</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="flex justify-center">
-            <Image src="/organic-vs-paid.png" alt="Organic vs Paid Social" width={320} height={320} className="rounded-xl shadow-lg" />
-          </div>
-        </div>
-      </section>
-
-      {/* Platform Management */}
-      <section className="py-16 bg-gradient-to-r from-[#EAF6F6] to-[#F0F9F9]">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold text-center text-[#205A59] mb-10">Social Media Platforms We Manage</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="bg-white shadow border-0">
-              <CardHeader className="flex flex-row items-center gap-3">
-                <Image src="/facebook-icon.png" alt="Facebook" width={32} height={32} />
-                <CardTitle>Facebook Management</CardTitle>
-              </CardHeader>
-              <CardContent className="text-gray-600">Community building, content, and paid ads for maximum reach.</CardContent>
-            </Card>
-            <Card className="bg-white shadow border-0">
-              <CardHeader className="flex flex-row items-center gap-3">
-                <Image src="/instagram-icon.png" alt="Instagram" width={32} height={32} />
-                <CardTitle>Instagram Management</CardTitle>
-              </CardHeader>
-              <CardContent className="text-gray-600">Visual storytelling, influencer campaigns, and shoppable content.</CardContent>
-            </Card>
-            <Card className="bg-white shadow border-0">
-              <CardHeader className="flex flex-row items-center gap-3">
-                <Image src="/linkedin-icon.png" alt="LinkedIn" width={32} height={32} />
-                <CardTitle>LinkedIn Management</CardTitle>
-              </CardHeader>
-              <CardContent className="text-gray-600">Professional branding, B2B engagement, and thought leadership.</CardContent>
-            </Card>
-            <Card className="bg-white shadow border-0">
-              <CardHeader className="flex flex-row items-center gap-3">
-                <Image src="/tiktok-icon.png" alt="TikTok" width={32} height={32} />
-                <CardTitle>TikTok Management</CardTitle>
-              </CardHeader>
-              <CardContent className="text-gray-600">Creative short-form video and viral brand challenges.</CardContent>
-            </Card>
-            <Card className="bg-white shadow border-0">
-              <CardHeader className="flex flex-row items-center gap-3">
-                <Image src="/twitter-icon.png" alt="Twitter" width={32} height={32} />
-                <CardTitle>Twitter Management</CardTitle>
-              </CardHeader>
-              <CardContent className="text-gray-600">Real-time engagement, brand voice, and customer support.</CardContent>
-            </Card>
-            <Card className="bg-white shadow border-0">
-              <CardHeader className="flex flex-row items-center gap-3">
-                <Image src="/pinterest-icon.png" alt="Pinterest" width={32} height={32} />
-                <CardTitle>Pinterest Advertising</CardTitle>
-              </CardHeader>
-              <CardContent className="text-gray-600">Visual discovery, inspiration, and product promotion.</CardContent>
-            </Card>
-            <Card className="bg-white shadow border-0">
-              <CardHeader className="flex flex-row items-center gap-3">
-                <Image src="/youtube-icon.png" alt="YouTube" width={32} height={32} />
-                <CardTitle>YouTube Management</CardTitle>
-              </CardHeader>
-              <CardContent className="text-gray-600">Video content, channel growth, and audience engagement.</CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Grid */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold text-center text-[#205A59] mb-10">Our Social Media Management Services</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="bg-white shadow border-0">
-              <CardHeader className="flex flex-row items-center gap-3">
-                <TrendingUp className="w-8 h-8 text-[#205A59]" />
-                <CardTitle>Social Media Marketing</CardTitle>
-              </CardHeader>
-              <CardContent className="text-gray-600">Strategy, campaigns, and analytics for all platforms.</CardContent>
-            </Card>
-            <Card className="bg-white shadow border-0">
-              <CardHeader className="flex flex-row items-center gap-3">
-                <ThumbsUp className="w-8 h-8 text-[#205A59]" />
-                <CardTitle>Social Media Advertising</CardTitle>
-              </CardHeader>
-              <CardContent className="text-gray-600">Targeted ad campaigns to grow your brand and reach new audiences.</CardContent>
-            </Card>
-            <Card className="bg-white shadow border-0">
-              <CardHeader className="flex flex-row items-center gap-3">
-                <ShieldCheck className="w-8 h-8 text-[#205A59]" />
-                <CardTitle>Social Media Brand</CardTitle>
-              </CardHeader>
-              <CardContent className="text-gray-600">Brand strategy, visual identity, and messaging for all platforms.</CardContent>
-            </Card>
-            <Card className="bg-white shadow border-0">
-              <CardHeader className="flex flex-row items-center gap-3">
-                <Users className="w-8 h-8 text-[#205A59]" />
-                <CardTitle>Social Media Follower Growth</CardTitle>
-              </CardHeader>
-              <CardContent className="text-gray-600">Grow your audience with targeted campaigns and influencer outreach.</CardContent>
-            </Card>
-            <Card className="bg-white shadow border-0">
-              <CardHeader className="flex flex-row items-center gap-3">
-                <BarChartHorizontal className="w-8 h-8 text-[#205A59]" />
-                <CardTitle>Social Media SEO</CardTitle>
-              </CardHeader>
-              <CardContent className="text-gray-600">Optimize your profiles and content for search visibility and engagement.</CardContent>
-            </Card>
-            <Card className="bg-white shadow border-0">
-              <CardHeader className="flex flex-row items-center gap-3">
-                <CalendarCheck className="w-8 h-8 text-[#205A59]" />
-                <CardTitle>Content Writing</CardTitle>
-              </CardHeader>
-              <CardContent className="text-gray-600">Professional content creation for all your social channels.</CardContent>
-            </Card>
-            <Card className="bg-white shadow border-0">
-              <CardHeader className="flex flex-row items-center gap-3">
-                <Lock className="w-8 h-8 text-[#205A59]" />
-                <CardTitle>Social Media Reputation</CardTitle>
-              </CardHeader>
-              <CardContent className="text-gray-600">Protect your reputation with proactive monitoring and crisis management.</CardContent>
-            </Card>
-            <Card className="bg-white shadow border-0">
-              <CardHeader className="flex flex-row items-center gap-3">
-                <Globe2 className="w-8 h-8 text-[#205A59]" />
-                <CardTitle>Website Design & Video</CardTitle>
-              </CardHeader>
-              <CardContent className="text-gray-600">Custom website and video production for a complete digital presence.</CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-[#205A59] to-[#8BA640] text-white text-center">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-4">Let Us Help You Conquer Social</h2>
-          <p className="mb-8 max-w-xl mx-auto">Markov's experts are ready to help you build a powerful, memorable brand and drive real results on social media. Get your free proposal today!</p>
-          <Button className="bg-white text-[#205A59] font-bold text-lg px-8 py-4 hover:bg-gray-100">Get Started</Button>
-        </div>
-      </section>
-    </div>
-  )
-} 
+    </main>
+  );
+}

@@ -87,7 +87,7 @@ export default function FinanceIndustryPage() {
                 <Button className="bg-white text-emerald-900 hover:bg-emerald-50">
                   Explore Solutions
                 </Button>
-                <Button variant="outline" className="text-white border-white hover:bg-emerald-800/30">
+                <Button variant="outline" className="text-[#065942] border-white hover:bg-emerald-800/30">
                   Contact Us
                 </Button>
               </div>

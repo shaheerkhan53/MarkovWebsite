@@ -119,97 +119,54 @@ export default function UserBehaviorAnalyticsPage() {
     return (
         <main className={`font-sans overflow-x-hidden`}>
             {/* 1. Hero Section (Dark Theme) */}
-            <section ref={heroRef} className={`relative min-h-screen h-auto md:h-[110vh] flex flex-col justify-center ${colors.bgBase} overflow-hidden py-20 md:py-0`}>
-                <motion.div 
-                  className="absolute inset-0 z-0"
-                  style={{ y: heroBgPatternY }}
+            <section ref={heroRef} className={`relative min-h-[60vh] flex flex-col justify-center items-center py-24 ${colors.bgBase} overflow-hidden`}>
+              {/* Animated Background Blob */}
+              <motion.div
+                initial={{ scale: 1, opacity: 0.5, x: '-20%', y: '-20%' }}
+                animate={{
+                  scale: [1, 1.1, 1],
+                  opacity: [0.5, 0.7, 0.5],
+                  x: ['-20%', '10%', '-20%'],
+                  y: ['-20%', '10%', '-20%']
+                }}
+                transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-gradient-to-br from-amber-500 via-yellow-400 to-yellow-700 opacity-30 blur-3xl rounded-full z-[-1]"
+              />
+              {/* Animated Heading */}
+              <motion.h1
+                variants={heroTitleContainer}
+                initial="hidden"
+                animate="visible"
+                className="text-4xl md:text-6xl font-extrabold text-center text-white mb-6 drop-shadow-xl"
+              >
+                {"User Behavior Analytics".split(" ").map((word, i) => (
+                  <motion.span
+                    key={i}
+                    variants={heroTitleWord}
+                    className="inline-block mr-2"
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </motion.h1>
+              {/* Subtitle */}
+              <motion.p
+                variants={heroSubtitle}
+                initial="hidden"
+                animate="visible"
+                className="text-lg md:text-2xl text-stone-200 opacity-90 text-center mb-10 max-w-2xl mx-auto"
+              >
+                Unlock actionable insights from your users' journeys. Drive conversions, optimize UX, and fuel business growth with data-driven decisions.
+              </motion.p>
+              {/* CTA Button */}
+              <motion.div variants={heroCTAs} initial="hidden" animate="visible" whileHover={buttonHover}>
+                <Button
+                  className={`${colors.buttonPrimaryBg} ${colors.buttonPrimaryText} hover:${colors.buttonPrimaryHoverBg} text-lg md:text-xl font-bold px-10 py-4 rounded-xl transition duration-300 shadow-xl`}
+                  onClick={() => navigateToContact('user-behavior-analytics', 'free-assessment', 'hero-cta')}
                 >
-                  <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" className="opacity-10">
-                    <defs>
-                      <pattern id="animatedBrownGrid" patternUnits="userSpaceOnUse" width="80" height="80">
-                        <path d="M80 0 L0 0 0 80" fill="none" stroke="rgba(251, 191, 36, 0.2)" strokeWidth="0.5" /> {/* Amber stroke */}
-                        <motion.circle cx="40" cy="40" r="1.5" fill="rgba(245, 158, 11, 0.3)" /* Amber fill */
-                          animate={{ r: [1.5, 0.5, 1.5], opacity: [0.5, 0.2, 0.5] }}
-                          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                        />
-                      </pattern>
-                    </defs>
-                    <rect width="100%" height="100%" fill="url(#animatedBrownGrid)" />
-                  </svg>
-                </motion.div>
-
-                <motion.div className={`absolute -top-1/4 -left-1/4 w-1/2 h-1/2 md:w-2/5 md:h-2/5 bg-gradient-to-br ${colors.gradientFrom} ${colors.gradientTo} rounded-full filter blur-3xl opacity-25 animate-blob`} />
-                <motion.div className={`absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 md:w-2/5 md:h-2/5 bg-gradient-to-tl from-yellow-700 to-amber-600 rounded-full filter blur-3xl opacity-25 animate-blob animation-delay-3000`} />
-                
-                <div className="container mx-auto px-6 relative z-10 flex flex-col items-center text-center">
-                    <motion.div 
-                        className="w-full"
-                        style={{ y: heroElementsY }}
-                        initial="hidden"
-                        animate="visible"
-                        variants={heroTitleContainer}
-                    >
-                        <motion.div variants={heroTitleWord} className={`inline-flex items-center gap-2 text-sm font-medium ${colors.textAccent} bg-stone-800/50 border ${colors.borderAccent} px-4 py-1.5 rounded-full mb-6 backdrop-blur-sm shadow-lg`}>
-                            <Brain className="w-4 h-4" />
-                            <span>MarkovWeb User Behavior Analytics</span>
-                        </motion.div>
-
-                        <motion.h1 className={`text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold ${colors.highlightStrong} mb-6 leading-tight`}>
-                        { "Understand.".split("").map((char, i) => <motion.span key={`u-${i}`} variants={heroTitleWord} className="inline-block">{char}</motion.span>) }
-                        <br className="md:hidden"/>
-                        { "Optimize.".split("").map((char, i) => <motion.span key={`o-${i}`} variants={heroTitleWord} className="inline-block">{char}</motion.span>) }
-                        <br className="hidden md:inline"/>
-                        <span className={`bg-clip-text text-transparent bg-gradient-to-r ${colors.gradientFrom} ${colors.gradientTo}`}>
-                            { "Convert.".split("").map((char, i) => <motion.span key={`c-${i}`} variants={heroTitleWord} className="inline-block">{char}</motion.span>) }
-                        </span>
-                        </motion.h1>
-                        
-                        <motion.p variants={heroSubtitle} className={`text-xl md:text-2xl ${colors.textSecondary} mb-10 max-w-3xl mx-auto`}>
-                            Dive deep into user interactions. We decode complex behavioral data to unlock actionable insights, enhance user experience, and drive substantial growth for your digital platforms.
-                        </motion.p>
-
-                        <motion.div variants={heroCTAs} className={`max-w-xl mx-auto bg-stone-900/50 backdrop-blur-lg p-6 rounded-xl shadow-2xl border ${colors.borderLight}`}>
-                            <p className={`${colors.textPrimary} text-md font-semibold mb-4`}>Ready to see what your users are *really* doing? Get a free preliminary analysis:</p>
-                            <form onSubmit={(e) => { e.preventDefault(); navigateToContact('user-behavior-analytics', 'consultation', 'hero-email-submit'); }} className="flex flex-col sm:flex-row gap-3">
-                                <div className="relative flex-grow">
-                                    <Mail className={`absolute left-3.5 top-1/2 transform -translate-y-1/2 ${colors.textSecondary} h-5 w-5 opacity-70`} />
-                                    <Input
-                                        type="email"
-                                        name="hero_uba_email"
-                                        required
-                                        placeholder="Enter your business email"
-                                        className={`pl-11 pr-4 py-3.5 bg-stone-800/60 ${colors.textPrimary} text-base border ${colors.borderLight} focus:ring-2 focus:ring-amber-500 focus:border-amber-500 w-full rounded-lg placeholder-stone-400 transition-all duration-300`}
-                                    />
-                                </div>
-                                <motion.div whileHover={buttonHover} className="w-full sm:w-auto">
-                                <Button
-                                    type="submit"
-                                    className={`${colors.buttonPrimaryBg} hover:${colors.buttonPrimaryHoverBg} ${colors.buttonPrimaryText} text-base font-bold px-8 py-3.5 rounded-lg transition duration-300 shadow-lg w-full sm:w-auto whitespace-nowrap`}
-                                >
-                                    Request Analysis <ArrowRight className="inline-block ml-2 w-5 h-5"/>
-                                </Button>
-                                </motion.div>
-                            </form>
-                        </motion.div>
-                    </motion.div>
-                </div>
-                
-                <motion.div 
-                    className="absolute inset-x-0 bottom-0 h-1/3 md:h-1/2 lg:h-2/3 z-0 pointer-events-none"
-                    style={{ opacity: heroImageOpacity, scale: heroImageScale, y: heroElementsY }}
-                >
-                     <BarChart3 // Using a generic analytics icon as placeholder
-                        className={`w-full h-full object-contain ${colors.textAccent} opacity-10 animate-pulse-slow`} 
-                        strokeWidth={0.5} 
-                    />
-                </motion.div>
-                
-                <motion.div 
-                    className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20"
-                    initial={{opacity:0}} animate={{opacity:1}} transition={{delay:2.5, duration:1}}
-                >
-                    <ChevronRight className={`w-8 h-8 ${colors.textSecondary} opacity-50 animate-bounce-vertical transform rotate-90`} />
-                </motion.div>
+                  Get a Free Analytics Assessment
+                </Button>
+              </motion.div>
             </section>
 
             {/* Section 2: Why User Behavior Analytics Matters (Light Theme) */}
@@ -248,7 +205,7 @@ export default function UserBehaviorAnalyticsPage() {
             <section className={`py-20 ${colors.bgBase}`}>
                 <div className="container mx-auto px-6">
                 <motion.h2 variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className={`text-4xl font-bold ${colors.textPrimary} text-center mb-20`}>
-                    Unveiling Insights: <span className={`${colors.textAccent} underline decoration-wavy decoration-amber-600`}>What We Analyze</span>
+                    Unveiling Insights: <span className={`${colors.textAccent} decoration-amber-600`}>What We Analyze</span>
                 </motion.h2>
                 <motion.div variants={staggerContainer(0.15)} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid md:grid-cols-3 gap-8">
                     {[
@@ -275,8 +232,8 @@ export default function UserBehaviorAnalyticsPage() {
 
             {/* Section 4: Our Analytics Process (Light Theme) */}
             <section className={`py-24 ${lightThemeColors.bgBase} ${lightThemeColors.textBody} relative overflow-hidden`}>
-                <div className={`absolute -left-1/4 -top-1/4 w-1/2 h-1/2 bg-amber-100/30 rounded-full filter blur-3xl opacity-70`}></div>
-                <div className={`absolute -right-1/4 -bottom-1/4 w-1/2 h-1/2 bg-yellow-100/30 rounded-full filter blur-3xl opacity-70`}></div>
+                {/* <div className={`absolute -left-1/4 -top-1/4 w-1/2 h-1/2 bg-amber-100/30 rounded-full filter blur-3xl opacity-70`}></div>
+                <div className={`absolute -right-1/4 -bottom-1/4 w-1/2 h-1/2 bg-yellow-100/30 rounded-full filter blur-3xl opacity-70`}></div> */}
                 <div className="container mx-auto px-6 relative z-10">
                 <motion.h2 variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className={`text-4xl md:text-5xl font-bold ${lightThemeColors.textHeader} text-center mb-6`}>Our Blueprint for User Behavior Mastery</motion.h2>
                 <motion.p variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className={`text-lg ${lightThemeColors.textBody} opacity-80 text-center mb-20 max-w-3xl mx-auto`}>
@@ -375,7 +332,7 @@ export default function UserBehaviorAnalyticsPage() {
                     className="grid md:grid-cols-3 gap-8"
                 >
                     {[
-                        { quote: "The UBA insights helped us redesign our checkout. Conversions jumped 25%!", name: "Olivia Martin", title: "E-commerce Manager, BloomWell", stars: 5, image: "https://images.unsplash.com/photo-1522071820081-009f0129c7da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&h=200&q=80" },
+                        { quote: "The UBA insights helped us redesign our checkout. Conversions jumped 25%!", name: "Olivia Martin", title: "E-commerce Manager, BloomWell", stars: 5, image: "/t8.jpg" },
                         { quote: "Understanding user paths on our SaaS platform was eye-opening. We cut onboarding friction by half.", name: "Ethan Kim", title: "Product Lead, TechCore", stars: 5, image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&h=200&q=80" },
                         { quote: "The heatmaps and session recordings showed exactly where users struggled. A few small tweaks boosted engagement significantly.", name: "Ava Rossi", title: "UX Designer, MediaStream", stars: 5, image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&h=200&q=80" }
                     ].map(t => (
@@ -391,7 +348,7 @@ export default function UserBehaviorAnalyticsPage() {
                             <span key={idx} className="text-yellow-400 text-xl">★</span>
                             ))}
                         </div>
-                        <p className={`${lightThemeColors.textBody} italic text-md mb-4 flex-1`}>“{t.quote}”</p>
+                        <p className={`${lightThemeColors.textBody} italic text-md mb-4 flex-1`}>"{t.quote}"</p>
                         <div className="mt-auto">
                             <span className={`font-semibold text-lg ${lightThemeColors.textHeader}`}>{t.name}</span>
                             <div className={`text-sm ${lightThemeColors.textBody} opacity-70`}>{t.title}</div>
@@ -490,7 +447,7 @@ export default function UserBehaviorAnalyticsPage() {
             <section className={`py-20 ${colors.bgBase}`}>
                 <div className="container mx-auto px-6 max-w-4xl">
                 <motion.h2 variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className={`text-4xl md:text-5xl font-bold ${colors.textPrimary} text-center mb-16`}>
-                    Your <span className={`${colors.textAccent} underline decoration-wavy decoration-amber-600 decoration-2`}>Analytics Questions, Answered</span>
+                    Your <span className={`${colors.textAccent} decoration-2`}>Analytics Questions, Answered</span>
                 </motion.h2>
                 <motion.div variants={staggerContainer(0.1)} initial="hidden" whileInView="visible" viewport={{ once: true }} className="space-y-5">
                     {[
@@ -519,9 +476,9 @@ export default function UserBehaviorAnalyticsPage() {
 
             {/* Section 10: Final CTA (Dark Gradient Theme) */}
             <section className={`py-28 bg-gradient-to-r ${colors.bgSectionMedium} via-yellow-900 to-stone-800 relative overflow-hidden`}>
-                <div className="absolute inset-0 opacity-10 mix-blend-overlay">
+                {/* <div className="absolute inset-0 opacity-10 mix-blend-overlay">
                     <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="finalUbaPattern" patternUnits="userSpaceOnUse" width="60" height="60"><circle cx="15" cy="15" r="1.2" fill={colors.textAccent}/><path d="M0 30 H60 M30 0 V60" stroke={colors.textAccent} strokeWidth="0.2"/></pattern></defs><rect width="100%" height="100%" fill="url(#finalUbaPattern)"/></svg>
-                </div>
+                </div> */}
                 <div className="container mx-auto px-6 text-center relative z-10">
                 <motion.h2 variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className={`text-5xl md:text-7xl font-extrabold ${colors.textPrimary} mb-10 leading-tight drop-shadow-xl`}>
                     Unlock Your <span className={`bg-clip-text text-transparent bg-gradient-to-r ${colors.gradientFrom} to-amber-300`}>Digital Potential.</span>

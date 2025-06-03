@@ -10,6 +10,7 @@ import { ChevronLeft, Calendar, Clock, User, Tag, Share2, Facebook, Twitter, Lin
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { use } from "react"
 
 // Sample blog data - this would typically come from an API or CMS
 const BLOG_POSTS = [
@@ -59,11 +60,11 @@ const BLOG_POSTS = [
       
       <p>As we move through 2024, expect to see continued innovation in how BPO services are delivered, measured, and integrated into overall business strategies.</p>
     `,
-    imageUrl: "/placeholder.svg?height=720&width=1280&text=BPO+Trends",
+    imageUrl: "/Future-of-Business-Process-Outsourcing.webp",
     category: "BPO",
     author: "Sarah Johnson",
     authorRole: "CEO",
-    authorImage: "/placeholder.svg?height=100&width=100&text=SJ",
+    authorImage: "/t6.jpg",
     date: "May 12, 2024",
     readTime: "8 min read",
     featured: true,
@@ -128,15 +129,291 @@ const BLOG_POSTS = [
       
       <p>By approaching cloud migration with resilience as a primary goal, organizations can build infrastructure that not only withstands challenges but enables faster recovery and adaptation when incidents do occur.</p>
     `,
-    imageUrl: "/placeholder.svg?height=720&width=1280&text=Cloud+Migration",
+    imageUrl: "/Transition-from-On-Premises-Infrastructure-to-the-Cloud.jpg",
     category: "IT Solutions",
     author: "Michael Zhang",
     authorRole: "CTO",
-    authorImage: "/placeholder.svg?height=100&width=100&text=MZ",
+    authorImage: "/t1.jpg",
     date: "May 5, 2024",
     readTime: "6 min read",
     featured: true,
     tags: ["Cloud Computing", "IT Infrastructure", "Digital Transformation"]
+  },
+  {
+    id: "3",
+    title: "The 5G Revolution: Transforming Telecommunication Services",
+    excerpt: "Explore how 5G technology is reshaping telecommunication services and enabling unprecedented innovation across industries.",
+    content: `
+      <p>Cloud migration has moved beyond being a trendy IT initiative to become a fundamental strategy for businesses seeking greater infrastructure resilience. Here are five key ways that moving to the cloud strengthens your organization's technical foundation:</p>
+      
+      <h2>1. Distributed Architecture Reduces Single Points of Failure</h2>
+      <p>Traditional on-premises infrastructure often suffers from geographical concentration risk—if your data center experiences an outage, your entire business may be affected. Cloud providers like AWS, Azure, and Google Cloud operate multiple geographically distributed data centers, allowing your applications and data to be replicated across regions.</p>
+      <p>This distributed approach means that regional disasters, power outages, or hardware failures are far less likely to impact your operations. With proper implementation of availability zones and region-based deployment, you can achieve uptime percentages that would be prohibitively expensive with traditional infrastructure.</p>
+      
+      <h2>2. Automated Scaling Handles Demand Fluctuations</h2>
+      <p>One of the most significant vulnerabilities in traditional IT infrastructure is capacity planning. Underestimate your needs, and your systems crash during peak demand. Overestimate, and you're paying for idle resources.</p>
+      <p>Cloud platforms excel at automated scaling, adjusting your resource allocation based on actual demand patterns. This capability means:</p>
+      <ul>
+        <li>Your applications remain responsive during unexpected traffic spikes</li>
+        <li>You only pay for the computing resources you actually use</li>
+        <li>Capacity planning becomes more about defining scaling policies than purchasing hardware</li>
+      </ul>
+      
+      <h2>3. Enhanced Security Through Standardization and Expertise</h2>
+      <p>Major cloud providers invest billions in security infrastructure and employ thousands of security experts—resources that few individual organizations can match. By migrating to the cloud, you leverage this expertise and benefit from:</p>
+      <ul>
+        <li>Continuously updated security patches and protocols</li>
+        <li>Advanced threat detection systems</li>
+        <li>Physical security measures at data centers</li>
+        <li>Compliance with major security frameworks and certifications</li>
+      </ul>
+      
+      <h2>4. Improved Disaster Recovery Capabilities</h2>
+      <p>Cloud platforms make comprehensive disaster recovery plans more accessible and affordable. With cloud-based DR solutions, you can:</p>
+      <ul>
+        <li>Maintain up-to-date backups with minimal performance impact</li>
+        <li>Test recovery procedures regularly without disrupting production systems</li>
+        <li>Achieve recovery time objectives (RTOs) and recovery point objectives (RPOs) measured in minutes rather than hours or days</li>
+        <li>Implement "infrastructure as code" approaches that can rebuild entire environments quickly</li>
+      </ul>
+      
+      <h2>5. Continuous Innovation Through Managed Services</h2>
+      <p>Perhaps the most overlooked resilience benefit of cloud migration is access to constantly evolving managed services. Rather than maintaining your own database servers, message queues, or machine learning infrastructure, you can use purpose-built cloud services that are:</p>
+      <ul>
+        <li>Continuously improved by the provider</li>
+        <li>Designed for high availability from the ground up</li>
+        <li>Able to be integrated with minimal development effort</li>
+        <li>Scaled independently based on your specific needs</li>
+      </ul>
+      
+      <h2>The Migration Journey</h2>
+      <p>While these benefits are compelling, achieving them requires careful planning. A successful cloud migration strategy should include:</p>
+      <ul>
+        <li>Thorough assessment of current applications and their dependencies</li>
+        <li>Clear prioritization of which systems to migrate first</li>
+        <li>Adoption of cloud-native design principles where appropriate</li>
+        <li>Comprehensive testing of disaster recovery procedures</li>
+        <li>Ongoing optimization of cloud resources and costs</li>
+      </ul>
+      
+      <p>By approaching cloud migration with resilience as a primary goal, organizations can build infrastructure that not only withstands challenges but enables faster recovery and adaptation when incidents do occur.</p>
+    `,
+    imageUrl: "/5g.jpg",
+    category: "IT Solutions",
+    author: "Michael Zhang",
+    authorRole: "CTO",
+    authorImage: "/t2.jpg",
+    date: "May 5, 2024",
+    readTime: "6 min read",
+    featured: true,
+    tags: ["Cloud Computing", "IT Infrastructure", "Digital Transformation"]
+  },
+  {
+    id: "4",
+    title: "Content Marketing Strategies That Drive Measurable ROI",
+    excerpt: "Discover actionable content marketing approaches that not only engage audiences but also deliver measurable business results.",
+    content: `
+      <p>Cloud migration has moved beyond being a trendy IT initiative to become a fundamental strategy for businesses seeking greater infrastructure resilience. Here are five key ways that moving to the cloud strengthens your organization's technical foundation:</p>
+      
+      <h2>1. Distributed Architecture Reduces Single Points of Failure</h2>
+      <p>Traditional on-premises infrastructure often suffers from geographical concentration risk—if your data center experiences an outage, your entire business may be affected. Cloud providers like AWS, Azure, and Google Cloud operate multiple geographically distributed data centers, allowing your applications and data to be replicated across regions.</p>
+      <p>This distributed approach means that regional disasters, power outages, or hardware failures are far less likely to impact your operations. With proper implementation of availability zones and region-based deployment, you can achieve uptime percentages that would be prohibitively expensive with traditional infrastructure.</p>
+      
+      <h2>2. Automated Scaling Handles Demand Fluctuations</h2>
+      <p>One of the most significant vulnerabilities in traditional IT infrastructure is capacity planning. Underestimate your needs, and your systems crash during peak demand. Overestimate, and you're paying for idle resources.</p>
+      <p>Cloud platforms excel at automated scaling, adjusting your resource allocation based on actual demand patterns. This capability means:</p>
+      <ul>
+        <li>Your applications remain responsive during unexpected traffic spikes</li>
+        <li>You only pay for the computing resources you actually use</li>
+        <li>Capacity planning becomes more about defining scaling policies than purchasing hardware</li>
+      </ul>
+      
+      <h2>3. Enhanced Security Through Standardization and Expertise</h2>
+      <p>Major cloud providers invest billions in security infrastructure and employ thousands of security experts—resources that few individual organizations can match. By migrating to the cloud, you leverage this expertise and benefit from:</p>
+      <ul>
+        <li>Continuously updated security patches and protocols</li>
+        <li>Advanced threat detection systems</li>
+        <li>Physical security measures at data centers</li>
+        <li>Compliance with major security frameworks and certifications</li>
+      </ul>
+      
+      <h2>4. Improved Disaster Recovery Capabilities</h2>
+      <p>Cloud platforms make comprehensive disaster recovery plans more accessible and affordable. With cloud-based DR solutions, you can:</p>
+      <ul>
+        <li>Maintain up-to-date backups with minimal performance impact</li>
+        <li>Test recovery procedures regularly without disrupting production systems</li>
+        <li>Achieve recovery time objectives (RTOs) and recovery point objectives (RPOs) measured in minutes rather than hours or days</li>
+        <li>Implement "infrastructure as code" approaches that can rebuild entire environments quickly</li>
+      </ul>
+      
+      <h2>5. Continuous Innovation Through Managed Services</h2>
+      <p>Perhaps the most overlooked resilience benefit of cloud migration is access to constantly evolving managed services. Rather than maintaining your own database servers, message queues, or machine learning infrastructure, you can use purpose-built cloud services that are:</p>
+      <ul>
+        <li>Continuously improved by the provider</li>
+        <li>Designed for high availability from the ground up</li>
+        <li>Able to be integrated with minimal development effort</li>
+        <li>Scaled independently based on your specific needs</li>
+      </ul>
+      
+      <h2>The Migration Journey</h2>
+      <p>While these benefits are compelling, achieving them requires careful planning. A successful cloud migration strategy should include:</p>
+      <ul>
+        <li>Thorough assessment of current applications and their dependencies</li>
+        <li>Clear prioritization of which systems to migrate first</li>
+        <li>Adoption of cloud-native design principles where appropriate</li>
+        <li>Comprehensive testing of disaster recovery procedures</li>
+        <li>Ongoing optimization of cloud resources and costs</li>
+      </ul>
+      
+      <p>By approaching cloud migration with resilience as a primary goal, organizations can build infrastructure that not only withstands challenges but enables faster recovery and adaptation when incidents do occur.</p>
+    `,
+    imageUrl: "/content-marketing-Strategies.jpg",
+    category: "Head of Digital Marketing",
+    author: "Michael Zhang",
+    authorRole: "CTO",
+    authorImage: "/t7.jpg",
+    date: "May 5, 2024",
+    readTime: "6 min read",
+    featured: true,
+    tags: ["Cloud Computing", "IT Infrastructure", "Digital Transformation"]
+  },
+  {
+    id: "5",
+    title: "Optimizing Customer Experience in E-Commerce Platforms",
+    excerpt: "Learn essential strategies for enhancing user experience, streamlining checkout processes, and increasing conversion rates on e-commerce platforms.",
+    content: `
+      <p>Cloud migration has moved beyond being a trendy IT initiative to become a fundamental strategy for businesses seeking greater infrastructure resilience. Here are five key ways that moving to the cloud strengthens your organization's technical foundation:</p>
+      
+      <h2>1. Distributed Architecture Reduces Single Points of Failure</h2>
+      <p>Traditional on-premises infrastructure often suffers from geographical concentration risk—if your data center experiences an outage, your entire business may be affected. Cloud providers like AWS, Azure, and Google Cloud operate multiple geographically distributed data centers, allowing your applications and data to be replicated across regions.</p>
+      <p>This distributed approach means that regional disasters, power outages, or hardware failures are far less likely to impact your operations. With proper implementation of availability zones and region-based deployment, you can achieve uptime percentages that would be prohibitively expensive with traditional infrastructure.</p>
+      
+      <h2>2. Automated Scaling Handles Demand Fluctuations</h2>
+      <p>One of the most significant vulnerabilities in traditional IT infrastructure is capacity planning. Underestimate your needs, and your systems crash during peak demand. Overestimate, and you're paying for idle resources.</p>
+      <p>Cloud platforms excel at automated scaling, adjusting your resource allocation based on actual demand patterns. This capability means:</p>
+      <ul>
+        <li>Your applications remain responsive during unexpected traffic spikes</li>
+        <li>You only pay for the computing resources you actually use</li>
+        <li>Capacity planning becomes more about defining scaling policies than purchasing hardware</li>
+      </ul>
+      
+      <h2>3. Enhanced Security Through Standardization and Expertise</h2>
+      <p>Major cloud providers invest billions in security infrastructure and employ thousands of security experts—resources that few individual organizations can match. By migrating to the cloud, you leverage this expertise and benefit from:</p>
+      <ul>
+        <li>Continuously updated security patches and protocols</li>
+        <li>Advanced threat detection systems</li>
+        <li>Physical security measures at data centers</li>
+        <li>Compliance with major security frameworks and certifications</li>
+      </ul>
+      
+      <h2>4. Improved Disaster Recovery Capabilities</h2>
+      <p>Cloud platforms make comprehensive disaster recovery plans more accessible and affordable. With cloud-based DR solutions, you can:</p>
+      <ul>
+        <li>Maintain up-to-date backups with minimal performance impact</li>
+        <li>Test recovery procedures regularly without disrupting production systems</li>
+        <li>Achieve recovery time objectives (RTOs) and recovery point objectives (RPOs) measured in minutes rather than hours or days</li>
+        <li>Implement "infrastructure as code" approaches that can rebuild entire environments quickly</li>
+      </ul>
+      
+      <h2>5. Continuous Innovation Through Managed Services</h2>
+      <p>Perhaps the most overlooked resilience benefit of cloud migration is access to constantly evolving managed services. Rather than maintaining your own database servers, message queues, or machine learning infrastructure, you can use purpose-built cloud services that are:</p>
+      <ul>
+        <li>Continuously improved by the provider</li>
+        <li>Designed for high availability from the ground up</li>
+        <li>Able to be integrated with minimal development effort</li>
+        <li>Scaled independently based on your specific needs</li>
+      </ul>
+      
+      <h2>The Migration Journey</h2>
+      <p>While these benefits are compelling, achieving them requires careful planning. A successful cloud migration strategy should include:</p>
+      <ul>
+        <li>Thorough assessment of current applications and their dependencies</li>
+        <li>Clear prioritization of which systems to migrate first</li>
+        <li>Adoption of cloud-native design principles where appropriate</li>
+        <li>Comprehensive testing of disaster recovery procedures</li>
+        <li>Ongoing optimization of cloud resources and costs</li>
+      </ul>
+      
+      <p>By approaching cloud migration with resilience as a primary goal, organizations can build infrastructure that not only withstands challenges but enables faster recovery and adaptation when incidents do occur.</p>
+    `,
+    imageUrl: "/improve-customer-experience-in-e-commerce.png",
+    category: "E-Commerce Management",
+    author: "Daniel Brown",
+    authorRole: "Head of E-Commerce",
+    authorImage: "/t3.jpg",
+    date: "April 14, 2024",
+    readTime: "9 min read",
+    featured: true,
+    tags: ["E-Commerce", "UX Design", "Conversion Optimization"]
+  },
+  {
+    id: "6",
+    title: "Building High-Performance Call Center Teams in Remote Settings",
+    excerpt: "Strategies for recruiting, training, and managing successful call center teams in distributed and remote work environments.",
+    content: `
+      <p>Cloud migration has moved beyond being a trendy IT initiative to become a fundamental strategy for businesses seeking greater infrastructure resilience. Here are five key ways that moving to the cloud strengthens your organization's technical foundation:</p>
+      
+      <h2>1. Distributed Architecture Reduces Single Points of Failure</h2>
+      <p>Traditional on-premises infrastructure often suffers from geographical concentration risk—if your data center experiences an outage, your entire business may be affected. Cloud providers like AWS, Azure, and Google Cloud operate multiple geographically distributed data centers, allowing your applications and data to be replicated across regions.</p>
+      <p>This distributed approach means that regional disasters, power outages, or hardware failures are far less likely to impact your operations. With proper implementation of availability zones and region-based deployment, you can achieve uptime percentages that would be prohibitively expensive with traditional infrastructure.</p>
+      
+      <h2>2. Automated Scaling Handles Demand Fluctuations</h2>
+      <p>One of the most significant vulnerabilities in traditional IT infrastructure is capacity planning. Underestimate your needs, and your systems crash during peak demand. Overestimate, and you're paying for idle resources.</p>
+      <p>Cloud platforms excel at automated scaling, adjusting your resource allocation based on actual demand patterns. This capability means:</p>
+      <ul>
+        <li>Your applications remain responsive during unexpected traffic spikes</li>
+        <li>You only pay for the computing resources you actually use</li>
+        <li>Capacity planning becomes more about defining scaling policies than purchasing hardware</li>
+      </ul>
+      
+      <h2>3. Enhanced Security Through Standardization and Expertise</h2>
+      <p>Major cloud providers invest billions in security infrastructure and employ thousands of security experts—resources that few individual organizations can match. By migrating to the cloud, you leverage this expertise and benefit from:</p>
+      <ul>
+        <li>Continuously updated security patches and protocols</li>
+        <li>Advanced threat detection systems</li>
+        <li>Physical security measures at data centers</li>
+        <li>Compliance with major security frameworks and certifications</li>
+      </ul>
+      
+      <h2>4. Improved Disaster Recovery Capabilities</h2>
+      <p>Cloud platforms make comprehensive disaster recovery plans more accessible and affordable. With cloud-based DR solutions, you can:</p>
+      <ul>
+        <li>Maintain up-to-date backups with minimal performance impact</li>
+        <li>Test recovery procedures regularly without disrupting production systems</li>
+        <li>Achieve recovery time objectives (RTOs) and recovery point objectives (RPOs) measured in minutes rather than hours or days</li>
+        <li>Implement "infrastructure as code" approaches that can rebuild entire environments quickly</li>
+      </ul>
+      
+      <h2>5. Continuous Innovation Through Managed Services</h2>
+      <p>Perhaps the most overlooked resilience benefit of cloud migration is access to constantly evolving managed services. Rather than maintaining your own database servers, message queues, or machine learning infrastructure, you can use purpose-built cloud services that are:</p>
+      <ul>
+        <li>Continuously improved by the provider</li>
+        <li>Designed for high availability from the ground up</li>
+        <li>Able to be integrated with minimal development effort</li>
+        <li>Scaled independently based on your specific needs</li>
+      </ul>
+      
+      <h2>The Migration Journey</h2>
+      <p>While these benefits are compelling, achieving them requires careful planning. A successful cloud migration strategy should include:</p>
+      <ul>
+        <li>Thorough assessment of current applications and their dependencies</li>
+        <li>Clear prioritization of which systems to migrate first</li>
+        <li>Adoption of cloud-native design principles where appropriate</li>
+        <li>Comprehensive testing of disaster recovery procedures</li>
+        <li>Ongoing optimization of cloud resources and costs</li>
+      </ul>
+      
+      <p>By approaching cloud migration with resilience as a primary goal, organizations can build infrastructure that not only withstands challenges but enables faster recovery and adaptation when incidents do occur.</p>
+    `,
+    imageUrl: "/call-center-employees.webp",
+    category: "Call Center Solutions",
+    author: "Grace Liu",
+    authorRole: "Head of Call Center",
+    authorImage: "/t4.jpg",
+    date: "April 7, 2024",
+    readTime: "6 min read",
+    featured: true,
+    tags: ["Call Centers", "Remote Work", "Team Management"]
   }
   // Additional blog posts would be defined here
 ];
@@ -152,7 +429,8 @@ function getRelatedPosts(currentPost: any) {
 }
 
 // Using 'any' for params as a diagnostic step
-export default function BlogPostPage({ params }: { params: any }) {
+export default function BlogPostPage({ params }: any) {
+  const { slug } = params;
   const [scrolled, setScrolled] = useState(false)
   
   useEffect(() => {
@@ -166,7 +444,7 @@ export default function BlogPostPage({ params }: { params: any }) {
   }, [])
   
   // Find the blog post with the matching ID
-  const post = BLOG_POSTS.find(post => post.id === params.slug)
+  const post = BLOG_POSTS.find(post => post.id === slug)
   
   // If no matching post is found, return 404
   if (!post) {

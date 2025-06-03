@@ -361,7 +361,7 @@ export default function EnterpriseDigitalMarketingPage() {
           >
              {/* Conceptual Globe/Network Image - Replace with actual */}
             <img 
-                src="https://images.unsplash.com/photo-1593697909647-c79efcb9073e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" 
+                src="/globalscale.jpg" 
                 alt="Global Network Visualization" 
                 className="rounded-3xl shadow-2xl object-cover w-full h-full filter brightness-90"
             />

@@ -7,19 +7,19 @@ import { useRouter } from "next/navigation"
 import { motion, useInView } from "framer-motion"
 import { Play, ArrowRight, Check, UserPlus, Laptop, TrendingUp, ShoppingCart, Headphones } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { taglineGenerator } from "./utils/markov"
+// import { taglineGenerator } from "./utils/markov" // Removed as tagline was unused
 import Counter from "@/components/ui/counter"
 
 
 export default function Home() {
   const router = useRouter()
-  const [tagline, setTagline] = useState("")
+  // const [tagline, setTagline] = useState("") // Removed as tagline was unused
 
   // Refs for scroll animations
   const servicesRef = useRef(null)
-  const servicesRef2 = useRef(null)
+  // const servicesRef2 = useRef(null) // Removed as unused
   const inView = useInView(servicesRef, { once: true, margin: "0px 0px -20% 0px" })
-  const inView2 = useInView(servicesRef2, { once: true, margin: "0px 0px -20% 0px" })
+  // const inView2 = useInView(servicesRef2, { once: true, margin: "0px 0px -20% 0px" }) // Removed as unused
 
   // Navigation functions
   const navigateToContact = (serviceType: string): void => {
@@ -43,10 +43,10 @@ export default function Home() {
     }
   }, [])
 
-  useEffect(() => {
-    // Generate new tagline on mount
-    setTagline(taglineGenerator.generate(6, 8))
-  }, [])
+  // useEffect(() => { // Removed as tagline was unused
+  //   // Generate new tagline on mount
+  //   setTagline(taglineGenerator.generate(6, 8))
+  // }, [])
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
@@ -102,7 +102,7 @@ export default function Home() {
           style={{ animation: "float 20s infinite ease-in-out reverse" }}
         ></div>
 
-        <div className="container relative z-10 px-4 mx-auto max-w-10xl">
+        <div className="container relative z-10 px-4 mx-auto max-w-7xl"> {/* Adjusted max-w-10xl to max-w-7xl for a more standard container width, can be reverted if 10xl is a custom defined size */}
           <motion.div
             className="max-w-3xl mx-auto text-center"
             variants={staggerContainer}
@@ -111,24 +111,25 @@ export default function Home() {
           >
 
             <motion.h1
-              className="mb-2 text-center text-3xl md:text-4xl lg:text-6xl font-bold leading-snug tracking-tight text-white max-w-10xl mx-10xl"
+              className="mb-2 text-3xl font-bold leading-snug tracking-tight text-white md:text-4xl lg:text-6xl"
               variants={fadeInUp}
             >
               Driving your <span className="text-gradient font-bold">Growth</span> with
             </motion.h1>
 
             <motion.h2
-              className="mb-6 text-center text-3xl md:text-4xl lg:text-6xl font-semibold text-white "
+              className="mb-6 text-3xl font-semibold text-white md:text-4xl lg:text-6xl"
               variants={fadeInUp}
             >
               Seamless Solutions
             </motion.h2>
 
-
-            <p className="text-center text-xl md:text-sm lg:text-sm font-semibold text-white/90 mb-6">
+            <motion.p 
+              className="mb-8 text-lg font-semibold text-white/90 md:text-xl"
+              variants={fadeInUp}
+            >
               across E-commerce, Marketing, Website, Design, Telecommunication and BPO.
-            </p>
-
+            </motion.p>
 
             <motion.div className="flex flex-wrap justify-center gap-4" variants={fadeInUp}>
               <div className="relative w-full max-w-sm">
@@ -156,7 +157,7 @@ export default function Home() {
             </motion.div>
 
             <motion.div
-              className="max-w-4xl mx-auto p-6 mt-16 bg-white/10 backdrop-blur-md rounded-2xl"
+              className="max-w-4xl p-6 mx-auto mt-16 bg-white/10 backdrop-blur-md rounded-2xl"
               variants={fadeInUp}
             >
               <div className="grid items-center grid-cols-1 gap-8 md:grid-cols-3">
@@ -174,8 +175,6 @@ export default function Home() {
                 </div>
               </div>
             </motion.div>
-
-
           </motion.div>
         </div>
       </section>
@@ -281,7 +280,7 @@ export default function Home() {
             </p>
           </div>
 
-          {/* First Service Grid */}
+          {/* Service Grid */}
           <div ref={servicesRef} className="grid grid-cols-1 gap-8 mb-16 md:grid-cols-2 lg:grid-cols-3">
             {/* BPO Service Card */}
             <motion.div
@@ -444,7 +443,6 @@ export default function Home() {
               </div>
             </motion.div>
           </div>
-
 
           <div className="text-center">
             <Link href="/contact">
@@ -808,7 +806,7 @@ export default function Home() {
                   src="/bussiness.jpg"
                   alt="Increase Business Traffic"
                   fill
-                  className="object-fit"
+                  className="object-cover" 
                 />
               </div>
             </div>
@@ -877,7 +875,7 @@ export default function Home() {
                 <Link href="/contact?type=careers">
                   <Button
                     size="lg"
-                    className="rounded-full shadow-lg bg-gradient-to-r from-[#205655] to-[#2DD8D4] hover:from-[#2DD8D4] hover:to-[#205655] text-white"
+                    className="mt-8 rounded-full shadow-lg bg-gradient-to-r from-[#205655] to-[#2DD8D4] hover:from-[#2DD8D4] hover:to-[#205655] text-white"
                   >
                     View Jobs
                   </Button>
@@ -892,7 +890,7 @@ export default function Home() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <div className="space-y-6 mb-8">
+              <div className="mb-8 space-y-6">
                 {/* Call Center Rep Job Card */}
                 <div className="p-6 bg-white rounded-lg shadow-md">
                   <h3 className="mb-4 text-xl font-bold">Call Center Representative</h3>
@@ -1020,7 +1018,7 @@ export default function Home() {
                     src="/testinomial.png"
                     alt="Jane Smith"
                     fill
-                    className="object-fit"
+                    className="object-cover"
                   />
                 </div>
                 <div>
@@ -1050,73 +1048,6 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-
-      {/* Final CTA Section */}
-      <section className="relative py-20 text-white bg-gradient-to-r from-[#1A1A1A] to-[#2DD8D4]">
-        {/* Grid Pattern */}
-        <svg
-          className="absolute inset-0 w-full h-full opacity-10"
-          xmlns="http://www.w3.org/2000/svg"
-          width="100%"
-          height="100%"
-        >
-          <defs>
-            <pattern
-              id="final-cta-grid"
-              width="40"
-              height="40"
-              patternUnits="userSpaceOnUse"
-            >
-              <path
-                d="M 40 0 L 0 0 0 40"
-                fill="none"
-                stroke="white"
-                strokeWidth="0.5"
-              />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#final-cta-grid)" />
-        </svg>
-
-        <div className="container relative z-10 px-4 mx-auto">
-          <motion.div
-            className="max-w-3xl mx-auto text-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Floating Chat Button */}
-      <div className="fixed z-50 bottom-6 right-6">
-        <Link href="/contact">
-          <button
-            className="flex items-center justify-center w-16 h-16 text-white rounded-full shadow-lg bg-gradient-to-r from-[#205655] to-[#2DD8D4] hover:from-[#2DD8D4] hover:to-[#205655] transition-colors"
-            aria-label="Chat with us"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-8 h-8"
-            >
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-            </svg>
-          </button>
-        </Link>
-      </div>
     </div>
   )
 }
-
-
-
-

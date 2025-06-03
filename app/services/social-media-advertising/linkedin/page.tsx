@@ -151,7 +151,7 @@ export default function LinkedinAdvertisingPage() {
                             variant="outline"
                             size="lg"
                             onClick={() => document.getElementById('why-linkedin')?.scrollIntoView({ behavior: 'smooth' })}
-                            className="border-white/50 text-white hover:bg-white/10 hover:border-white transition-all font-semibold text-lg px-10 py-4 rounded-lg backdrop-blur-sm"
+                            className="border-white/50 text-[#0077B5] hover:bg-white/10 hover:border-white transition-all font-semibold text-lg px-10 py-4 rounded-lg backdrop-blur-sm"
                         >
                             Why LinkedIn?
                         </Button>
@@ -496,7 +496,6 @@ export default function LinkedinAdvertisingPage() {
                             <h3 className="text-xl font-semibold text-white mb-2">{story.name}</h3>
                             <p className="text-sm text-white/80 mb-1">Industry: {story.industry}</p>
                             <p className="text-md font-medium text-white mb-3">{story.result}</p>
-                            <Button variant="link" className="text-white/90 hover:text-white" onClick={() => router.push(`/case-studies/linkedin-client-${i}`)}>View B2B Case Study <ArrowRight className="w-4 h-4 ml-1"/></Button>
                         </div>
                     ))}
                 </div>
@@ -540,7 +539,7 @@ export default function LinkedinAdvertisingPage() {
                             onClick={() => router.push('/services/b2b-marketing')}
                             size="lg"
                             variant="outline"
-                            className="border-white/50 text-white hover:bg-white/20 hover:border-white transition-all font-semibold text-lg px-12 py-5 rounded-lg backdrop-blur-sm"
+                            className="border-white/50 text-[#0077B5] hover:bg-white/20 hover:border-white transition-all font-semibold text-lg px-12 py-5 rounded-lg backdrop-blur-sm"
                         >
                             All B2B Marketing Services
                         </Button>
@@ -557,9 +556,9 @@ export default function LinkedinAdvertisingPage() {
                 />
                 <div className="grid md:grid-cols-3 gap-8">
                     {[
-                        { name: "Account-Based Marketing (ABM)", link: "/services/abm", icon: "https://cdn-icons-png.flaticon.com/512/3081/3081703.png", color: "#D92E1B", desc: "Hyper-targeted campaigns for your most valuable accounts." }, // Example ABM icon
-                        { name: "B2B Content Marketing", link: "/services/b2b-content-marketing", icon: "https://cdn-icons-png.flaticon.com/512/1055/1055644.png", color: "#4CAF50", desc: "High-value content that educates and converts professionals." }, // Example content icon
-                        { name: "Sales Enablement", link: "/services/sales-enablement", icon: "https://cdn-icons-png.flaticon.com/512/3135/3135706.png", color: "#FF9800", desc: "Equipping your sales team with tools and content from marketing efforts." } // Example sales icon
+                        { name: "Account-Based Marketing (ABM)", link: "/services/social-media-marketing/social-media-management", icon: "https://cdn-icons-png.flaticon.com/512/3081/3081703.png", color: "#D92E1B", desc: "Hyper-targeted campaigns for your most valuable accounts." },
+                        { name: "B2B Content Marketing", link: "/services/content-writing/email-marketing-services", icon: "https://cdn-icons-png.flaticon.com/512/1055/1055644.png", color: "#4CAF50", desc: "High-value content that educates and converts professionals." },
+                        { name: "Sales Enablement", link: "/services/digital-marketing/Digital-Marketing-Strategy-Development", icon: "https://cdn-icons-png.flaticon.com/512/3135/3135706.png", color: "#FF9800", desc: "Equipping your sales team with tools and content from marketing efforts." }
                     ].map(service => (
                          <Link key={service.name} href={service.link} className="block bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border-t-4" style={{borderColor: service.color}}>
                             <img src={service.icon} alt={service.name} className="w-16 h-16 mx-auto mb-5"/>

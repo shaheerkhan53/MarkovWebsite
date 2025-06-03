@@ -57,7 +57,7 @@ export default function EcommerceIndustryPage() { // Renamed Component
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-r from-[#F79C42] to-[#FDBC78] text-white overflow-hidden">
+      <section className="relative py-20 bg-gradient-to-r from-[#FBC183] to-[#FDD4A8] text-white overflow-hidden">
         {/* Background Grid Pattern */}
         <div className="absolute inset-0 opacity-10">
           <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -94,7 +94,7 @@ export default function EcommerceIndustryPage() { // Renamed Component
                 <Button className="bg-white text-[#D97706] hover:bg-gray-100">
                   Explore Solutions
                 </Button>
-                <Button variant="outline" className="text-white border-white hover:bg-white/20">
+                <Button variant="outline" className="text-[#D97706] border-white hover:bg-white/20">
                   Contact Us
                 </Button>
               </div>
@@ -573,25 +573,6 @@ export default function EcommerceIndustryPage() { // Renamed Component
               </div>
             </motion.div>
           </motion.div>
-
-          {/* Updated Logo Section */}
-          <div className="mt-12 text-center">
-            <h3 className="text-xl font-semibold text-gray-800 mb-8">Powering Growth for E-commerce Businesses</h3>
-            <div className="flex flex-wrap justify-center gap-8 items-center">
-              {[1, 2, 3, 4, 5].map((logo) => (
-                <div key={logo} className="grayscale hover:grayscale-0 transition-all">
-                  <Image
-                    // Updated placeholder text
-                    src={`/placeholder.svg?height=60&width=120&text=Ecom+Logo+${logo}`}
-                    alt={`E-commerce Client ${logo}`}
-                    width={120}
-                    height={60}
-                    className="h-12 w-auto object-contain"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 

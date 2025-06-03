@@ -16,7 +16,6 @@ export default function CaseStudiesLayout({
     <>
 
       <main>{children}</main>
-      <Footer />
     </>
   )
 } 

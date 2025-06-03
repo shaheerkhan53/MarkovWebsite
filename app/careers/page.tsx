@@ -242,7 +242,7 @@ export default function CareersPage() {
     <div className="min-h-screen bg-white">
       <main>
         {/* Hero Section */}
-        <section className="bg-gradient-to-r from-teal-600 to-teal-800 text-white py-16 md:py-24">
+        <section className="bg-gradient-to-r from-teal-600 to-teal-800 text-white py-16 md:py-24 text-center">
           <div className="container mx-auto px-4">
             <motion.div 
               initial="hidden" 
@@ -251,11 +251,11 @@ export default function CareersPage() {
             >
               <motion.div variants={fadeInUp}>
                 <h1 className="text-4xl md:text-5xl font-bold mb-4">Join Our Team</h1>
-                <p className="text-lg text-teal-100 mb-6 max-w-3xl">
+                <p className="text-lg text-teal-100 mb-6 max-w-3xl mx-auto">
                   Discover exciting career opportunities at Markov International and be part of a dynamic, 
                   innovative team that's shaping the future of business solutions.
                 </p>
-                <Briefcase className="w-12 h-12 text-teal-300 mb-6" />
+                <Briefcase className="w-12 h-12 text-teal-300 mb-6 mx-auto" />
               </motion.div>
             </motion.div>
           </div>
@@ -577,7 +577,7 @@ export default function CareersPage() {
                 <Button className="bg-white hover:bg-gray-100 text-teal-800 border-none">
                   View All Job Openings
                 </Button>
-                <Button className="border-white text-white hover:bg-white/10 border">
+                <Button className="border-white bg-white text-[#10766E] hover:bg-[#10766E] hover:text-white hover:bg-white/10 border">
                   Submit Your Resume
                 </Button>
               </div>

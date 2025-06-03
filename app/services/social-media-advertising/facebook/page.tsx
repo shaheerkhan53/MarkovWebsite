@@ -131,7 +131,7 @@ export default function FacebookAdvertisingPage() {
                             variant="outline"
                             size="lg"
                             onClick={() => document.getElementById('why-facebook')?.scrollIntoView({ behavior: 'smooth' })}
-                            className="border-white/50 text-white hover:bg-white/10 hover:border-white transition-all font-semibold text-lg px-10 py-4 rounded-lg backdrop-blur-sm"
+                            className="border-white/50 text-[#1877F2] hover:bg-white/10 hover:border-white transition-all font-semibold text-lg px-10 py-4 rounded-lg backdrop-blur-sm"
                         >
                             Discover How
                         </Button>
@@ -157,7 +157,7 @@ export default function FacebookAdvertisingPage() {
                     </div>
                     <div className="relative p-6 bg-gradient-to-br from-[#1877F2]/5 via-transparent to-transparent rounded-2xl shadow-lg">
                         <img 
-                            src="https://images.unsplash.com/photo-1554256155-43cf669a2d73?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" // Replace with a more relevant image
+                            src="/facebook-mockup.jpg" // Replace with a more relevant image
                             alt="Facebook Ads Interface Mockup" 
                             className="rounded-xl shadow-2xl w-full object-cover" 
                         />
@@ -456,7 +456,6 @@ export default function FacebookAdvertisingPage() {
                              <img src={`https://placehold.co/100x100/1877F2/FFFFFF?text=Client+${i}`} alt={`Client ${i} Logo`} className="w-20 h-20 rounded-full mx-auto mb-4 border-2 border-white shadow-md"/>
                             <h3 className="text-xl font-semibold text-slate-800 mb-2">Client Success Story {i}</h3>
                             <p className="text-sm text-slate-600 mb-3">Increased ROAS by <span className="font-bold text-[#1877F2]">{(i*1.5)+2}x</span> in {i+2} months for [Industry {i}].</p>
-                            <Button variant="link" className="text-[#1877F2]" onClick={() => router.push(`/case-studies/client-${i}`)}>Read More <ArrowRight className="w-4 h-4 ml-1"/></Button>
                         </div>
                     ))}
                 </div>
@@ -500,7 +499,7 @@ export default function FacebookAdvertisingPage() {
                             onClick={() => router.push('/services')}
                             size="lg"
                             variant="outline"
-                            className="border-white/50 text-white hover:bg-white/10 hover:border-white transition-all font-semibold text-lg px-12 py-5 rounded-lg backdrop-blur-sm"
+                            className="border-white/50 text-[#1877F2] hover:bg-white/10 hover:border-white transition-all font-semibold text-lg px-12 py-5 rounded-lg backdrop-blur-sm"
                         >
                             See All Our Expertise
                         </Button>
@@ -516,9 +515,9 @@ export default function FacebookAdvertisingPage() {
                 />
                 <div className="grid md:grid-cols-3 gap-8">
                     {[
-                        { name: "Instagram Ads", link: "/services/instagram-advertising", icon: "https://cdn-icons-png.flaticon.com/512/174/174855.png", color: "#C13584", desc: "Visually stunning campaigns for a highly engaged audience." },
-                        { name: "Google Ads", link: "/services/google-ads", icon: "https://cdn-icons-png.flaticon.com/512/281/281764.png", color: "#4285F4", desc: "Capture high-intent users actively searching for your solutions." },
-                        { name: "SEO Services", link: "/services/seo", icon: "https://cdn-icons-png.flaticon.com/512/3659/3659897.png", color: "#2E7D32", desc: "Dominate search rankings and drive sustainable organic traffic." }
+                        { name: "Instagram Ads", link: "/services/social-media-advertising/instagram", icon: "https://cdn-icons-png.flaticon.com/512/174/174855.png", color: "#C13584", desc: "Visually stunning campaigns for a highly engaged audience." },
+                        { name: "Google Ads", link: "/services/ppc/google-ads-management", icon: "https://cdn-icons-png.flaticon.com/512/281/281764.png", color: "#4285F4", desc: "Capture high-intent users actively searching for your solutions." },
+                        { name: "SEO Services", link: "/services/content-writing/seo-content-writing", icon: "https://cdn-icons-png.flaticon.com/512/3659/3659897.png", color: "#2E7D32", desc: "Dominate search rankings and drive sustainable organic traffic." }
                     ].map(service => (
                          <Link key={service.name} href={service.link} className="block bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border-t-4" style={{borderColor: service.color}}>
                             <img src={service.icon} alt={service.name} className="w-16 h-16 mx-auto mb-5"/>

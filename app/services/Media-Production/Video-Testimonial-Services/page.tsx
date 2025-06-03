@@ -5,22 +5,52 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 
+const fadeIn = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
+
 export default function VideoTestimonialServicesPage() {
   return (
-    <div className="min-h-screen" style={{ background: '#f7f7fa' }}>
+    <div className="min-h-screen relative" style={{ background: '#f7f7fa' }}>
+      {/* Animated Background */}
+      <motion.div
+        initial={{ scale: 1, opacity: 0.5, x: '-20%', y: '-20%' }}
+        animate={{
+          scale: [1, 1.1, 1],
+          opacity: [0.5, 0.7, 0.5],
+          x: ['-20%', '10%', '-20%'],
+          y: ['-20%', '10%', '-20%']
+        }}
+        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute top-0 left-0 w-[80vw] h-[80vw] bg-gradient-to-br from-[#8e44ad] via-[#32012F] to-[#2BC4C1] opacity-40 blur-3xl rounded-full z-[-1]"
+      />
       {/* Hero Section */}
-      <section className="py-20" style={{ background: 'linear-gradient(90deg, #32012F 0%, #8e44ad 100%)' }}>
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        viewport={{ once: true }}
+        className="py-20"
+        style={{ background: 'linear-gradient(90deg, #32012F 0%, #8e44ad 100%)' }}
+      >
         <div className="container mx-auto px-4 text-center">
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="text-5xl md:text-6xl font-extrabold mb-6 text-white drop-shadow-lg">Video Testimonial Services</motion.h1>
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9 }} className="text-xl md:text-2xl max-w-2xl mx-auto mb-10 text-white/90">Build trust and credibility for your brand with authentic, high-quality video testimonials produced by our expert media team.</motion.p>
+          <motion.h1 className="text-5xl md:text-6xl font-extrabold mb-6 text-white drop-shadow-lg">Video Testimonial Services</motion.h1>
+          <motion.p className="text-xl md:text-2xl max-w-2xl mx-auto mb-10 text-white/90">Build trust and credibility for your brand with authentic, high-quality video testimonials produced by our expert media team.</motion.p>
           <Button asChild size="lg" className="bg-white text-[#32012F] font-bold rounded-full px-8 py-4 text-lg shadow-lg hover:bg-[#32012F] hover:text-white transition-colors">
             <Link href="#contact">Get Started</Link>
           </Button>
         </div>
-      </section>
+      </motion.section>
 
       {/* Service Details */}
-      <section className="py-16 bg-white">
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        viewport={{ once: true }}
+        className="py-16 bg-white"
+      >
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-3xl font-extrabold mb-4" style={{ color: '#32012F' }}>Why Video Testimonials?</h2>
@@ -37,10 +67,17 @@ export default function VideoTestimonialServicesPage() {
             <Image src="/gallery.jpg" alt="Video Testimonial" width={500} height={350} className="rounded-2xl shadow-2xl object-cover" />
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Impact & Statistics Section */}
-      <section className="py-16" style={{ background: '#32012F' }}>
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        viewport={{ once: true }}
+        className="py-16"
+        style={{ background: '#32012F' }}
+      >
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-extrabold text-white mb-8">The Impact of Video Testimonials</h2>
           <div className="grid md:grid-cols-4 gap-8">
@@ -62,45 +99,65 @@ export default function VideoTestimonialServicesPage() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Our Process */}
-      <section className="py-16" style={{ background: '#f7f7fa' }}>
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+        viewport={{ once: true }}
+        className="py-16"
+        style={{ background: '#f7f7fa' }}
+      >
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-extrabold text-center mb-10" style={{ color: '#32012F' }}>Our Process</h2>
           <div className="grid md:grid-cols-4 gap-8">
             {[
-              { icon: "/icons/idea.svg", title: "Consultation", desc: "We discuss your goals and target audience to craft the perfect testimonial strategy." },
-              { icon: "/icons/video.svg", title: "Filming", desc: "Our team manages all aspects of filming, whether on-site or remotely, for a seamless experience." },
-              { icon: "/icons/edit.svg", title: "Editing", desc: "We edit and enhance the footage, adding branding, graphics, and music for maximum impact." },
-              { icon: "/icons/deliver.svg", title: "Delivery", desc: "Receive your polished video testimonials, ready to share on your website and social media." }
+              { icon: "/Consultation.jpg", title: "Consultation", desc: "We discuss your goals and target audience to craft the perfect testimonial strategy." },
+              { icon: "/filming.jpg", title: "Filming", desc: "Our team manages all aspects of filming, whether on-site or remotely, for a seamless experience." },
+              { icon: "/editing.jpg", title: "Editing", desc: "We edit and enhance the footage, adding branding, graphics, and music for maximum impact." },
+              { icon: "/delivery.jpg", title: "Delivery", desc: "Receive your polished video testimonials, ready to share on your website and social media." }
             ].map((step, idx) => (
-              <div key={idx} className="bg-white rounded-2xl shadow-xl p-8 text-center flex flex-col items-center">
-                <Image src={step.icon} alt={step.title} width={48} height={48} className="mb-4" />
+              <motion.div key={idx} variants={fadeIn} className="bg-white rounded-2xl shadow-xl p-8 text-center flex flex-col items-center">
+                <Image src={step.icon} alt={step.title} width={100} height={100} className="mb-4" />
                 <h3 className="font-bold text-lg mb-2" style={{ color: '#32012F' }}>{step.title}</h3>
                 <p className="text-gray-600 text-base">{step.desc}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Sample Testimonial Video */}
-      <section className="py-16 bg-white">
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+        viewport={{ once: true }}
+        className="py-16 bg-white"
+      >
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-extrabold mb-6" style={{ color: '#32012F' }}>See a Sample Testimonial</h2>
           <div className="flex justify-center mb-6">
-            <video width="600" controls poster="/gallery.jpg" className="rounded-2xl shadow-xl">
+            <video autoPlay muted loop width="600" controls poster="/gallery.jpg" className="rounded-2xl shadow-xl">
               <source src="/call-center.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
           <p className="text-gray-700 max-w-xl mx-auto text-lg">Our client, Jane Doe, shares her experience working with us and how our services helped her business grow. Let your customers tell your story!</p>
         </div>
-      </section>
+      </motion.section>
 
       {/* Client Success Stories */}
-      <section className="py-16" style={{ background: '#f7f7fa' }}>
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.5 }}
+        viewport={{ once: true }}
+        className="py-16"
+        style={{ background: '#f7f7fa' }}
+      >
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-extrabold text-center mb-10" style={{ color: '#32012F' }}>Client Success Stories</h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -108,31 +165,37 @@ export default function VideoTestimonialServicesPage() {
               name: "Jane Doe",
               company: "Acme Corp",
               text: "The video testimonials produced by this team helped us double our conversion rate! The process was smooth and the final product was outstanding.",
-              image: "/client1.png"
+              image: "/pic1.jpg"
             }, {
-              name: "Ali Raza",
+              name: "Mariya",
               company: "Raza Solutions",
               text: "Our customers' stories came to life! We saw a huge boost in trust and engagement on our website.",
-              image: "/client2.png"
+              image: "/pic2.jpg"
             }, {
               name: "Emily Smith",
               company: "Smith Consulting",
               text: "Professional, creative, and reliable. Highly recommended for any business looking to build credibility.",
-              image: "/client3.png"
+              image: "/pic3.jpg"
             }].map((testimonial, idx) => (
-              <div key={idx} className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center text-center">
-                <Image src={testimonial.image} alt={testimonial.name} width={80} height={80} className="rounded-full mb-4 object-cover border-4 border-[#32012F]" />
+              <motion.div key={idx} variants={fadeIn} className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center text-center">
+                <Image src={testimonial.image} alt={testimonial.name} width={100} height={100} className="rounded-full mb-4 object-cover border-4 border-[#32012F] w-[100px] h-[100px]" />
                 <p className="text-gray-700 mb-4">"{testimonial.text}"</p>
                 <div className="font-semibold text-[#32012F]">{testimonial.name}</div>
                 <div className="text-sm text-gray-500">{testimonial.company}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Web Testimonials */}
-      <section className="py-16 bg-white">
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.6 }}
+        viewport={{ once: true }}
+        className="py-16 bg-white"
+      >
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-extrabold text-center mb-10" style={{ color: '#32012F' }}>Web Testimonials</h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -168,19 +231,25 @@ export default function VideoTestimonialServicesPage() {
                 text: "We saw a clear increase in online inquiries after adding the testimonial section. Thank you for the great work!"
               }
             ].map((testimonial, idx) => (
-              <div key={idx} className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center text-center border-t-4 border-[#32012F]">
+              <motion.div key={idx} variants={fadeIn} className="bg-white rounded-2xl shadow-xl p-8 flex flex-col items-center text-center border-t-4 border-[#32012F]">
                 <svg className="w-8 h-8 text-[#32012F] mb-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 13h6m2 0a2 2 0 01-2 2v2a2 2 0 01-2 2H9a2 2 0 01-2-2v-2a2 2 0 012-2h6zm-6-6h.01M15 7h.01" /></svg>
                 <p className="text-gray-700 mb-4 italic">"{testimonial.text}"</p>
                 <div className="font-semibold text-[#32012F]">{testimonial.name}</div>
                 <div className="text-sm text-gray-500">{testimonial.company}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Industries We Serve */}
-      <section className="py-16 bg-white">
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.7 }}
+        viewport={{ once: true }}
+        className="py-16 bg-white"
+      >
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-extrabold text-center mb-10" style={{ color: '#32012F' }}>Industries We Serve</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -194,17 +263,24 @@ export default function VideoTestimonialServicesPage() {
               { icon: "💡", label: "Startups" },
               { icon: "⚙️", label: "Technology" }
             ].map((ind, idx) => (
-              <div key={idx} className="flex flex-col items-center">
+              <motion.div key={idx} variants={fadeIn} className="flex flex-col items-center">
                 <span className="text-5xl mb-2">{ind.icon}</span>
                 <span className="text-gray-700 font-medium">{ind.label}</span>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Why Choose Us */}
-      <section className="py-16" style={{ background: '#f7f7fa' }}>
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.8 }}
+        viewport={{ once: true }}
+        className="py-16"
+        style={{ background: '#f7f7fa' }}
+      >
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
           <div className="flex flex-col items-center md:items-end">
             <div className="bg-white rounded-2xl shadow-xl p-10 w-full max-w-lg">
@@ -249,10 +325,16 @@ export default function VideoTestimonialServicesPage() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* How to Get Started */}
-      <section className="py-16 bg-white">
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.9 }}
+        viewport={{ once: true }}
+        className="py-16 bg-white"
+      >
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-extrabold mb-6" style={{ color: '#32012F' }}>How to Get Started</h2>
           <div className="flex flex-col md:flex-row justify-center gap-8">
@@ -262,18 +344,25 @@ export default function VideoTestimonialServicesPage() {
               { step: 3, title: "Production & Editing", desc: "Our team films, edits, and polishes your video." },
               { step: 4, title: "Launch & Promote", desc: "Get your testimonial live and start building trust!" }
             ].map((s, idx) => (
-              <div key={idx} className="bg-[#32012F] text-white rounded-2xl p-6 flex-1 min-w-[220px] shadow-xl">
+              <motion.div key={idx} variants={fadeIn} className="bg-[#32012F] text-white rounded-2xl p-6 flex-1 min-w-[220px] shadow-xl">
                 <div className="text-3xl font-bold mb-2">Step {s.step}</div>
                 <div className="font-semibold mb-1">{s.title}</div>
                 <div className="text-white/90 text-sm">{s.desc}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* FAQ Section */}
-      <section className="py-16" style={{ background: '#f7f7fa' }}>
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 1 }}
+        viewport={{ once: true }}
+        className="py-16"
+        style={{ background: '#f7f7fa' }}
+      >
         <div className="container mx-auto px-4 max-w-3xl">
           <h2 className="text-3xl font-extrabold text-center mb-8" style={{ color: '#32012F' }}>Frequently Asked Questions</h2>
           <div className="space-y-6">
@@ -295,10 +384,17 @@ export default function VideoTestimonialServicesPage() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Testimonial Carousel */}
-      <section className="py-16" style={{ background: '#32012F' }}>
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 1.1 }}
+        viewport={{ once: true }}
+        className="py-16"
+        style={{ background: '#32012F' }}
+      >
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-extrabold mb-10 text-center text-white">What Our Clients Say</h2>
           <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
@@ -311,94 +407,66 @@ export default function VideoTestimonialServicesPage() {
               name: "John Lee",
               company: "FinTrust",
               text: "We saw a 40% increase in leads after adding video testimonials to our site. Highly recommended!",
-              image: "/client2.png"
+              image: "/pic4.webp"
             }, {
               name: "Maria Gomez",
               company: "HealthFirst",
               text: "Professional, creative, and always on time. Our patients' testimonials are now our best marketing tool.",
-              image: "/client3.png"
+              image: "/pic6.jpg"
             }].map((testimonial, idx) => (
-              <div key={idx} className="bg-white text-[#32012F] rounded-2xl shadow-xl p-8 flex flex-col items-center max-w-xs">
-                <Image src={testimonial.image} alt={testimonial.name} width={70} height={70} className="rounded-full mb-4 object-cover border-4 border-[#32012F]" />
+              <motion.div key={idx} variants={fadeIn} className="bg-white text-[#32012F] rounded-2xl shadow-xl p-8 flex flex-col items-center max-w-xs">
+                <Image src={testimonial.image} alt={testimonial.name} width={100} height={100} className="rounded-full mb-4 object-cover border-4 border-[#32012F] w-[100px] h-[100px]" />
                 <p className="mb-4 italic">"{testimonial.text}"</p>
                 <div className="font-semibold">{testimonial.name}</div>
                 <div className="text-sm text-[#8e44ad]">{testimonial.company}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </section>
-
-      {/* Meet Our Creative Team */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-extrabold text-center mb-10" style={{ color: '#32012F' }}>Meet Our Creative Team</h2>
-          <div className="grid md:grid-cols-4 gap-8 text-center">
-            {[
-              { name: "Adeel Khan", role: "Director", image: "/client1.png" },
-              { name: "Sara Malik", role: "Producer", image: "/client2.png" },
-              { name: "Bilal Hussain", role: "Editor", image: "/client3.png" },
-              { name: "Fatima Noor", role: "Cinematographer", image: "/client4.png" }
-            ].map((member, idx) => (
-              <div key={idx} className="flex flex-col items-center bg-[#f7f7fa] rounded-2xl p-6 shadow-lg">
-                <Image src={member.image} alt={member.name} width={80} height={80} className="rounded-full mb-3 object-cover border-4 border-[#32012F]" />
-                <div className="font-bold text-[#32012F]">{member.name}</div>
-                <div className="text-gray-600">{member.role}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      </motion.section>
 
       {/* Creative Ideas for Using Video Testimonials */}
-      <section className="py-16" style={{ background: '#f7f7fa' }}>
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 1.2 }}
+        viewport={{ once: true }}
+        className="py-16"
+        style={{ background: '#f7f7fa' }}
+      >
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-extrabold mb-8 text-center" style={{ color: '#32012F' }}>Creative Ways to Use Video Testimonials</h2>
           <div className="grid md:grid-cols-2 gap-10">
-            <div className="bg-white text-[#32012F] rounded-2xl p-8 shadow-lg">
+            <motion.div variants={fadeIn} className="bg-white text-[#32012F] rounded-2xl p-8 shadow-lg">
               <h3 className="font-semibold mb-2">On Your Website</h3>
               <p>Embed testimonials on your homepage, product pages, or landing pages to boost trust instantly.</p>
-            </div>
-            <div className="bg-white text-[#32012F] rounded-2xl p-8 shadow-lg">
+            </motion.div>
+            <motion.div variants={fadeIn} className="bg-white text-[#32012F] rounded-2xl p-8 shadow-lg">
               <h3 className="font-semibold mb-2">Social Media Campaigns</h3>
               <p>Share short clips on Instagram, Facebook, and LinkedIn to increase engagement and reach.</p>
-            </div>
-            <div className="bg-white text-[#32012F] rounded-2xl p-8 shadow-lg">
+            </motion.div>
+            <motion.div variants={fadeIn} className="bg-white text-[#32012F] rounded-2xl p-8 shadow-lg">
               <h3 className="font-semibold mb-2">Email Marketing</h3>
               <p>Include video testimonials in your email newsletters to improve open and click-through rates.</p>
-            </div>
-            <div className="bg-white text-[#32012F] rounded-2xl p-8 shadow-lg">
+            </motion.div>
+            <motion.div variants={fadeIn} className="bg-white text-[#32012F] rounded-2xl p-8 shadow-lg">
               <h3 className="font-semibold mb-2">Sales Presentations</h3>
               <p>Use authentic client stories in your sales decks to close more deals and win trust.</p>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </section>
-
-      {/* Resources & Blog Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-extrabold text-center mb-10" style={{ color: '#32012F' }}>Resources & Insights</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { title: "5 Tips for Powerful Video Testimonials", desc: "Learn how to get the best stories from your clients.", link: "#" },
-              { title: "The Psychology of Social Proof", desc: "Why testimonials work and how to use them.", link: "#" },
-              { title: "Video vs. Written Testimonials", desc: "See why video is the king of trust-building.", link: "#" }
-            ].map((res, idx) => (
-              <div key={idx} className="bg-[#f7f7fa] rounded-2xl p-6 shadow-lg flex flex-col justify-between h-full">
-                <div>
-                  <h3 className="font-bold text-[#32012F] mb-2">{res.title}</h3>
-                  <p className="text-gray-700 mb-4">{res.desc}</p>
-                </div>
-                <Link href={res.link} className="text-[#32012F] font-semibold hover:underline mt-auto">Read More</Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      </motion.section>
 
       {/* Call to Action */}
-      <section id="contact" className="py-20" style={{ background: 'linear-gradient(90deg, #32012F 0%, #8e44ad 100%)' }}>
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 1.3 }}
+        viewport={{ once: true }}
+        id="contact"
+        className="py-20"
+        style={{ background: 'linear-gradient(90deg, #32012F 0%, #8e44ad 100%)' }}
+      >
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-extrabold mb-4 text-white drop-shadow-lg">Ready to Get Started?</h2>
           <p className="mb-8 text-xl text-white/90">Contact us today to discuss your video testimonial project and get a free quote.</p>
@@ -406,7 +474,7 @@ export default function VideoTestimonialServicesPage() {
             <Link href="/contact">Contact Us</Link>
           </Button>
         </div>
-      </section>
+      </motion.section>
     </div>
   )
 }

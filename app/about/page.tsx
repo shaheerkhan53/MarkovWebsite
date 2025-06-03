@@ -40,7 +40,7 @@ export default function AboutPage() {
     <div className="min-h-screen bg-white">
       <main>
         {/* Hero Section */}
-        <section className="bg-gradient-to-r from-teal-600 to-teal-800 text-white py-16 md:py-24">
+        <section className="bg-gradient-to-r from-teal-600 to-teal-800 text-white py-16 md:py-24 mx-auto text-center">
           <div className="container mx-auto px-4">
             <motion.div 
               initial="hidden" 
@@ -49,10 +49,10 @@ export default function AboutPage() {
             >
               <motion.div variants={fadeInUp}>
                 <h1 className="text-4xl md:text-5xl font-bold mb-4">About Markov International</h1>
-                <p className="text-lg text-teal-100 mb-6 max-w-3xl">
+                <p className="text-lg text-teal-100 mb-6 max-w-3xl mx-auto">
                   We are a global leader in Business Process Outsourcing and technology solutions, dedicated to helping businesses transform, scale, and succeed in the digital age.
                 </p>
-                <Building className="w-12 h-12 text-teal-300 mb-6" />
+                <Building className="w-12 h-12 text-teal-300 mb-6 mx-auto" />
               </motion.div>
             </motion.div>
           </div>
@@ -198,28 +198,9 @@ export default function AboutPage() {
                   <Shield className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold mb-4 text-gray-800">Our Values</h3>
-                <ul className="text-gray-600 space-y-2">
-                  <li className="flex items-start">
-                    <span className="text-teal-600 mr-2">•</span>
-                    <span>Excellence in everything we do</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-teal-600 mr-2">•</span>
-                    <span>Integrity and transparency</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-teal-600 mr-2">•</span>
-                    <span>Innovation and continuous improvement</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-teal-600 mr-2">•</span>
-                    <span>Client-centric approach</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-teal-600 mr-2">•</span>
-                    <span>Teamwork and collaboration</span>
-                  </li>
-                </ul>
+                  <p className="text-gray-600">
+                    Excellence in everything we do Integrity and transparency Innovation and continuous improvement Client-centric approach Teamwork and collaboration 
+                  </p>
               </motion.div>
             </div>
           </div>
@@ -365,7 +346,7 @@ export default function AboutPage() {
                 <Button className="bg-white hover:bg-gray-100 text-teal-800 border-none">
                   Contact Our Team
                 </Button>
-                <Button className="border-white text-white hover:bg-white/10 border">
+                <Button className="border-white bg-white text-[#10766E] hover:bg-[#10766E] hover:text-white hover:bg-white/10 border">
                   Explore Our Services
                 </Button>
               </div>

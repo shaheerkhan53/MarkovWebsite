@@ -88,7 +88,7 @@ export default function FinanceIndustryPage() {
                   Explore Solutions
                 </Button>
                 <Link href="/contact">
-                  <Button variant="outline" className="text-white border-white hover:bg-emerald-800/30">
+                  <Button variant="outline" className="text-[#0E8F83] border-white hover:bg-emerald-800/30">
                     Contact Us
                   </Button>
                 </Link>

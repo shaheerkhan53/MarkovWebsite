@@ -40,7 +40,7 @@ export default function TeamPage() {
     <div className="min-h-screen bg-white">
       <main>
         {/* Hero Section */}
-        <section className="bg-gradient-to-r from-gray-800 to-gray-900 text-white py-16 md:py-24">
+        <section className="bg-gradient-to-r from-gray-800 to-gray-900 text-white py-16 md:py-24 text-center">
           <div className="container mx-auto px-4">
             <motion.div 
               initial="hidden" 
@@ -49,10 +49,10 @@ export default function TeamPage() {
             >
               <motion.div variants={fadeInUp}>
                 <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Leadership Team</h1>
-                <p className="text-lg text-gray-300 mb-6 max-w-3xl">
+                <p className="text-lg text-gray-300 mb-6 max-w-3xl mx-auto">
                   Meet the talented individuals who lead Markov International, bringing decades of expertise and innovation to help businesses transform and succeed.
                 </p>
-                <Users className="w-12 h-12 text-teal-300 mb-6" />
+                <Users className="w-12 h-12 text-teal-300 mb-6 mx-auto" />
               </motion.div>
             </motion.div>
           </div>
@@ -72,22 +72,16 @@ export default function TeamPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 justify-center max-w-4xl mx-auto gap-8 mb-16">
               {[                
                 {
-                  name: "Olivia Chen",
-                  title: "Chief Financial Officer",
-                  image: "/placeholder.svg?height=400&width=400&text=CFO",
-                  bio: "Olivia manages our financial strategy and operations, ensuring sustainable growth and financial health. Her expertise in international finance has been crucial to our global expansion.",
-                  linkedin: "#",
-                  twitter: "#",
-                  email: "olivia@markovintl.com"
+                  name: "Abubakar Khan",
+                  title: "TL BPO",
+                  image: "/abubakar.jpg",
+                  bio: "Abubakar leads our BPO operations with a focus on performance, client satisfaction, and operational efficiency. His deep understanding of call center dynamics and workforce management drives excellence across all outsourced processes.",
                 },
                 {
-                  name: "Robert Kim",
-                  title: "Chief Information Officer",
-                  image: "/placeholder.svg?height=400&width=400&text=CIO",
-                  bio: "Robert oversees our internal IT infrastructure and systems, ensuring security, reliability, and efficiency. His leadership in digital transformation enhances our operational capabilities.",
-                  linkedin: "#",
-                  twitter: "#",
-                  email: "robert@markovintl.com"
+                  name: "Syed Rafey",
+                  title: "TL SEO",
+                  image: "/rafay.jpg",
+                  bio: "Rafey drives our SEO strategy and digital visibility, ensuring top search rankings and sustained online growth. His expertise in technical SEO and content optimization plays a vital role in our digital marketing success.",
                 },
               ].map((executive, index) => (
                 <motion.div
@@ -110,17 +104,6 @@ export default function TeamPage() {
                     <h3 className="text-xl font-bold text-gray-800">{executive.name}</h3>
                     <p className="text-teal-600 font-medium mb-4">{executive.title}</p>
                     <p className="text-gray-600 text-sm mb-4">{executive.bio}</p>
-                    <div className="flex space-x-4">
-                      <a href={executive.linkedin} className="text-gray-400 hover:text-blue-600 transition-colors">
-                        <Linkedin size={20} />
-                      </a>
-                      <a href={executive.twitter} className="text-gray-400 hover:text-blue-400 transition-colors">
-                        <Twitter size={20} />
-                      </a>
-                      <a href={`mailto:${executive.email}`} className="text-gray-400 hover:text-teal-600 transition-colors">
-                        <Mail size={20} />
-                      </a>
-                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -142,19 +125,19 @@ export default function TeamPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center max-w-4xl mx-auto gap-6">
               {[
                 {
-                  name: "Grace Liu",
-                  title: "Head of Call Center",
-                  image: "/placeholder.svg?height=300&width=300&text=Call+Center+Director"
+                  name: "Muhammad Saad",
+                  title: "Admin Officer",
+                  image: "/saad.jpg"
                 },
                 {
-                  name: "Raj Patel",
-                  title: "Head of Human Resources",
-                  image: "/placeholder.svg?height=300&width=300&text=HR+Director"
+                  name: "Muhammad Khurram",
+                  title: "Finance Manager",
+                  image: "/khurram.jpg"
                 },
                 {
-                  name: "Emma Thompson",
-                  title: "Head of Customer Success",
-                  image: "/placeholder.svg?height=300&width=300&text=Customer+Success+Director"
+                  name: "Tuba Waheed",
+                  title: "HR Specialist",
+                  image: "/tuba.jpg"
                 },
               ].map((leader, index) => (
                 <motion.div
@@ -170,7 +153,7 @@ export default function TeamPage() {
                       src={leader.image}
                       alt={leader.name}
                       fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="object-cover object-[center_30%]"
                     />
                   </div>
                   <div className="p-4">
@@ -202,7 +185,7 @@ export default function TeamPage() {
                 </div>
                 <div className="relative h-64 md:h-auto">
                   <Image
-                    src="/placeholder.svg?height=400&width=600&text=Join+Our+Team"
+                    src="/joinoutteam.JPG"
                     alt="Join Our Team"
                     fill
                     className="object-cover"

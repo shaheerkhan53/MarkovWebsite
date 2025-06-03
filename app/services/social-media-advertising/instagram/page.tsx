@@ -153,7 +153,7 @@ export default function InstagramAdvertisingPage() {
                             variant="outline"
                             size="lg"
                             onClick={() => document.getElementById('why-instagram')?.scrollIntoView({ behavior: 'smooth' })}
-                            className="border-white/50 text-white hover:bg-white/10 hover:border-white transition-all font-semibold text-lg px-10 py-4 rounded-lg backdrop-blur-sm"
+                            className="border-white/50 text-[#C13584] hover:bg-white/10 hover:border-white transition-all font-semibold text-lg px-10 py-4 rounded-lg backdrop-blur-sm"
                         >
                             Why Instagram?
                         </Button>
@@ -494,7 +494,6 @@ export default function InstagramAdvertisingPage() {
                             <h3 className="text-xl font-semibold text-white mb-2">{story.name}</h3>
                             <p className="text-sm text-white/80 mb-1">Industry: {story.industry}</p>
                             <p className="text-md font-medium text-white mb-3">{story.result}</p>
-                            <Button variant="link" className="text-white/90 hover:text-white" onClick={() => router.push(`/case-studies/insta-client-${i}`)}>View Case Study <ArrowRight className="w-4 h-4 ml-1"/></Button>
                         </div>
                     ))}
                 </div>
@@ -538,7 +537,7 @@ export default function InstagramAdvertisingPage() {
                             onClick={() => router.push('/services/social-media-advertising')}
                             size="lg"
                             variant="outline"
-                            className="border-white/50 text-white hover:bg-white/20 hover:border-white transition-all font-semibold text-lg px-12 py-5 rounded-lg backdrop-blur-sm"
+                            className="border-white/50 text-[#C13584] hover:bg-white/20 hover:border-white transition-all font-semibold text-lg px-12 py-5 rounded-lg backdrop-blur-sm"
                         >
                             All Social Media Services
                         </Button>
@@ -555,9 +554,9 @@ export default function InstagramAdvertisingPage() {
                 />
                 <div className="grid md:grid-cols-3 gap-8">
                     {[
-                        { name: "Facebook Ads", link: "/services/facebook-advertising", icon: "https://cdn-icons-png.flaticon.com/512/124/124010.png", color: "#1877F2", desc: "Reach a massive audience with unparalleled targeting options." },
-                        { name: "TikTok Ads", link: "/services/tiktok-advertising", icon: "https://cdn-icons-png.flaticon.com/512/3046/3046121.png", color: "#000000", desc: "Engage Gen Z with creative short-form video content." },
-                        { name: "Content Marketing", link: "/services/content-marketing", icon: "https://cdn-icons-png.flaticon.com/512/2965/2965454.png", color: "#4CAF50", desc: "Fuel all your social channels with valuable, shareable content." }
+                        { name: "Facebook Ads", link: "/services/social-media-advertising/facebook", icon: "https://cdn-icons-png.flaticon.com/512/124/124010.png", color: "#1877F2", desc: "Reach a massive audience with unparalleled targeting options." },
+                        { name: "Linkedin", link: "/services/social-media-advertising/linkedin", icon: "https://cdn-icons-png.flaticon.com/512/174/174857.png", color: "#000000", desc: "Engage Gen Z with creative short-form video content." },
+                        { name: "Content Marketing", link: "/services/content-writing/copywriting-services", icon: "https://cdn-icons-png.flaticon.com/512/2965/2965454.png", color: "#4CAF50", desc: "Fuel all your social channels with valuable, shareable content." }
                     ].map(service => (
                          <Link key={service.name} href={service.link} className="block bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border-t-4" style={{borderColor: service.color}}>
                             <img src={service.icon} alt={service.name} className="w-16 h-16 mx-auto mb-5"/>

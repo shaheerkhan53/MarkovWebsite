@@ -155,7 +155,7 @@ export default function ProductPhotographyServicesPage() {
             Sample Gallery
           </motion.h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {["/gallery.jpg", "/ecommerce.jpg", "/retail.jpg", "/photography.jpg", "/custom3.jpg", "/product1.jpg"].map((img, idx) => (
+            {["/gallery.jpg", "/ecommerce.jpg", "/retail.jpg", "/photography.jpg", "/custom3.jpg", "/photography.jpg"].map((img, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, scale: 0.9 }}

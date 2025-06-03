@@ -121,23 +121,7 @@ export default function UserExperienceTestingPage() {
         <main className={`font-sans overflow-x-hidden`}>
             {/* 1. Hero Section (Dark Theme) */}
             <section ref={heroRef} className={`relative min-h-screen h-auto md:h-[110vh] flex flex-col justify-center ${colors.bgBase} overflow-hidden py-20 md:py-0`}>
-                <motion.div 
-                  className="absolute inset-0 z-0"
-                  style={{ y: heroBgPatternY }}
-                >
-                  <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" className="opacity-10">
-                    <defs>
-                      <pattern id="animatedTealGrid" patternUnits="userSpaceOnUse" width="80" height="80">
-                        <path d="M80 0 L0 0 0 80" fill="none" stroke={colors.textAccent} strokeWidth="0.3" />
-                        <motion.circle cx="40" cy="40" r="1.2" fill={colors.textAccent}
-                          animate={{ r: [1.2, 0.4, 1.2], opacity: [0.6, 0.2, 0.6] }}
-                          transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-                        />
-                      </pattern>
-                    </defs>
-                    <rect width="100%" height="100%" fill="url(#animatedTealGrid)" />
-                  </svg>
-                </motion.div>
+                
 
                 <motion.div className={`absolute -top-1/4 -left-1/4 w-1/2 h-1/2 md:w-2/5 md:h-2/5 bg-gradient-to-br ${colors.gradientFrom} ${colors.gradientTo} rounded-full filter blur-3xl opacity-20 animate-blob`} />
                 <motion.div className={`absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 md:w-2/5 md:h-2/5 bg-gradient-to-tl from-teal-700 to-emerald-600 rounded-full filter blur-3xl opacity-20 animate-blob animation-delay-3000`} />
@@ -196,16 +180,6 @@ export default function UserExperienceTestingPage() {
                 </div>
                 
                 <motion.div 
-                    className="absolute inset-x-0 bottom-0 h-1/3 md:h-1/2 lg:h-2/3 z-0 pointer-events-none"
-                    style={{ opacity: heroImageOpacity, scale: heroImageScale, y: heroElementsY }}
-                >
-                    <Eye // Conceptual User Eye / Observation
-                        className={`w-full h-full object-contain ${colors.textAccent} opacity-5 animate-pulse-slow`} 
-                        strokeWidth={0.3} 
-                    />
-                </motion.div>
-                
-                <motion.div 
                     className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20"
                     initial={{opacity:0}} animate={{opacity:1}} transition={{delay:2.5, duration:1}}
                 >
@@ -249,7 +223,7 @@ export default function UserExperienceTestingPage() {
             <section className={`py-20 ${colors.bgBase}`}>
                 <div className="container mx-auto px-6">
                 <motion.h2 variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className={`text-4xl font-bold ${colors.textPrimary} text-center mb-20`}>
-                    Methodologies for <span className={`${colors.textAccent} underline decoration-wavy decoration-emerald-600`}>Comprehensive Insight</span>
+                    Methodologies for <span className={`${colors.textAccent} decoration-emerald-600`}>Comprehensive Insight</span>
                 </motion.h2>
                 <motion.div variants={staggerContainer(0.15)} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid md:grid-cols-3 gap-8">
                     {[
@@ -387,7 +361,7 @@ export default function UserExperienceTestingPage() {
                             <span key={idx} className="text-yellow-400 text-xl">★</span>
                             ))}
                         </div>
-                        <p className={`${lightThemeColors.textBody} italic text-md mb-4 flex-1`}>“{t.quote}”</p>
+                        <p className={`${lightThemeColors.textBody} italic text-md mb-4 flex-1`}>"{t.quote}"</p>
                         <div className="mt-auto">
                             <span className={`font-semibold text-lg ${lightThemeColors.textHeader}`}>{t.name}</span>
                             <div className={`text-sm ${lightThemeColors.textBody} opacity-70`}>{t.title}</div>
@@ -402,7 +376,7 @@ export default function UserExperienceTestingPage() {
             <section className={`py-20 ${colors.bgBase}`}>
                 <div className="container mx-auto px-6">
                     <motion.h2 variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className={`text-4xl font-bold ${colors.textPrimary} text-center mb-20`}>
-                        Core Tenets of <span className={`${colors.textAccent} underline decoration-wavy decoration-emerald-600`}>Our UX Testing</span>
+                        Core Tenets of <span className={`${colors.textAccent} decoration-emerald-600`}>Our UX Testing</span>
                     </motion.h2>
                     <motion.div variants={staggerContainer(0.15)} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid md:grid-cols-3 gap-8">
                         {[
@@ -431,7 +405,7 @@ export default function UserExperienceTestingPage() {
             <section className={`py-20 ${lightThemeColors.bgBase}`}>
                 <div className="container mx-auto px-6 max-w-4xl">
                 <motion.h2 variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }} className={`text-4xl md:text-5xl font-bold ${lightThemeColors.textHeader} text-center mb-16`}>
-                    Your UX Testing <span className={`${lightThemeColors.textAccent} underline decoration-wavy decoration-teal-500 decoration-2`}>Questions Answered</span>
+                    Your UX Testing <span className={`${lightThemeColors.textAccent} decoration-teal-500 decoration-2`}>Questions Answered</span>
                 </motion.h2>
                 <motion.div variants={staggerContainer(0.1)} initial="hidden" whileInView="visible" viewport={{ once: true }} className="space-y-5">
                     {[
@@ -465,7 +439,7 @@ export default function UserExperienceTestingPage() {
                     variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
                     className={`max-w-3xl mx-auto ${lightThemeColors.cardBg} p-8 md:p-12 rounded-3xl shadow-2xl border-2 ${lightThemeColors.cardBorder}`}
                 >
-                    <h2 className={`text-3xl md:text-4xl font-bold ${lightThemeColors.textHeader} text-center mb-6`}>Ready for a <span className={`${lightThemeColors.textAccent} underline decoration-teal-500 decoration-solid decoration-2`}>UX Checkup?</span></h2>
+                    <h2 className={`text-3xl md:text-4xl font-bold ${lightThemeColors.textHeader} text-center mb-6`}>Ready for a <span className={`${lightThemeColors.textAccent} decoration-2`}>UX Checkup?</span></h2>
                     <p className={`${lightThemeColors.textBody} opacity-90 text-center mb-10 text-lg`}>
                     Share a few details, and let's start outlining how UX testing can elevate your product with a complimentary, no-obligation assessment.
                     </p>

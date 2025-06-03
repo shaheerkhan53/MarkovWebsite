@@ -58,7 +58,7 @@ export default function EducationIndustryPage() {
   return (
     <div className="bg-white">
       {/* Hero Section - Updated for Education */}
-      <section className="relative py-20 bg-[#5EEAD4] text-emerald-900 overflow-hidden"> {/* Changed background, adjusted text color for contrast */}
+      <section className="relative py-20 bg-[#D1FAF5] text-emerald-900 overflow-hidden"> {/* Changed background, adjusted text color for contrast */}
 
         {/* Grid pattern remains, adjust stroke if needed */}
         <div className="absolute inset-0 opacity-20"> {/* Slightly increased opacity */}
@@ -581,30 +581,11 @@ export default function EducationIndustryPage() {
               </div>
             </motion.div>
           </motion.div>
-
-          {/* Updated Logo Section */}
-          <div className="mt-12 text-center">
-            <h3 className="text-xl font-semibold text-gray-800 mb-8">Supporting Education Leaders Nationwide</h3>
-            <div className="flex flex-wrap justify-center gap-8 items-center">
-              {[1, 2, 3, 4, 5].map((logo) => (
-                <div key={logo} className="grayscale hover:grayscale-0 transition-all">
-                  <Image
-                     // Updated placeholder text
-                    src={`/placeholder.svg?height=60&width=120&text=Edu+Logo+${logo}`}
-                    alt={`Education Client ${logo}`}
-                    width={120}
-                    height={60}
-                    className="h-12 w-auto object-contain"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
       {/* CTA Section - Updated for Education */}
-      <section className="py-20 text-emerald-900 bg-[#5EEAD4] relative overflow-hidden"> {/* Matched Hero background */}
+      <section className="py-20 text-emerald-900 bg-[#D1FAF5] relative overflow-hidden"> {/* Matched Hero background */}
 
         {/* Grid pattern remains */}
         <div className="absolute inset-0 opacity-20">
