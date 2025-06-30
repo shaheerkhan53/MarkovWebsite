@@ -274,7 +274,7 @@ export default function Home() {
             <span className="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-teal-700 uppercase bg-teal-100 rounded-full">
               What We Offer
             </span>
-            <h2 className="mb-4 text-3xl font-bold md:text-4xl">Core Services</h2>
+            <h2 className="mb-4 text-3xl text-black font-bold md:text-4xl">Core Services</h2>
             <p className="max-w-2xl mx-auto text-gray-600">
               We provide comprehensive solutions tailored to your business needs, helping you thrive in today's competitive landscape.
             </p>
@@ -464,13 +464,13 @@ export default function Home() {
             <span className="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-teal-700 uppercase bg-teal-100 rounded-full">
               Industry Expertise
             </span>
-            <h2 className="mb-4 text-3xl font-bold md:text-4xl">Tailored Solutions</h2>
+            <h2 className="mb-4 text-3xl text-black font-bold md:text-4xl">Tailored Solutions</h2>
             <p className="max-w-2xl mx-auto text-gray-600">
               We deliver customized solutions designed to address the unique challenges and requirements of your industry.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3 text-black">
             {/* BPO Tailored Solutions Card */}
             <motion.div
               whileInView={{ opacity: [0, 1], y: [50, 0] }}
@@ -555,7 +555,7 @@ export default function Home() {
               <span className="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-purple-700 uppercase bg-purple-100 rounded-full">
                 Our Expertise
               </span>
-              <h2 className="mb-6 text-3xl font-bold md:text-4xl">Digital Marketing Skills</h2>
+              <h2 className="mb-6 text-3xl font-bold md:text-4xl text-black">Digital Marketing Skills</h2>
               <p className="mb-10 text-gray-600">
                 Our team of marketing experts combines creativity with data-driven strategies to deliver exceptional results for your business across all digital channels.
               </p>
@@ -815,7 +815,7 @@ export default function Home() {
       </section>
 
       {/* Careers Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 text-black">
         <div className="container px-4 mx-auto">
           <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
             {/* Left Column */}
@@ -953,7 +953,7 @@ export default function Home() {
             <span className="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-teal-700 uppercase bg-teal-100 rounded-full">
               Client Feedback
             </span>
-            <h2 className="mb-4 text-3xl font-bold md:text-4xl">Testimonials</h2>
+            <h2 className="mb-4 text-3xl text-black font-bold md:text-4xl">Testimonials</h2>
             <p className="max-w-2xl mx-auto text-gray-600">
               Hear from our satisfied clients about their experience working with Markov International.
             </p>
@@ -972,7 +972,7 @@ export default function Home() {
               whileHover={{ y: -10, transition: { duration: 0.2 } }}
               className="p-8 transition-all duration-300 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100"
             >
-              <div className="flex items-center mb-6">
+              <div className="flex items-center mb-6 text-black">
                 <div className="relative w-14 h-14 mr-4 overflow-hidden rounded-full">
                   <Image
                     src="/testinomial_2.png"
@@ -1012,7 +1012,7 @@ export default function Home() {
               whileHover={{ y: -10, transition: { duration: 0.2 } }}
               className="p-8 transition-all duration-300 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100"
             >
-              <div className="flex items-center mb-6">
+              <div className="flex items-center mb-6 text-black">
                 <div className="relative w-14 h-14 mr-4 overflow-hidden rounded-full">
                   <Image
                     src="/testinomial.png"
