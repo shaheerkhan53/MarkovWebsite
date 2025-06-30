@@ -8,15 +8,17 @@ import { ScrollToTop } from '@/components/ScrollToTop'
 import Script from 'next/script'
 
 export const metadata: Metadata = {
-  title: 'Markov International - Business Solutions',
-  description: 'Markov International offers comprehensive business solutions including BPO, IT, Telecommunication, Digital Marketing, E-Commerce Management, and Call Center Solutions.',
+  title: 'Grow with Markov: Digital Marketing Services in USA',
+  description: 'Markov is a top digital marketing agency in the USA. We help grow your business with smart strategies, SEO, and ads. Boost your online presence today!',
   generator: 'Markov International',
   keywords: [
+    'digital marketing services',
+    'digital marketing agency in the USA',
+    'grow your business',
     'Business Solutions', 
     'BPO Services', 
     'IT Solutions', 
     'Telecommunication', 
-    'Digital Marketing', 
     'E-Commerce Management', 
     'Call Center Solutions',
     'Technology Consulting',

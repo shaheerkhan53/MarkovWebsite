@@ -3,8 +3,8 @@ import type { Metadata } from 'next'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: 'Case Studies | Markov International',
-  description: 'Explore our portfolio of successful client projects across various industries and services.',
+  title: 'Markov Case Studies: Real Results, Proven Strategies',
+  description: 'Explore Markovs case studies and see how weve helped US businesses overcome challenges with tailored digital marketing solutions and measurable results.',
 }
 
 export default function CaseStudiesLayout({
