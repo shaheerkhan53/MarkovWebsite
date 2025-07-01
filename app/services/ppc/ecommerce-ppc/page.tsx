@@ -1,15 +1,9 @@
 "use client";
 
 import React from "react";
-import type { Metadata } from 'next';
 import { Button } from "@/components/ui/button";
 import { BarChart, Users, CheckCircle, Zap, ShoppingCart, Tag, Globe, FileText, Mail } from "lucide-react";
 import { useRouter } from "next/navigation";
-
-export const metadata: Metadata = {
-  title: 'eCommerce PPC Management Services | Markov for Shops',
-  description: `Drive targeted traffic and sales with eCommerce PPC management by Markov. We create and manage campaigns that maximize your ROI. Get a free proposal!`
-};
 
 export default function EcommercePPCPage() {
     const router = useRouter();

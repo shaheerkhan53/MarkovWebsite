@@ -1,8 +1,12 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Technical SEO Services | Website Audits & Optimization',
-  description: `Ensure your website is optimized for search engines with Markov's technical SEO services. We offer complete audits and optimization to boost your rankings.`
+  title: 'Technical SEO Services by Markov',
+  description: "Optimize your website's technical foundation with Markov's technical SEO services. Improve site speed, crawlability, and search rankings.",
+  robots: 'index, follow',
+  alternates: {
+    canonical: 'https://markovinternational.com/services/SEO/technical-seo',
+  },
 }
 
 export default function TechnicalSEOLayout({ children }: { children: React.ReactNode }) {

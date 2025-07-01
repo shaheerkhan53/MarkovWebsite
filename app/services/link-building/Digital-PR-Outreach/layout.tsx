@@ -1,8 +1,12 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Digital PR Services | Earn High-Quality Media Mentions',
-  description: `Boost your brand's authority with Markov's digital PR services. We earn high-quality media mentions and backlinks that drive traffic and build trust.`
+  title: 'Digital PR Outreach Services by Markov',
+  description: "Expand your brand's reach and authority with Markov's digital PR outreach services. Earn high-quality backlinks and media coverage.",
+  robots: 'index, follow',
+  alternates: {
+    canonical: 'https://markovinternational.com/services/link-building/Digital-PR-Outreach',
+  },
 }
 
 export default function DigitalPROutreachLayout({ children }: { children: React.ReactNode }) {

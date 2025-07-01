@@ -1,8 +1,12 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Education Marketing & BPO Solutions | Markovate',
-  description: "Enhance student engagement and streamline operations with Markovate's digital marketing, BPO, and IT solutions for the education sector."
+  title: 'Education Industry Solutions by Markov',
+  description: "Advance your educational institution with Markov's technology and outsourcing solutions. Improve learning outcomes and operational efficiency.",
+  robots: 'index, follow',
+  alternates: {
+    canonical: 'https://markovinternational.com/industries/education',
+  },
 }
 
 export default function EducationLayout({ children }: { children: React.ReactNode }) {

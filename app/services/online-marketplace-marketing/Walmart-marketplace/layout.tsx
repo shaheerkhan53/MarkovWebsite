@@ -1,8 +1,12 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Walmart Marketplace Services USA | Sell More with Markov',
-  description: 'Expand your brand with Walmart marketplace services by Markov. From listings to SEO and advertising, we help maximize your Walmart sales. Get started today!'
+  title: 'Walmart Marketplace Services by Markov',
+  description: "Grow your business on Walmart Marketplace with Markov's expert services. From setup to optimization, we help you succeed on Walmart.",
+  robots: 'index, follow',
+  alternates: {
+    canonical: 'https://markovinternational.com/services/online-marketplace-marketing/Walmart-marketplace',
+  },
 }
 
 export default function WalmartMarketplaceLayout({ children }: { children: React.ReactNode }) {

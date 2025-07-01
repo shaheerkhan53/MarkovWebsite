@@ -1,8 +1,12 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'eCommerce SEO Services | Boost Online Store Rankings',
-  description: `Boost your online store's visibility with Markov's eCommerce SEO services. We drive organic traffic and sales with proven strategies for online retailers.`
+  title: 'Ecommerce SEO Services by Markov',
+  description: "Boost your online store's visibility and sales with Markov's ecommerce SEO services. Technical, on-page, and content optimization.",
+  robots: 'index, follow',
+  alternates: {
+    canonical: 'https://markovinternational.com/services/ppc/ecommerce-seo',
+  },
 }
 
 export default function EcommerceSEOLayout({ children }: { children: React.ReactNode }) {

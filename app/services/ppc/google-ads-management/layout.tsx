@@ -1,8 +1,12 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Google Ads Management Services | Markov PPC Agency',
-  description: `Maximize your ROI with Google Ads management services from Markov. Our certified experts create data-driven campaigns that convert. Get a free audit today!`
+  title: 'Google Ads Management Services by Markov',
+  description: 'Get the most from your ad spend with Markovs Google Ads management. Campaign setup, optimization, and reporting for better results.',
+  robots: 'index, follow',
+  alternates: {
+    canonical: 'https://markovinternational.com/services/ppc/google-ads-management',
+  },
 }
 
 export default function GoogleAdsManagementLayout({ children }: { children: React.ReactNode }) {

@@ -1,15 +1,9 @@
 "use client";
 
 import React from "react";
-import type { Metadata } from 'next';
 import { Button } from "@/components/ui/button";
 import { BarChart, CheckCircle, Zap, ShoppingCart, Tag, Globe, FileText, Mail } from "lucide-react";
 import { useRouter } from "next/navigation";
-
-export const metadata: Metadata = {
-  title: 'Shopify SEO Services | Rank Higher & Sell More | Markov',
-  description: `Rank higher and sell more with Markov's Shopify SEO services. Our experts optimize your store to attract more customers and drive organic sales. Get started!`
-};
 
 export default function ShopifySEOPage() {
     const router = useRouter();

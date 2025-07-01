@@ -8,11 +8,11 @@ import {
 } from "lucide-react";
 import Link from "next/link"; // Keep if direct links are needed, else router.push is primary
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, circOut, spring } from "framer-motion";
 
 // Animation Variants (from Enterprise theme)
-const fadeIn = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.9, ease: "circOut" } } };
-const fadeInUp = { hidden: { opacity: 0, y: 60 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "circOut" } } };
+const fadeIn = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.9, ease: circOut } } };
+const fadeInUp = { hidden: { opacity: 0, y: 60 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: circOut } } };
 const staggerContainer = (staggerAmount = 0.15, delayChildren = 0.2) => ({
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: staggerAmount, delayChildren: delayChildren } }
@@ -20,17 +20,18 @@ const staggerContainer = (staggerAmount = 0.15, delayChildren = 0.2) => ({
 const cardHoverDark = { 
   scale: 1.03, 
   y: -6, 
-  boxShadow: "0px 15px 25px rgba(0,0,0,0.3)", // Generic dark shadow
-  transition: { type: "spring", stiffness: 300, damping: 15 } 
+  boxShadow: "0px 15px 25px rgba(0,0,0,0.3)",
+  transition: { stiffness: 300, damping: 15, type: spring }
 };
 const cardHoverLight = { 
   scale: 1.03, 
   y: -6, 
-  boxShadow: "0px 15px 25px rgba(50, 142, 110, 0.18)", // Shadow related to #328E6E
-  transition: { type: "spring", stiffness: 300, damping: 15 } 
+  boxShadow: "0px 15px 25px rgba(50, 142, 110, 0.18)",
+  transition: { stiffness: 300, damping: 15, type: spring }
 };
-const buttonHover = { scale: 1.05, transition: { type: "spring", stiffness: 350, damping: 12 }};
+const buttonHover = { scale: 1.05, transition: { stiffness: 350, damping: 12, type: spring }};
 
+export const themeColor = "#328E6E";
 
 export default function CROAuditsPage() {
     const router = useRouter();
@@ -180,12 +181,12 @@ export default function CROAuditsPage() {
                             <div className={`w-full max-w-md h-72 ${lightThemeColors.textAccent}/10 p-6 rounded-xl flex items-center justify-center relative shadow-lg border-2 border-teal-200/50`}>
                                 <div className="relative w-full h-full flex items-center justify-center">
                                     <motion.div 
-                                        initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.5, type: "spring", stiffness: 150 }}
+                                        initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.5, type: spring, stiffness: 150 }}
                                         className={`absolute -top-10 -left-10 w-28 h-28 rounded-full ${lightThemeColors.textAccent}/20 flex items-center justify-center backdrop-blur-sm border border-teal-300/50`}>
                                         <BarChart className={`w-12 h-12 ${lightThemeColors.textAccent}`} />
                                     </motion.div>
                                     <motion.div 
-                                        initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.7, duration: 0.7 }}
+                                        initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.7, duration: 0.7, type: spring, stiffness: 150 }}
                                         className={`w-56 h-40 ${lightThemeColors.cardBg} rounded-lg shadow-2xl p-5 flex flex-col justify-between border ${lightThemeColors.cardBorder}`}>
                                         <div className="flex justify-between items-center">
                                             <div className={`${lightThemeColors.textAccent} font-bold text-md`}>Conversion Rate</div>
@@ -195,7 +196,7 @@ export default function CROAuditsPage() {
                                         <div className={`text-sm ${lightThemeColors.textBody} opacity-80`}>After optimization</div>
                                     </motion.div>
                                     <motion.div 
-                                        initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.9, type: "spring", stiffness: 150 }}
+                                        initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.9, type: spring, stiffness: 150 }}
                                         className={`absolute -bottom-10 -right-10 w-28 h-28 rounded-full ${lightThemeColors.textAccent}/20 flex items-center justify-center backdrop-blur-sm border border-teal-300/50`}>
                                         <Zap className={`w-12 h-12 ${lightThemeColors.textAccent}`} />
                                     </motion.div>
@@ -383,7 +384,7 @@ export default function CROAuditsPage() {
                           <span key={idx} className="text-yellow-400 text-2xl">★</span>
                         ))}
                       </div>
-                      <p className={`${colors.textSecondary} italic text-md mb-6 flex-1`}>“{t.quote}”</p>
+                      <p className={`${colors.textSecondary} italic text-md mb-6 flex-1`}>"{t.quote}"</p>
                       <div className="mt-auto pt-4 border-t ${colors.borderLight}">
                         <span className={`font-semibold text-lg ${colors.textPrimary}`}>{t.name}</span>
                         <div className={`text-sm ${colors.textSecondary} opacity-80`}>{t.title}</div>

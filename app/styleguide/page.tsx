@@ -4,6 +4,7 @@ import { ColorShowcase } from '@/components/ui/color-showcase';
 export const metadata = {
   title: 'Style Guide | Markov International',
   description: 'Design system and style guide for the Markov International website',
+  robots: 'noindex, nofollow',
 };
 
 export default function StyleGuidePage() {

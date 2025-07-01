@@ -1,5 +1,3 @@
-"use client"
-
 import React from 'react'; // Import React for Suspense
 import { useState, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -13,6 +11,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Phone, Mail, MapPin, Loader2, CheckCircle2, Star, ArrowRight, MessageSquare, Clock, Award } from "lucide-react";
 import { toast } from "sonner";
 import ContactFormSection from './contact-form-section';
+import type { Metadata } from 'next'
 
 // Types
 interface FormData {
@@ -134,6 +133,15 @@ const businessTypes: { [key: string]: BusinessType } = {
     }
   }
 };
+
+export const metadata: Metadata = {
+  title: 'Contact Markov International',
+  description: 'Get in touch with Markov International for business inquiries, support, or partnership opportunities.',
+  robots: 'index, follow',
+  alternates: {
+    canonical: 'https://markovinternational.com/contact',
+  },
+}
 
 // Main page component that wraps the actual form section in Suspense
 export default function ContactPage() {

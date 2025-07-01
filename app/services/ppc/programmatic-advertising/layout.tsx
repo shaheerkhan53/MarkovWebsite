@@ -1,8 +1,12 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Programmatic Advertising Services | Markov Display Ads',
-  description: `Reach your audience at scale with programmatic advertising services from Markov. We use data-driven strategies to deliver targeted display ads that perform.`
+  title: 'Programmatic Advertising Services by Markov',
+  description: 'Automate and optimize your digital ad buying with Markov’s programmatic advertising services. Smarter targeting, better ROI, and scalable campaigns.',
+  robots: 'index, follow',
+  alternates: {
+    canonical: 'https://markovinternational.com/services/ppc/programmatic-advertising',
+  },
 }
 
 export default function ProgrammaticAdvertisingLayout({ children }: { children: React.ReactNode }) {

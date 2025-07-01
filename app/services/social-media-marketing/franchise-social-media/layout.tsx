@@ -1,8 +1,12 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Franchise Social Media Marketing Services | Markovate',
-  description: 'Centralize your brand and empower local franchisees with Markovate\'s social media marketing. Drive growth, engagement, and consistency across your network.'
+  title: 'Franchise Social Media Services by Markov',
+  description: "Empower your franchise with Markov's social media services. Consistent branding, local engagement, and scalable strategies.",
+  robots: 'index, follow',
+  alternates: {
+    canonical: 'https://markovinternational.com/services/social-media-marketing/franchise-social-media',
+  },
 }
 
 export default function FranchiseSocialMediaLayout({ children }: { children: React.ReactNode }) {

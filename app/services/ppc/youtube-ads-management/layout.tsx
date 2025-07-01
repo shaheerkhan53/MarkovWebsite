@@ -1,8 +1,12 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'YouTube Ads Management Services | Markov Video Ads',
-  description: `Capture your audience with YouTube ads management from Markov. We create compelling video campaigns that drive engagement, leads, and sales. Learn more!`
+  title: 'YouTube Ads Management Services by Markov',
+  description: "Reach your audience on YouTube with Markov's expert ads management. Video ad strategy, targeting, and analytics for business growth.",
+  robots: 'index, follow',
+  alternates: {
+    canonical: 'https://markovinternational.com/services/ppc/youtube-ads-management',
+  },
 }
 
 export default function YoutubeAdsManagementLayout({ children }: { children: React.ReactNode }) {

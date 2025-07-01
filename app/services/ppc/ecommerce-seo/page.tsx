@@ -1,15 +1,9 @@
 "use client";
 
 import React from "react";
-import type { Metadata } from 'next';
 import { Button } from "@/components/ui/button";
 import { BarChart, CheckCircle, Zap, ShoppingCart, Tag, Globe, FileText, Mail } from "lucide-react";
 import { useRouter } from "next/navigation";
-
-export const metadata: Metadata = {
-  title: 'eCommerce SEO Services | Boost Online Store Rankings',
-  description: `Boost your online store's visibility with Markov's eCommerce SEO services. We drive organic traffic and sales with proven strategies for online retailers.`
-};
 
 export default function EcommerceSEOPage() {
     const router = useRouter();
@@ -318,4 +312,4 @@ export default function EcommerceSEOPage() {
             </section>
         </div>
     );
-} 
+}

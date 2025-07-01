@@ -1,8 +1,12 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: "Social Media Marketing for Industries | Markovate",
-    description: "Customized social media strategies for your industry. Markovate helps businesses in finance, healthcare, e-commerce, and more connect with their audience and drive results.",
+    title: 'Social Media Marketing Industry Solutions by Markov',
+    description: 'Grow your brand with Markov’s social media marketing solutions. Strategy, content, and analytics for all industries.',
+    robots: 'index, follow',
+    alternates: {
+        canonical: 'https://markovinternational.com/industries/social-media-marketing',
+    },
 }
 
 export default function SocialMediaMarketingLayout({ children }: { children: React.ReactNode }) {

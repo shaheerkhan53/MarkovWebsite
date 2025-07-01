@@ -1,8 +1,12 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'eCommerce PPC Management Services | Markov for Shops',
-  description: `Drive targeted traffic and sales with eCommerce PPC management by Markov. We create and manage campaigns that maximize your ROI. Get a free proposal!`
+  title: 'Ecommerce PPC Services by Markov',
+  description: "Drive more sales with Markov's ecommerce PPC management. Expert Google Shopping, Bing, and marketplace ads for online stores.",
+  robots: 'index, follow',
+  alternates: {
+    canonical: 'https://markovinternational.com/services/ppc/ecommerce-ppc',
+  },
 }
 
 export default function EcommercePPCLayout({ children }: { children: React.ReactNode }) {

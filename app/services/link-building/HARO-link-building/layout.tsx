@@ -1,8 +1,12 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'HARO Link Building Services | Get High-Authority Links',
-  description: `Secure high-authority backlinks with Markov's HARO link building services. Our experts help you get featured in top media outlets. Get started today!`
+  title: 'HARO Link Building Services by Markov',
+  description: 'Boost your websites authority with Markovs HARO link building services. Secure high-quality links from top publications and grow your rankings.',
+  robots: 'index, follow',
+  alternates: {
+    canonical: 'https://markovinternational.com/services/link-building/HARO-link-building',
+  },
 }
 
 export default function HAROLinkBuildingLayout({ children }: { children: React.ReactNode }) {

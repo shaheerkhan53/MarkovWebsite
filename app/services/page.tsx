@@ -3,7 +3,11 @@ import ServicesPageClient from '../../components/ServicesPageClient'
 
 export const metadata: Metadata = {
   title: 'Expert Digital Marketing Services | Markov Agency USA',
-  description: 'Markov\'s digital marketing services help US businesses grow with SEO, PPC, and social media strategies that drive traffic, leads, and ROI. Get started today!'
+  description: 'Markov\'s digital marketing services help US businesses grow with SEO, PPC, and social media strategies that drive traffic, leads, and ROI. Get started today!',
+  robots: 'index, follow',
+  alternates: {
+    canonical: 'https://markovinternational.com/services',
+  },
 }
 
 export default function ServicesPage() {

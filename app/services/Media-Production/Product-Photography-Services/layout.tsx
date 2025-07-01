@@ -1,8 +1,12 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Product Photography Services by Markov | Sell More Online',
-  description: 'Stand out online with professional product photography services by Markov. Perfect for ecommerce, catalogs, and ads to boost sales in the US market.'
+  title: 'Product Photography Services by Markov',
+  description: 'Showcase your products with professional photography services by Markov. High-quality images for e-commerce, catalogs, and marketing.',
+  robots: 'index, follow',
+  alternates: {
+    canonical: 'https://markovinternational.com/services/Media-Production/Product-Photography-Services',
+  },
 }
 
 export default function ProductPhotographyServicesLayout({ children }: { children: React.ReactNode }) {
